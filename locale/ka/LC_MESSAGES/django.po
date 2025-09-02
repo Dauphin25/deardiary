@@ -1,0 +1,822 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-01 16:17+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+#: .\diary\models.py:14
+msgid "Style Name"
+msgstr "სტილის სახელი"
+
+#: .\diary\models.py:15 .\diary\models.py:63 .\diary\models.py:204
+#: .\diary\templates\diary\question_set_create.html:447
+msgid "Description"
+msgstr "აღწერა"
+
+#: .\diary\models.py:16
+msgid "Template Filename"
+msgstr "შაბლონის ფაილის სახელი"
+
+#: .\diary\models.py:16
+msgid "e.g. 'style_grunge.html'"
+msgstr "მაგ: 'style_grunge.html'"
+
+#: .\diary\models.py:21
+msgid "Question Set Style"
+msgstr "კითხვების სეტის სტილი"
+
+#: .\diary\models.py:22
+msgid "Question Set Styles"
+msgstr "კითხვების სეტის სტილები"
+
+#: .\diary\models.py:36 .\diary\templates\diary\question_set_create.html:452
+msgid "Style"
+msgstr "სტილი"
+
+#: .\diary\models.py:45
+msgid "Owner"
+msgstr "მფლობელი"
+
+#: .\diary\models.py:46
+msgid "User who created this question set."
+msgstr "მომხმარებელი, რომელმაც შექმნა ეს კითხვების სეტი."
+
+#: .\diary\models.py:55 .\diary\models.py:200
+#: .\diary\templates\diary\question_set_create.html:442 .\pages\models.py:9
+msgid "Title"
+msgstr "სათაური"
+
+#: .\diary\models.py:56
+msgid "Title of the question set."
+msgstr "კითხვების სეტის სათაური."
+
+#: .\diary\models.py:64
+msgid "Optional description for this question set."
+msgstr "ამ კითხვების სეტის არასავალდებულო აღწერა."
+
+#: .\diary\models.py:68 .\diary\models.py:214 .\users\models.py:187
+msgid "Created At"
+msgstr "შექმნის თარიღი"
+
+#: .\diary\models.py:72 .\diary\models.py:100 .\diary\models.py:138
+#: .\users\models.py:183
+msgid "Question Set"
+msgstr "კითხვების სეტი"
+
+#: .\diary\models.py:73 .\templates\home.html:345
+msgid "Question Sets"
+msgstr "კითხვების სეტები"
+
+#: .\diary\models.py:103
+msgid "Question Text"
+msgstr "კითხვის ტექსტი"
+
+#: .\diary\models.py:104
+msgid "The text of the question."
+msgstr "კითხვების ტექსტი."
+
+#: .\diary\models.py:108
+msgid "Order"
+msgstr "თანმიმდევრობა"
+
+#: .\diary\models.py:109
+msgid "Order of the question in the set."
+msgstr "კითხვების თანმიმდევრობა სეტში."
+
+#: .\diary\models.py:113 .\diary\models.py:167
+msgid "Question"
+msgstr "კითხვა"
+
+#: .\diary\models.py:114
+msgid "Questions"
+msgstr "კითხვები"
+
+#: .\diary\models.py:129
+msgid "Respondent"
+msgstr "პასუხის გამცემი"
+
+#: .\diary\models.py:130
+msgid "The user who answered these questions."
+msgstr "მომხმარებელი, რომელმაც უპასუხა ამ კითხვებს."
+
+#: .\diary\models.py:142
+msgid "Answered At"
+msgstr "პასუხის თარიღი"
+
+#: .\diary\models.py:146 .\diary\models.py:159 .\users\models.py:175
+msgid "Answer Session"
+msgstr "პასუხის სესია"
+
+#: .\diary\models.py:147
+msgid "Answer Sessions"
+msgstr "პასუხის სესიები"
+
+#: .\diary\models.py:171
+msgid "Original Question Text"
+msgstr "კითხვის თავდაპირველი ტექსტი"
+
+#: .\diary\models.py:172
+msgid "Stores the question text at the time of answering."
+msgstr "ინახავს კითხვის ტექსტს პასუხის გაცემის მომენტში."
+
+#: .\diary\models.py:176
+msgid "Answer Text"
+msgstr "პასუხის ტექსტი"
+
+#: .\diary\models.py:177
+msgid "Text provided as an answer to the question."
+msgstr "ტექსტი, რომელიც მოცემულია როგორც პასუხი კითხვაზე."
+
+#: .\diary\models.py:181
+msgid "Answer"
+msgstr "პასუხი"
+
+#: .\diary\models.py:182
+msgid "Answers"
+msgstr "პასუხები"
+
+#: .\diary\models.py:201
+msgid "Short headline for the news item."
+msgstr "სიახლის მოკლე სათაური."
+
+#: .\diary\models.py:205
+msgid "A brief description or details about the news."
+msgstr "სიახლის მოკლე აღწერა ან დეტალები."
+
+#: .\diary\models.py:209
+msgid "Display Order"
+msgstr "ჩვენების თანმიმდევრობა"
+
+#: .\diary\models.py:210
+msgid "Lower numbers appear first. For example, 1 = first position."
+msgstr "დაბალი რიცხვები ჩნდება პირველ რიგში. მაგ: 1 = პირველი პოზიცია."
+
+#: .\diary\models.py:218
+msgid "Active"
+msgstr "აქტიური"
+
+#: .\diary\models.py:219
+msgid "Uncheck to hide this news item from the homepage."
+msgstr "გადაუქმეთ მონიშვნა, რომ დამალოთ ეს სიახლე მთავარი გვერდიდან."
+
+#: .\diary\models.py:223
+msgid "News Item"
+msgstr "სიახლე"
+
+#: .\diary\models.py:224
+msgid "News Items"
+msgstr "სიახლეები"
+
+#: .\diary\templates\diary\edit_question.html:7
+msgid "Edit Question"
+msgstr "კითხვის რედაქტირება"
+
+#: .\diary\templates\diary\edit_question.html:8
+msgid "Modify your diary question"
+msgstr "შეცვალეთ თქვენი დღიურის კითხვა"
+
+#: .\diary\templates\diary\edit_question.html:20
+msgid "Save Changes"
+msgstr "ცვლილებების შენახვა"
+
+#: .\diary\templates\diary\edit_question.html:21
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: .\diary\templates\diary\question_set_create.html:436
+msgid "Create Question Set"
+msgstr "კითხვების სეტის შექმნა"
+
+#: .\diary\templates\diary\question_set_create.html:463
+msgid "Dark leather-bound diary with handwritten aesthetics"
+msgstr "მუქი ტყავით შეკრული დღიური ხელნაწერი სტილით"
+
+#: .\diary\templates\diary\question_set_create.html:464
+msgid "Simple, clean design focused on content"
+msgstr "მარტივი, სუფთა დიზაინი, რომელიც კონტენტზეა ორიენტირებული"
+
+#: .\diary\templates\diary\question_set_create.html:465
+msgid "Dark and mysterious themes for deep introspection"
+msgstr "მუქი და იდუმალი თემები ღრმა თვითანალიზისთვის"
+
+#: .\diary\templates\diary\question_set_create.html:466
+msgid "Star-guided questions for cosmic self-discovery"
+msgstr "ვარსკვლავებით შთაგონებული კითხვები კოსმოსური თვითშემეცნებისთვის"
+
+#: .\diary\templates\diary\question_set_create.html:467
+msgid "Clean and gentle prompts for peaceful reflection"
+msgstr "სუფთა და რბილი მითითებები მშვიდი აზრებისთვის"
+
+#: .\diary\templates\diary\question_set_create.html:468
+msgid "Nature-inspired questions for mindful living"
+msgstr "ბუნებით შთაგონებული კითხვები ცნობიერი ცხოვრებისათვის"
+
+#: .\diary\templates\diary\question_set_create.html:469
+msgid "Futuristic prompts for digital age reflection"
+msgstr "ფუტურისტული მითითებები ციფრული ეპოქის განსაზღვრისთვის"
+
+#: .\diary\templates\diary\question_set_create.html:470
+msgid "Nostalgic questions with retro vibes"
+msgstr "ნოსტალგიური კითხვები რეტრო განწყობით"
+
+#: .\diary\templates\diary\question_set_create.html:471
+msgid "Regal themes for noble self-reflection"
+msgstr "სამეფო თემები კეთილშობილური თვითანალიზისთვის"
+
+#: .\diary\templates\diary\question_set_create.html:472
+msgid "Oceanic vibes for flowing thoughts"
+msgstr "ოკეანის ენერგია თავისუფალი აზრებისთვის"
+
+#: .\diary\templates\diary\question_set_create.html:473
+msgid "Classic paper diary experience"
+msgstr "კლასიკური ქაღალდის დღიურის გამოცდილება"
+
+#: .\diary\templates\diary\question_set_create.html:474
+msgid "Dramatic black and white aesthetics"
+msgstr "დრამატული შავ-თეთრი ესთეტიკა"
+
+#: .\diary\templates\diary\question_set_create.html:475
+#, python-format
+msgid "%(label)s style theme"
+msgstr "%(label)s სტილის თემა"
+
+#: .\diary\templates\diary\question_set_create.html:479 .\users\models.py:90
+msgid "Premium"
+msgstr "პრემიუმი"
+
+#: .\diary\templates\diary\question_set_create.html:490
+msgid "More Styles Coming Soon!"
+msgstr "მეტი სტილი მალე დაემატება!"
+
+#: .\diary\templates\diary\question_set_create.html:491
+msgid ""
+"We're crafting exciting new diary themes including Enchanted Forest, Space "
+"Explorer, Art Deco, and many more magical experiences..."
+msgstr "ჩვენ ვქმნით ახალ და საინტერესო დღიურის თემებს, მათ შორის: ჯადოსნური ტყე, კოსმოსის მკვლევარი, არტ-დეკო და მრავალი სხვა მაგიური გამოცდილება..."
+
+#: .\diary\templates\diary\question_set_create.html:497
+msgid "Unlock Premium Styles"
+msgstr "გახსენი პრემიუმ სტილები"
+
+#: .\diary\templates\diary\question_set_create.html:498
+msgid ""
+"Upgrade to Premium to access all diary styles and create unlimited question "
+"sets."
+msgstr "განაახლე პრემიუმზე, რათა მიიღო ყველა სტილზე წვდომა და შექმნა შეუზღუდავი კითხვების სეტი."
+
+#: .\diary\templates\diary\question_set_create.html:499
+#: .\templates\home.html:364
+msgid "Upgrade Now"
+msgstr "განაახლე ახლავე"
+
+#: .\diary\templates\diary\question_set_create.html:503
+msgid "Create"
+msgstr "შექმნა"
+
+#: .\diary\templates\diary\style_basic.html:852
+msgid "Diary Controls"
+msgstr "დღიურის მართვა"
+
+#: .\diary\templates\diary\style_basic.html:856
+msgid "← Back to Homepage"
+msgstr "← დაბრუნება მთავარზე"
+
+#: .\diary\templates\diary\style_basic.html:857 .\templates\header.html:441
+msgid "View Responses"
+msgstr "ნახე პასუხები"
+
+#: .\diary\templates\diary\style_basic.html:862
+msgid "Share Card"
+msgstr "გააზიარე ბარათი"
+
+#: .\diary\templates\diary\style_basic.html:863
+msgid "Share Link"
+msgstr "გააზიარე ბმული"
+
+#: .\diary\templates\diary\style_basic.html:868
+msgid "Copy"
+msgstr "კოპირება"
+
+#: .\diary\templates\diary\style_basic.html:873
+#: .\diary\templates\diary\style_basic.html:877
+msgid "Add Question"
+msgstr "კითხვების დამატება"
+
+#: .\diary\templates\diary\style_basic.html:885
+msgid "Delete this diary permanently?"
+msgstr "წაშალო ეს დღიური სამუდამოდ?"
+
+#: .\diary\templates\diary\style_basic.html:885
+msgid "Delete Diary"
+msgstr "დღიურის წაშლა"
+
+#: .\diary\templates\diary\style_basic.html:898
+msgid "← Back to Home"
+msgstr "← დაბრუნება მთავარზე"
+
+#: .\diary\templates\diary\style_basic.html:910
+msgid "Download as PDF"
+msgstr "ჩამოტვირთე PDF ფორმატში"
+
+#: .\diary\templates\diary\style_basic.html:914
+#, python-format
+msgid ""
+"\n"
+"              Answered by %(fullname|default:username)s on %(date)s\n"
+"              "
+msgstr ""
+"\n"
+"              უპასუხა %(fullname|default:username)s-მა %(date)s\n"
+"              "
+
+#: .\diary\templates\diary\style_basic.html:937
+msgid "Edit"
+msgstr "რედაქტირება"
+
+#: .\diary\templates\diary\style_basic.html:939
+msgid "Delete this question?"
+msgstr "წაშალო ეს კითხვა?"
+
+#: .\diary\templates\diary\style_basic.html:939
+msgid "Delete"
+msgstr "წაშლა"
+
+#: .\diary\templates\diary\style_basic.html:952
+msgid "Share your thoughts..."
+msgstr "გააზიარე შენი აზრები..."
+
+#: .\diary\templates\diary\style_basic.html:957
+msgid "Save My Responses"
+msgstr "ჩემი პასუხების შენახვა"
+
+#: .\diary\templates\diary\style_basic.html:985
+msgid "← Home"
+msgstr "← მთავარი"
+
+#: .\diary\templates\diary\style_basic.html:986 .\templates\header.html:412
+msgid "Responses"
+msgstr "პასუხები"
+
+#: .\diary\templates\diary\view_all_responses.html:331
+msgid "Response Dashboard"
+msgstr "პასუხების დაფა"
+
+#: .\diary\templates\diary\view_all_responses.html:332
+msgid "View all responses to your question sets"
+msgstr "ნახე ყველა პასუხი შენს კითხვების სეტებზე"
+
+#: .\diary\templates\diary\view_all_responses.html:351
+msgid "Anonymous User"
+msgstr "ანონიმური მომხმარებელი"
+
+#: .\diary\templates\diary\view_all_responses.html:355
+#, python-format
+msgid ""
+"\n"
+"                                                Submitted on %(date)s\n"
+"                                                "
+msgstr ""
+"\n"
+"                                                გაგზავნილია %(date)s\n"
+"                                                "
+
+#: .\diary\templates\diary\view_all_responses.html:366
+msgid ""
+"No responses received yet. Share your question set to start collecting "
+"responses!"
+msgstr "პასუხები ჯერ არ არის. გააზიარე შენი კითხვების სეტი, რომ მიიღო პასუხები!"
+
+#: .\diary\templates\diary\view_all_responses.html:375
+msgid "No Question Sets Found"
+msgstr "კითხვების სეტები არ მოიძებნა"
+
+#: .\diary\templates\diary\view_all_responses.html:376
+msgid ""
+"You haven't created any question sets yet. Start by creating your first "
+"question set!"
+msgstr "შენ ჯერ არ შეგიქმნია კითხვების სეტი. დაიწყე შენი პირველი სეტის შექმნით!"
+
+#: .\diary\templates\diary\view_all_responses.html:377
+msgid "Create Your First Question Set"
+msgstr "შექმენი შენი პირველი კითხვების სეტი"
+
+#: .\pages\models.py:10
+msgid "Slug"
+msgstr "სლაგი"
+
+#: .\pages\models.py:11
+msgid "Content"
+msgstr "შინაარსი"
+
+#: .\pages\models.py:12
+msgid "Meta Description"
+msgstr "მეტა აღწერა"
+
+#: .\pages\models.py:13
+msgid "Published"
+msgstr "გამოქვეყნებული"
+
+#: .\pages\models.py:17 .\users\templates\users\profile.html:499
+msgid "Page"
+msgstr "გვერდი"
+
+#: .\pages\models.py:18
+msgid "Pages"
+msgstr "გვერდები"
+
+#: .\templates\footer.html:257
+msgid "Follow Us"
+msgstr "გამოგვყევი"
+
+#: .\templates\footer.html:259
+msgid "Facebook"
+msgstr "ფეისბუქი"
+
+#: .\templates\footer.html:260
+msgid "Instagram"
+msgstr "ინსტაგრამი"
+
+#: .\templates\footer.html:261
+msgid "LinkedIn"
+msgstr "ლინკდინი"
+
+#: .\templates\footer.html:266 .\templates\footer.html:286
+msgid "Contact"
+msgstr "კონტაქტი"
+
+#: .\templates\footer.html:269
+msgid "Tbilisi, Georgia"
+msgstr "თბილისი, საქართველო"
+
+#: .\templates\footer.html:274
+msgid "Select Language"
+msgstr "აირჩიე ენა"
+
+#: .\templates\footer.html:282
+msgid "Quick Links"
+msgstr "სწრაფი ბმულები"
+
+#: .\templates\footer.html:284
+msgid "How It Works"
+msgstr "როგორ მუშაობს"
+
+#: .\templates\footer.html:285
+msgid "FAQ"
+msgstr "ხშირად დასმული კითხვები"
+
+#: .\templates\footer.html:287
+msgid "About Us"
+msgstr "ჩვენ შესახებ"
+
+#: .\templates\footer.html:294
+msgid "Terms & Conditions"
+msgstr "წესები და პირობები"
+
+#: .\templates\footer.html:295
+msgid "Privacy Policy"
+msgstr "კონფიდენციალურობის პოლიტიკა"
+
+#: .\templates\footer.html:296
+msgid "Community Guidelines"
+msgstr "საზოგადოების წესები"
+
+#: .\templates\footer.html:298
+msgid "Dear Diary. All rights reserved."
+msgstr "Dear Diary. ყველა უფლება დაცულია."
+
+#: .\templates\header.html:409 .\users\models.py:192
+#: .\users\templates\users\profile.html:477
+msgid "Notifications"
+msgstr "გაფრთხილებები"
+
+#: .\templates\header.html:416 .\templates\header.html:445
+msgid "View Diaries"
+msgstr "დღიურების ნახვა"
+
+#: .\templates\header.html:426 .\templates\header.html:453
+msgid "No diaries yet"
+msgstr "ჯერ დღიურები არ არის"
+
+#: .\templates\header.html:430 .\templates\header.html:466
+msgid "Log In"
+msgstr "შესვლა"
+
+#: .\templates\header.html:431 .\templates\header.html:467
+#: .\templates\home.html:369
+msgid "Sign Up"
+msgstr "რეგისტრაცია"
+
+#: .\templates\header.html:463 .\templates\header.html:483
+#: .\templates\home.html:324 .\users\templates\users\profile.html:471
+msgid "Profile"
+msgstr "პროფილი"
+
+#: .\templates\header.html:464 .\templates\header.html:484
+msgid "Logout"
+msgstr "გამოსვლა"
+
+#: .\templates\header.html:493
+msgid "responded to"
+msgstr "უპასუხა"
+
+#: .\templates\header.html:494
+msgid "[view]"
+msgstr "[ნახვა]"
+
+#: .\templates\home.html:289
+msgid "Welcome to Your Personal Diary Space"
+msgstr "მოგესალმებით თქვენს პირად დღიურ სივრცეში"
+
+#: .\templates\home.html:290
+msgid ""
+"Here, you can create your own diary questions and share them with friends. "
+"When your friends answer, you’ll receive their responses — a fun and "
+"meaningful way to see the world through their eyes and reflect together."
+msgstr ""
+"აქ შეგიძლიათ შექმნათ საკუთარი დღიურის კითხვები და გაუზიაროთ მეგობრებს. "
+"როდესაც თქვენი მეგობრები უპასუხებენ, მიიღებთ მათ პასუხებს — სახალისო და "
+"მნიშვნელოვანი გზაა, რომ სამყაროს მათი თვალით შეხედოთ და ერთად იფიქროთ."
+
+#: .\templates\home.html:297
+msgid "Share & Connect"
+msgstr "გაზიარება და დაკავშირება"
+
+#: .\templates\home.html:298
+msgid ""
+"Every diary set can be shared through a unique link. That means your "
+"friends, family, or community can answer your questions too. You'll be able "
+"to see who responded and read their answers in one place. It's a fun and "
+"meaningful way to connect through stories and reflections."
+msgstr ""
+"ყოველი დღიურის ნაკრების გაზიარება შესაძლებელია უნიკალური ბმულით. "
+"ეს ნიშნავს, რომ თქვენს მეგობრებს, ოჯახს ან საზოგადოებასაც შეეძლებათ პასუხის გაცემა. "
+"თქვენ შეძლებთ ნახოთ, ვინ უპასუხა და წაიკითხოთ მათი პასუხები ერთ ადგილზე. "
+"ეს არის სახალისო და მნიშვნელოვანი გზა ისტორიებითა და ფიქრით დასაკავშირებლად."
+
+#: .\templates\home.html:305
+msgid "Free vs Premium Experience"
+msgstr "უფასო და პრემიუმ გამოცდილება"
+
+#: .\templates\home.html:306
+msgid ""
+"Free users can answer a limited number of question sets each week and create "
+"one of their own. Premium users unlock extra perks: more answers, more "
+"creations, and access to all the different visual styles to make their diary "
+"truly personal."
+msgstr ""
+"უფასო მომხმარებლებს შეუძლიათ კვირაში შეზღუდული რაოდენობის კითხვარზე პასუხი და "
+"საკუთარი ერთეულის შექმნა. პრემიუმ მომხმარებლებს ეძლევათ დამატებითი უპირატესობები: "
+"მეტი პასუხი, მეტი შექმნილი ნაკრები და ყველა ვიზუალურ სტილზე წვდომა, "
+"რათა თავიანთი დღიური უფრო პერსონალური გახადონ."
+
+#: .\templates\home.html:313
+msgid "Customize Your Diary"
+msgstr "მოირგეთ თქვენი დღიური"
+
+#: .\templates\home.html:314
+msgid ""
+"Choose from different layouts and styles for your diary sets. Whether you "
+"prefer a classic notebook look or something more creative and colorful, "
+"there's a style for every mood. Premium users get full access to all "
+"available designs."
+msgstr ""
+"აირჩიეთ სხვადასხვა განლაგება და სტილი თქვენი დღიურის ნაკრებისთვის. "
+"გინდათ კლასიკური ბლოკნოტის იერი თუ უფრო კრეატიული და ფერადი სტილი — "
+"ყოველი განწყობისთვის არის ვარიანტი. პრემიუმ მომხმარებლებს აქვთ სრული წვდომა "
+"ყველა ხელმისაწვდომ დიზაინზე."
+
+#: .\templates\home.html:327
+msgid "Username"
+msgstr "მომხმარებლის სახელი"
+
+#: .\templates\home.html:331
+msgid "Email"
+msgstr "ელ. ფოსტა"
+
+#: .\templates\home.html:335
+msgid "Plan"
+msgstr "პაკეტი"
+
+#: .\templates\home.html:341
+msgid "Weekly Answers"
+msgstr "კვირის პასუხები"
+
+#: .\templates\home.html:349
+msgid "Please log in to see your profile info."
+msgstr "გთხოვთ, შეხვიდეთ პროფილის ინფორმაციის სანახავად."
+
+#: .\templates\home.html:359
+msgid "Premium Features"
+msgstr "პრემიუმ ფუნქციები"
+
+#: .\templates\home.html:360
+msgid "You are enjoying premium benefits"
+msgstr "თქვენ სარგებლობთ პრემიუმ უპირატესობებით"
+
+#: .\templates\home.html:362
+msgid "Get Premium"
+msgstr "მიიღეთ პრემიუმი"
+
+#: .\templates\home.html:363
+msgid "Unlock unlimited question sets, custom themes, and advanced features."
+msgstr "გახსენით შეუზღუდავი კითხვების ნაკრები, თემა და დამატებითი ფუნქციები."
+
+#: .\templates\home.html:367
+msgid "Join Premium"
+msgstr "შეიერთეთ პრემიუმი"
+
+#: .\templates\home.html:368
+msgid "Create an account and upgrade to unlock all features!"
+msgstr "შექმენით ანგარიში და გააუმჯობესეთ, რომ ყველა ფუნქცია გახსნათ!"
+
+#: .\templates\includes\leaderboard.html:3
+msgid "Leaderboard"
+msgstr "ლიდერბორდი"
+
+#: .\templates\includes\leaderboard.html:9
+msgid "response"
+msgstr "პასუხი"
+
+#: .\templates\includes\leaderboard.html:14
+msgid "No users yet - be the first to join!"
+msgstr "მომხმარებლები ჯერ არ არიან — იყავით პირველი!"
+
+#: .\templates\includes\responses_popup.html:8
+#: .\users\templates\users\profile.html:496
+msgid "Previous"
+msgstr "წინა"
+
+#: .\templates\includes\responses_popup.html:9
+msgid "1 of 1 pages"
+msgstr "1 / 1 გვერდი"
+
+#: .\templates\includes\responses_popup.html:10
+#: .\users\templates\users\profile.html:502
+msgid "Next"
+msgstr "შემდეგი"
+
+#: .\templates\includes\responses_popup.html:11
+msgid "Close"
+msgstr "დახურვა"
+
+#: .\templates\share_card.html:211
+msgid "invites you to fill in their"
+msgstr "გიწვევთ შეავსოთ მათი"
+
+#: .\templates\share_card.html:211
+msgid "Friendship Diary"
+msgstr "მეგობრობის დღიური"
+
+#: .\templates\share_card.html:216
+msgid "QR code"
+msgstr "QR კოდი"
+
+#: .\templates\share_card.html:217
+msgid "Scan to answer this diary"
+msgstr "დაასკანერეთ ამ დღიურზე პასუხისთვის"
+
+#: .\users\models.py:22
+msgid "Male"
+msgstr "მამაკაცი"
+
+#: .\users\models.py:23
+msgid "Female"
+msgstr "ქალი"
+
+
+#: .\users\models.py:64
+msgid "Select your gender."
+msgstr "აირჩიეთ თქვენი სქესი."
+
+#: .\users\models.py:84 .\users\models.py:148
+msgid "User"
+msgstr "მომხმარებელი"
+
+#: .\users\models.py:85
+msgid "Users"
+msgstr "მომხმარებლები"
+
+#: .\users\models.py:89
+msgid "Free"
+msgstr "უფასო"
+
+#: .\users\models.py:138
+msgid "Answered Diary"
+msgstr "გაცემული დღიური"
+
+#: .\users\models.py:139
+msgid "Received Response"
+msgstr "მიღებული პასუხი"
+
+#: .\users\models.py:140
+msgid "System"
+msgstr "სისტემა"
+
+#: .\users\models.py:156
+msgid "Actor"
+msgstr "გამომწვევი"
+
+#: .\users\models.py:157
+msgid "The user who triggered this notification."
+msgstr "მომხმარებელი, რომელმაც გამოიწვია ეს შეტყობინება."
+
+#: .\users\models.py:163
+msgid "Type"
+msgstr "ტიპი"
+
+#: .\users\models.py:165
+msgid "Related Object ID"
+msgstr "დაკავშირებული ობიექტის ID"
+
+#: .\users\models.py:166
+msgid "Message"
+msgstr "შეტყობინება"
+
+#: .\users\models.py:186
+msgid "Is Read"
+msgstr "წაკითხულია"
+
+#: .\users\models.py:191
+msgid "Notification"
+msgstr "შეტყობინება"
+
+#: .\users\templates\users\profile.html:485
+msgid "View"
+msgstr "ნახვა"
+
+#: .\users\templates\users\profile.html:487
+msgid "ago"
+msgstr "წინ"
+
+#: .\users\templates\users\profile.html:490
+msgid "No notifications yet."
+msgstr "ჯერ არ არის შეტყობინებები."
+
+#: .\users\templates\users\profile.html:499
+msgid "of"
+msgstr "-დან"
+
+#: .\users\templates\users\profile.html:510
+msgid "Account Information"
+msgstr "ანგარიშის ინფორმაცია"
+
+#: .\users\templates\users\profile.html:513
+msgid "Username:"
+msgstr "მომხმარებლის სახელი:"
+
+#: .\users\templates\users\profile.html:517
+msgid "Email:"
+msgstr "ელ. ფოსტა:"
+
+#: .\users\templates\users\profile.html:521
+msgid "Name:"
+msgstr "სახელი:"
+
+#: .\users\templates\users\profile.html:525
+msgid "City:"
+msgstr "ქალაქი:"
+
+#: .\users\templates\users\profile.html:529
+msgid "Phone Number:"
+msgstr "ტელეფონის ნომერი:"
+
+#: .\users\templates\users\profile.html:538
+msgid "Current Plan"
+msgstr "მიმდინარე პაკეტი"
+
+#: .\users\templates\users\profile.html:544
+msgid "Answers This Week"
+msgstr "პასუხები ამ კვირაში"
+
+#: .\users\templates\users\profile.html:549
+msgid "Next reset in:"
+msgstr "შემდეგი განულება:"
+
+#: .\users\templates\users\profile.html:549
+msgid "Loading..."
+msgstr "იტვირთება..."
+
+#: .\users\templates\users\profile.html:580
+msgid "Question Sets Created"
+msgstr "შექმნილი კითხვარის ნაკრები"
+
+#: .\users\templates\users\profile.html:586
+msgid "Upgrade to Premium"
+msgstr "გადაიყვანეთ პრემიუმზე"
+
+#: .\users\templates\users\profile.html:591
+msgid "Create New Question Set"
+msgstr "ახალი კითხვარის შექმნა"

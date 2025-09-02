@@ -1,0 +1,871 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-01 16:17+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\diary\models.py:14
+msgid "Style Name"
+msgstr "Stilname"
+
+#: .\diary\models.py:15 .\diary\models.py:63 .\diary\models.py:204
+#: .\diary\templates\diary\question_set_create.html:447
+msgid "Description"
+msgstr "Beschreibung"
+
+#: .\diary\models.py:16
+msgid "Template Filename"
+msgstr "Vorlagen-Dateiname"
+
+#: .\diary\models.py:16
+msgid "e.g. 'style_grunge.html'"
+msgstr "z. B. 'style_grunge.html'"
+
+#: .\diary\models.py:21
+msgid "Question Set Style"
+msgstr "Fragensatz-Stil"
+
+#: .\diary\models.py:22
+msgid "Question Set Styles"
+msgstr "Fragensatz-Stile"
+
+#: .\diary\models.py:36 .\diary\templates\diary\question_set_create.html:452
+msgid "Style"
+msgstr "Stil"
+
+#: .\diary\models.py:45
+msgid "Owner"
+msgstr "Besitzer"
+
+#: .\diary\models.py:46
+msgid "User who created this question set."
+msgstr "Benutzer, der diesen Fragensatz erstellt hat."
+
+#: .\diary\models.py:55 .\diary\models.py:200
+#: .\diary\templates\diary\question_set_create.html:442 .\pages\models.py:9
+msgid "Title"
+msgstr "Titel"
+
+#: .\diary\models.py:56
+msgid "Title of the question set."
+msgstr "Titel des Fragensatzes."
+
+#: .\diary\models.py:64
+msgid "Optional description for this question set."
+msgstr "Optionale Beschreibung für diesen Fragensatz."
+
+#: .\diary\models.py:68 .\diary\models.py:214 .\users\models.py:187
+msgid "Created At"
+msgstr "Erstellt am"
+
+#: .\diary\models.py:72 .\diary\models.py:100 .\diary\models.py:138
+#: .\users\models.py:183
+msgid "Question Set"
+msgstr "Fragensatz"
+
+#: .\diary\models.py:73 .\templates\home.html:345
+msgid "Question Sets"
+msgstr "Fragensätze"
+
+#: .\diary\models.py:103
+msgid "Question Text"
+msgstr "Fragentext"
+
+#: .\diary\models.py:104
+msgid "The text of the question."
+msgstr "Der Text der Frage."
+
+#: .\diary\models.py:108
+msgid "Order"
+msgstr "Reihenfolge"
+
+#: .\diary\models.py:109
+msgid "Order of the question in the set."
+msgstr "Reihenfolge der Frage im Satz."
+
+#: .\diary\models.py:113 .\diary\models.py:167
+msgid "Question"
+msgstr "Frage"
+
+#: .\diary\models.py:114
+msgid "Questions"
+msgstr "Fragen"
+
+#: .\diary\models.py:129
+msgid "Respondent"
+msgstr "Befragter"
+
+#: .\diary\models.py:130
+msgid "The user who answered these questions."
+msgstr "Der Benutzer, der diese Fragen beantwortet hat."
+
+#: .\diary\models.py:142
+msgid "Answered At"
+msgstr "Beantwortet am"
+
+#: .\diary\models.py:146 .\diary\models.py:159 .\users\models.py:175
+msgid "Answer Session"
+msgstr "Antwortsitzung"
+
+#: .\diary\models.py:147
+msgid "Answer Sessions"
+msgstr "Antwortsitzungen"
+
+#: .\diary\models.py:171
+msgid "Original Question Text"
+msgstr "Ursprünglicher Fragentext"
+
+#: .\diary\models.py:172
+msgid "Stores the question text at the time of answering."
+msgstr "Speichert den Fragentext zum Zeitpunkt der Beantwortung."
+
+#: .\diary\models.py:176
+msgid "Answer Text"
+msgstr "Antworttext"
+
+#: .\diary\models.py:177
+msgid "Text provided as an answer to the question."
+msgstr "Text, der als Antwort auf die Frage angegeben wurde."
+
+#: .\diary\models.py:181
+msgid "Answer"
+msgstr "Antwort"
+
+#: .\diary\models.py:182
+msgid "Answers"
+msgstr "Antworten"
+#: .\diary\models.py:201
+msgid "Short headline for the news item."
+msgstr "Kurze Überschrift für die Neuigkeit."
+
+#: .\diary\models.py:205
+msgid "A brief description or details about the news."
+msgstr "Eine kurze Beschreibung oder Details zur Neuigkeit."
+
+#: .\diary\models.py:209
+msgid "Display Order"
+msgstr "Anzeigereihenfolge"
+
+#: .\diary\models.py:210
+msgid "Lower numbers appear first. For example, 1 = first position."
+msgstr "Kleinere Zahlen erscheinen zuerst. Zum Beispiel: 1 = erste Position."
+
+#: .\diary\models.py:218
+msgid "Active"
+msgstr "Aktiv"
+
+#: .\diary\models.py:219
+msgid "Uncheck to hide this news item from the homepage."
+msgstr "Deaktivieren, um diese Neuigkeit auf der Startseite auszublenden."
+
+#: .\diary\models.py:223
+msgid "News Item"
+msgstr "Neuigkeit"
+
+#: .\diary\models.py:224
+msgid "News Items"
+msgstr "Neuigkeiten"
+
+#: .\diary\templates\diary\edit_question.html:7
+msgid "Edit Question"
+msgstr "Frage bearbeiten"
+
+#: .\diary\templates\diary\edit_question.html:8
+msgid "Modify your diary question"
+msgstr "Bearbeite deine Tagebuchfrage"
+
+#: .\diary\templates\diary\edit_question.html:20
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: .\diary\templates\diary\edit_question.html:21
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: .\diary\templates\diary\question_set_create.html:436
+msgid "Create Question Set"
+msgstr "Fragensatz erstellen"
+
+#: .\diary\templates\diary\question_set_create.html:463
+msgid "Dark leather-bound diary with handwritten aesthetics"
+msgstr "Dunkles ledergebundenes Tagebuch mit handschriftlicher Ästhetik"
+
+#: .\diary\templates\diary\question_set_create.html:464
+msgid "Simple, clean design focused on content"
+msgstr "Einfaches, klares Design mit Fokus auf den Inhalt"
+
+#: .\diary\templates\diary\question_set_create.html:465
+msgid "Dark and mysterious themes for deep introspection"
+msgstr "Dunkle und geheimnisvolle Themen für tiefe Selbstreflexion"
+
+#: .\diary\templates\diary\question_set_create.html:466
+msgid "Star-guided questions for cosmic self-discovery"
+msgstr "Sternengeleitete Fragen für kosmische Selbsterkenntnis"
+
+#: .\diary\templates\diary\question_set_create.html:467
+msgid "Clean and gentle prompts for peaceful reflection"
+msgstr "Sanfte und klare Eingaben für friedliche Reflexion"
+
+#: .\diary\templates\diary\question_set_create.html:468
+msgid "Nature-inspired questions for mindful living"
+msgstr "Von der Natur inspirierte Fragen für achtsames Leben"
+
+#: .\diary\templates\diary\question_set_create.html:469
+msgid "Futuristic prompts for digital age reflection"
+msgstr "Futuristische Anregungen für Reflexion im digitalen Zeitalter"
+
+#: .\diary\templates\diary\question_set_create.html:470
+msgid "Nostalgic questions with retro vibes"
+msgstr "Nostalgische Fragen mit Retro-Atmosphäre"
+
+#: .\diary\templates\diary\question_set_create.html:471
+msgid "Regal themes for noble self-reflection"
+msgstr "Königliche Themen für edle Selbstreflexion"
+
+#: .\diary\templates\diary\question_set_create.html:472
+msgid "Oceanic vibes for flowing thoughts"
+msgstr "Ozeanische Stimmung für fließende Gedanken"
+
+#: .\diary\templates\diary\question_set_create.html:473
+msgid "Classic paper diary experience"
+msgstr "Klassisches Papier-Tagebuch-Erlebnis"
+
+#: .\diary\templates\diary\question_set_create.html:474
+msgid "Dramatic black and white aesthetics"
+msgstr "Dramatische Schwarz-Weiß-Ästhetik"
+
+#: .\diary\templates\diary\question_set_create.html:475
+#, python-format
+msgid "%(label)s style theme"
+msgstr "%(label)s Stilthema"
+
+#: .\diary\templates\diary\question_set_create.html:479 .\users\models.py:90
+msgid "Premium"
+msgstr "Premium"
+
+#: .\diary\templates\diary\question_set_create.html:490
+msgid "More Styles Coming Soon!"
+msgstr "Weitere Stile folgen bald!"
+
+#: .\diary\templates\diary\question_set_create.html:491
+msgid ""
+"We're crafting exciting new diary themes including Enchanted Forest, Space "
+"Explorer, Art Deco, and many more magical experiences..."
+msgstr ""
+"Wir entwickeln spannende neue Tagebuch-Themen, darunter Verzauberter Wald, "
+"Weltraum-Explorer, Art Déco und viele weitere magische Erlebnisse..."
+
+#: .\diary\templates\diary\question_set_create.html:497
+msgid "Unlock Premium Styles"
+msgstr "Premium-Stile freischalten"
+
+#: .\diary\templates\diary\question_set_create.html:498
+msgid ""
+"Upgrade to Premium to access all diary styles and create unlimited question "
+"sets."
+msgstr ""
+"Upgrade auf Premium, um Zugriff auf alle Tagebuchstile zu erhalten und "
+"unbegrenzte Fragensätze zu erstellen."
+
+#: .\diary\templates\diary\question_set_create.html:499
+#: .\templates\home.html:364
+msgid "Upgrade Now"
+msgstr "Jetzt upgraden"
+
+#: .\diary\templates\diary\question_set_create.html:503
+msgid "Create"
+msgstr "Erstellen"
+
+#: .\diary\templates\diary\style_basic.html:852
+msgid "Diary Controls"
+msgstr "Tagebuch-Steuerung"
+
+#: .\diary\templates\diary\style_basic.html:856
+msgid "← Back to Homepage"
+msgstr "← Zurück zur Startseite"
+
+#: .\diary\templates\diary\style_basic.html:857 .\templates\header.html:441
+msgid "View Responses"
+msgstr "Antworten anzeigen"
+#: .\diary\templates\diary\style_basic.html:862
+msgid "Share Card"
+msgstr "Karte teilen"
+
+#: .\diary\templates\diary\style_basic.html:863
+msgid "Share Link"
+msgstr "Link teilen"
+
+#: .\diary\templates\diary\style_basic.html:868
+msgid "Copy"
+msgstr "Kopieren"
+
+#: .\diary\templates\diary\style_basic.html:873
+#: .\diary\templates\diary\style_basic.html:877
+msgid "Add Question"
+msgstr "Frage hinzufügen"
+
+#: .\diary\templates\diary\style_basic.html:885
+msgid "Delete this diary permanently?"
+msgstr "Dieses Tagebuch dauerhaft löschen?"
+
+#: .\diary\templates\diary\style_basic.html:885
+msgid "Delete Diary"
+msgstr "Tagebuch löschen"
+
+#: .\diary\templates\diary\style_basic.html:898
+msgid "← Back to Home"
+msgstr "← Zurück zur Startseite"
+
+#: .\diary\templates\diary\style_basic.html:910
+msgid "Download as PDF"
+msgstr "Als PDF herunterladen"
+
+#: .\diary\templates\diary\style_basic.html:914
+#, python-format
+msgid ""
+"\n"
+"              Answered by %(fullname|default:username)s on %(date)s\n"
+"              "
+msgstr ""
+"\n"
+"              Beantwortet von %(fullname|default:username)s am %(date)s\n"
+"              "
+
+#: .\diary\templates\diary\style_basic.html:937
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: .\diary\templates\diary\style_basic.html:939
+msgid "Delete this question?"
+msgstr "Diese Frage löschen?"
+
+#: .\diary\templates\diary\style_basic.html:939
+msgid "Delete"
+msgstr "Löschen"
+
+#: .\diary\templates\diary\style_basic.html:952
+msgid "Share your thoughts..."
+msgstr "Teile deine Gedanken..."
+
+#: .\diary\templates\diary\style_basic.html:957
+msgid "Save My Responses"
+msgstr "Meine Antworten speichern"
+
+#: .\diary\templates\diary\style_basic.html:985
+msgid "← Home"
+msgstr "← Startseite"
+
+#: .\diary\templates\diary\style_basic.html:986 .\templates\header.html:412
+msgid "Responses"
+msgstr "Antworten"
+
+#: .\diary\templates\diary\view_all_responses.html:331
+msgid "Response Dashboard"
+msgstr "Antwortübersicht"
+
+#: .\diary\templates\diary\view_all_responses.html:332
+msgid "View all responses to your question sets"
+msgstr "Alle Antworten auf deine Fragensätze anzeigen"
+
+#: .\diary\templates\diary\view_all_responses.html:351
+msgid "Anonymous User"
+msgstr "Anonymer Benutzer"
+
+#: .\diary\templates\diary\view_all_responses.html:355
+#, python-format
+msgid ""
+"\n"
+"                                                Submitted on %(date)s\n"
+"                                                "
+msgstr ""
+"\n"
+"                                                Eingereicht am %(date)s\n"
+"                                                "
+
+#: .\diary\templates\diary\view_all_responses.html:366
+msgid ""
+"No responses received yet. Share your question set to start collecting "
+"responses!"
+msgstr ""
+"Noch keine Antworten erhalten. Teile deinen Fragensatz, um Antworten zu "
+"sammeln!"
+
+#: .\diary\templates\diary\view_all_responses.html:375
+msgid "No Question Sets Found"
+msgstr "Keine Fragensätze gefunden"
+
+#: .\diary\templates\diary\view_all_responses.html:376
+msgid ""
+"You haven't created any question sets yet. Start by creating your first "
+"question set!"
+msgstr ""
+"Du hast noch keine Fragensätze erstellt. Beginne mit der Erstellung deines "
+"ersten Fragensatzes!"
+
+#: .\diary\templates\diary\view_all_responses.html:377
+msgid "Create Your First Question Set"
+msgstr "Erstelle deinen ersten Fragensatz"
+
+#: .\pages\models.py:10
+msgid "Slug"
+msgstr "Slug"
+
+#: .\pages\models.py:11
+msgid "Content"
+msgstr "Inhalt"
+
+#: .\pages\models.py:12
+msgid "Meta Description"
+msgstr "Meta-Beschreibung"
+
+#: .\pages\models.py:13
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: .\pages\models.py:17 .\users\templates\users\profile.html:499
+msgid "Page"
+msgstr "Seite"
+
+#: .\pages\models.py:18
+msgid "Pages"
+msgstr "Seiten"
+
+#: .\templates\footer.html:257
+msgid "Follow Us"
+msgstr "Folge uns"
+
+#: .\templates\footer.html:259
+msgid "Facebook"
+msgstr "Facebook"
+
+#: .\templates\footer.html:260
+msgid "Instagram"
+msgstr "Instagram"
+
+#: .\templates\footer.html:261
+msgid "LinkedIn"
+msgstr "LinkedIn"
+#: .\templates\footer.html:266 .\templates\footer.html:286
+msgid "Contact"
+msgstr "Kontakt"
+
+#: .\templates\footer.html:269
+msgid "Tbilisi, Georgia"
+msgstr "Tiflis, Georgien"
+
+#: .\templates\footer.html:274
+msgid "Select Language"
+msgstr "Sprache auswählen"
+
+#: .\templates\footer.html:282
+msgid "Quick Links"
+msgstr "Schnellzugriff"
+
+#: .\templates\footer.html:284
+msgid "How It Works"
+msgstr "So funktioniert’s"
+
+#: .\templates\footer.html:285
+msgid "FAQ"
+msgstr "FAQ"
+
+#: .\templates\footer.html:287
+msgid "About Us"
+msgstr "Über uns"
+
+#: .\templates\footer.html:294
+msgid "Terms & Conditions"
+msgstr "Allgemeine Geschäftsbedingungen"
+
+#: .\templates\footer.html:295
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
+
+#: .\templates\footer.html:296
+msgid "Community Guidelines"
+msgstr "Community-Richtlinien"
+
+#: .\templates\footer.html:298
+msgid "Dear Diary. All rights reserved."
+msgstr "Dear Diary. Alle Rechte vorbehalten."
+
+#: .\templates\header.html:409 .\users\models.py:192
+#: .\users\templates\users\profile.html:477
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+#: .\templates\header.html:416 .\templates\header.html:445
+msgid "View Diaries"
+msgstr "Tagebücher ansehen"
+
+#: .\templates\header.html:426 .\templates\header.html:453
+msgid "No diaries yet"
+msgstr "Noch keine Tagebücher"
+
+#: .\templates\header.html:430 .\templates\header.html:466
+msgid "Log In"
+msgstr "Einloggen"
+
+#: .\templates\header.html:431 .\templates\header.html:467
+#: .\templates\home.html:369
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: .\templates\header.html:463 .\templates\header.html:483
+#: .\templates\home.html:324 .\users\templates\users\profile.html:471
+msgid "Profile"
+msgstr "Profil"
+
+#: .\templates\header.html:464 .\templates\header.html:484
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: .\templates\header.html:493
+msgid "responded to"
+msgstr "hat geantwortet auf"
+
+#: .\templates\header.html:494
+msgid "[view]"
+msgstr "[ansehen]"
+
+#: .\templates\home.html:289
+msgid "Welcome to Your Personal Diary Space"
+msgstr "Willkommen in deinem persönlichen Tagebuchbereich"
+
+#: .\templates\home.html:290
+msgid ""
+"Here, you can create your own diary questions and share them with friends. "
+"When your friends answer, you’ll receive their responses — a fun and "
+"meaningful way to see the world through their eyes and reflect together."
+msgstr ""
+"Hier kannst du deine eigenen Tagebuchfragen erstellen und sie mit Freunden "
+"teilen. Wenn deine Freunde antworten, erhältst du ihre Antworten – eine "
+"lustige und bedeutungsvolle Möglichkeit, die Welt durch ihre Augen zu sehen "
+"und gemeinsam zu reflektieren."
+
+#: .\templates\home.html:297
+msgid "Share & Connect"
+msgstr "Teilen & Verbinden"
+
+#: .\templates\home.html:298
+msgid ""
+"Every diary set can be shared through a unique link. That means your "
+"friends, family, or community can answer your questions too. You'll be able "
+"to see who responded and read their answers in one place. It's a fun and "
+"meaningful way to connect through stories and reflections."
+msgstr ""
+"Jeder Fragensatz kann über einen einzigartigen Link geteilt werden. Das "
+"bedeutet, dass auch deine Freunde, Familie oder Community deine Fragen "
+"beantworten können. Du kannst sehen, wer geantwortet hat, und ihre Antworten "
+"an einem Ort lesen. Eine unterhaltsame und bedeutungsvolle Möglichkeit, sich "
+"durch Geschichten und Reflexionen zu verbinden."
+
+#: .\templates\home.html:305
+msgid "Free vs Premium Experience"
+msgstr "Kostenlose vs. Premium-Erfahrung"
+
+#: .\templates\home.html:306
+msgid ""
+"Free users can answer a limited number of question sets each week and create "
+"one of their own. Premium users unlock extra perks: more answers, more "
+"creations, and access to all the different visual styles to make their diary "
+"truly personal."
+msgstr ""
+"Kostenlose Nutzer können jede Woche eine begrenzte Anzahl an Fragensätzen "
+"beantworten und einen eigenen erstellen. Premium-Nutzer erhalten zusätzliche "
+"Vorteile: mehr Antworten, mehr eigene Fragensätze und Zugang zu allen "
+"verschiedenen visuellen Stilen, um ihr Tagebuch wirklich persönlich zu "
+"gestalten."
+
+#: .\templates\home.html:313
+msgid "Customize Your Diary"
+msgstr "Gestalte dein Tagebuch"
+
+#: .\templates\home.html:314
+msgid ""
+"Choose from different layouts and styles for your diary sets. Whether you "
+"prefer a classic notebook look or something more creative and colorful, "
+"there's a style for every mood. Premium users get full access to all "
+"available designs."
+msgstr ""
+"Wähle aus verschiedenen Layouts und Stilen für deine Fragensätze. Ob du ein "
+"klassisches Notizbuch-Design oder etwas Kreatives und Farbenfrohes bevorzugst "
+"– es gibt einen Stil für jede Stimmung. Premium-Nutzer erhalten vollen "
+"Zugriff auf alle verfügbaren Designs."
+
+#: .\templates\home.html:327
+msgid "Username"
+msgstr "Benutzername"
+
+#: .\templates\home.html:331
+msgid "Email"
+msgstr "E-Mail"
+#: .\templates\home.html:335
+msgid "Plan"
+msgstr "Plan"
+
+#: .\templates\home.html:341
+msgid "Weekly Answers"
+msgstr "Wöchentliche Antworten"
+
+#: .\templates\home.html:349
+msgid "Please log in to see your profile info."
+msgstr "Bitte melde dich an, um deine Profilinformationen zu sehen."
+
+#: .\templates\home.html:359
+msgid "Premium Features"
+msgstr "Premium-Funktionen"
+
+#: .\templates\home.html:360
+msgid "You are enjoying premium benefits"
+msgstr "Du genießt gerade Premium-Vorteile"
+
+#: .\templates\home.html:362
+msgid "Get Premium"
+msgstr "Premium holen"
+
+#: .\templates\home.html:363
+msgid "Unlock unlimited question sets, custom themes, and advanced features."
+msgstr "Schalte unbegrenzte Fragensätze, eigene Designs und erweiterte Funktionen frei."
+
+#: .\templates\home.html:367
+msgid "Join Premium"
+msgstr "Premium beitreten"
+
+#: .\templates\home.html:368
+msgid "Create an account and upgrade to unlock all features!"
+msgstr "Erstelle ein Konto und upgrade, um alle Funktionen freizuschalten!"
+
+#: .\templates\includes\leaderboard.html:3
+msgid "Leaderboard"
+msgstr "Bestenliste"
+
+#: .\templates\includes\leaderboard.html:9
+msgid "response"
+msgstr "Antwort"
+
+#: .\templates\includes\leaderboard.html:14
+msgid "No users yet - be the first to join!"
+msgstr "Noch keine Benutzer – sei der Erste, der mitmacht!"
+
+#: .\templates\includes\responses_popup.html:8
+#: .\users\templates\users\profile.html:496
+msgid "Previous"
+msgstr "Zurück"
+
+#: .\templates\includes\responses_popup.html:9
+msgid "1 of 1 pages"
+msgstr "1 von 1 Seiten"
+
+#: .\templates\includes\responses_popup.html:10
+#: .\users\templates\users\profile.html:502
+msgid "Next"
+msgstr "Weiter"
+
+#: .\templates\includes\responses_popup.html:11
+msgid "Close"
+msgstr "Schließen"
+
+#: .\templates\share_card.html:211
+msgid "invites you to fill in their"
+msgstr "lädt dich ein, auszufüllen:"
+
+#: .\templates\share_card.html:211
+msgid "Friendship Diary"
+msgstr "Freundschaftstagebuch"
+
+#: .\templates\share_card.html:216
+msgid "QR code"
+msgstr "QR-Code"
+
+#: .\templates\share_card.html:217
+msgid "Scan to answer this diary"
+msgstr "Scannen, um dieses Tagebuch zu beantworten"
+
+#: .\users\models.py:22
+msgid "Male"
+msgstr "Männlich"
+
+#: .\users\models.py:23
+msgid "Female"
+msgstr "Weiblich"
+
+#: .\users\models.py:24
+msgid "Other"
+msgstr "Andere"
+
+#: .\users\models.py:25
+msgid "Prefer not to say"
+msgstr "Keine Angabe"
+
+#: .\users\models.py:33
+msgid "First Name"
+msgstr "Vorname"
+
+#: .\users\models.py:34
+msgid "Enter your first name."
+msgstr "Gib deinen Vornamen ein."
+
+#: .\users\models.py:38
+msgid "Last Name"
+msgstr "Nachname"
+
+#: .\users\models.py:39
+msgid "Enter your last name."
+msgstr "Gib deinen Nachnamen ein."
+
+#: .\users\models.py:45
+msgid "City"
+msgstr "Stadt"
+
+#: .\users\models.py:46
+msgid "Where do you live?"
+msgstr "Wo wohnst du?"
+
+#: .\users\models.py:52
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+#: .\users\models.py:53
+msgid "Optional phone number for contact."
+msgstr "Optionale Telefonnummer für Kontakt."
+
+#: .\users\models.py:63
+msgid "Gender"
+msgstr "Geschlecht"
+#: .\users\models.py:64
+msgid "Select your gender."
+msgstr "Wähle dein Geschlecht."
+
+#: .\users\models.py:84 .\users\models.py:148
+msgid "User"
+msgstr "Benutzer"
+
+#: .\users\models.py:85
+msgid "Users"
+msgstr "Benutzer"
+
+#: .\users\models.py:89
+msgid "Free"
+msgstr "Kostenlos"
+
+#: .\users\models.py:138
+msgid "Answered Diary"
+msgstr "Beantwortetes Tagebuch"
+
+#: .\users\models.py:139
+msgid "Received Response"
+msgstr "Erhaltene Antwort"
+
+#: .\users\models.py:140
+msgid "System"
+msgstr "System"
+
+#: .\users\models.py:156
+msgid "Actor"
+msgstr "Auslöser"
+
+#: .\users\models.py:157
+msgid "The user who triggered this notification."
+msgstr "Der Benutzer, der diese Benachrichtigung ausgelöst hat."
+
+#: .\users\models.py:163
+msgid "Type"
+msgstr "Typ"
+
+#: .\users\models.py:165
+msgid "Related Object ID"
+msgstr "Zugehörige Objekt-ID"
+
+#: .\users\models.py:166
+msgid "Message"
+msgstr "Nachricht"
+
+#: .\users\models.py:186
+msgid "Is Read"
+msgstr "Gelesen"
+
+#: .\users\models.py:191
+msgid "Notification"
+msgstr "Benachrichtigung"
+
+#: .\users\templates\users\profile.html:485
+msgid "View"
+msgstr "Ansehen"
+
+#: .\users\templates\users\profile.html:487
+msgid "ago"
+msgstr "vor"
+
+#: .\users\templates\users\profile.html:490
+msgid "No notifications yet."
+msgstr "Noch keine Benachrichtigungen."
+
+#: .\users\templates\users\profile.html:499
+msgid "of"
+msgstr "von"
+
+#: .\users\templates\users\profile.html:510
+msgid "Account Information"
+msgstr "Kontoinformationen"
+
+#: .\users\templates\users\profile.html:513
+msgid "Username:"
+msgstr "Benutzername:"
+
+#: .\users\templates\users\profile.html:517
+msgid "Email:"
+msgstr "E-Mail:"
+
+#: .\users\templates\users\profile.html:521
+msgid "Name:"
+msgstr "Name:"
+
+#: .\users\templates\users\profile.html:525
+msgid "City:"
+msgstr "Stadt:"
+
+#: .\users\templates\users\profile.html:529
+msgid "Phone Number:"
+msgstr "Telefonnummer:"
+
+#: .\users\templates\users\profile.html:538
+msgid "Current Plan"
+msgstr "Aktueller Plan"
+
+#: .\users\templates\users\profile.html:544
+msgid "Answers This Week"
+msgstr "Antworten diese Woche"
+
+#: .\users\templates\users\profile.html:549
+msgid "Next reset in:"
+msgstr "Nächster Reset in:"
+
+#: .\users\templates\users\profile.html:549
+msgid "Loading..."
+msgstr "Wird geladen..."
+
+#: .\users\templates\users\profile.html:580
+msgid "Question Sets Created"
+msgstr "Erstellte Fragensätze"
+
+#: .\users\templates\users\profile.html:586
+msgid "Upgrade to Premium"
+msgstr "Auf Premium upgraden"
+
+#: .\users\templates\users\profile.html:591
+msgid "Create New Question Set"
+msgstr "Neuen Fragensatz erstellen"

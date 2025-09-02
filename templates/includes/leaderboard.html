@@ -1,0 +1,114 @@
+{% load i18n %}
+<div class="leaderboard-section">
+    <h3>{% trans "Leaderboard" %}</h3>
+    <div class="leaderboard-container">
+        {% for user in popular_users %}
+            <div class="leaderboard-item">
+                <span class="username">{{ user.username }}</span>
+                <span class="responses">
+                    {{ user.response_count }} {% trans "response" %}{% if user.response_count != 1 %}s{% endif %}
+                </span>
+            </div>
+        {% empty %}
+            <div class="empty-state">
+                <p>{% trans "No users yet - be the first to join!" %}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<style>
+/* Leaderboard styling */
+.leaderboard-section {
+    background: #000000;
+    border: 1px solid #4a9eff;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Caveat', cursive;
+    margin-bottom: 0;
+        opacity: 0;
+        transform: translateX(30px);
+        animation: slideInRight 0.8s ease forwards;
+        animation-delay: 2.1s;
+    }
+
+    @keyframes slideInRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+.leaderboard-section h3 {
+    color: #4a9eff;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between; /* keep username left, responses right */
+    align-items: center;
+    padding: 12px 15px;
+    background: #000000;
+    color: #fefffd;
+    font-family: 'Caveat', cursive;
+    font-size: 1.7rem;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    border-color: #4a9eff;
+    background: rgba(74, 158, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(74, 158, 255, 0.2);
+}
+
+.username {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fefffd;
+}
+
+.responses {
+    font-size: 2rem;
+    color: #4a9eff;
+    font-weight: 400;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 30px 20px;
+    color: #666;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Responsive: keep inline even on small screens */
+@media (max-width: 768px) {
+    .leaderboard-item {
+        flex-direction: row;       /* force horizontal */
+        justify-content: space-between;
+        gap: 0;                    /* no vertical spacing */
+        padding: 10px 12px;
+    }
+
+    .responses {
+        font-size: 1.2rem;         /* slightly smaller for small screens */
+    }
+
+    .username {
+        font-size: 1.3rem;
+    }
+}
+</style>

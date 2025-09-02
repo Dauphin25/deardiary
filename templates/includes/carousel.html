@@ -1,0 +1,217 @@
+<div class="news-section">
+    <div class="news-carousel">
+        <!-- Simplified wrapper structure for better carousel behavior -->
+        <div class="news-items-container" id="newsContainer">
+            {% for item in news_items %}
+                <div class="news-item">
+                    <h4>{{ item.title }}</h4>
+                    <p>{{ item.description }}</p>
+                </div>
+            {% empty %}
+                <div class="news-item">
+                    <h4>Community Milestone</h4>
+                    <p>We've reached 1,000+ question sets created!</p>
+                </div>
+                <div class="news-item">
+                    <h4>New Feature Update</h4>
+                    <p>Enhanced user experiences with clean academic design!</p>
+                </div>
+                <div class="news-item">
+                    <h4>Latest Updates</h4>
+                    <p>Check out our new question categories and improved matching system!</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="carousel-indicators" id="indicators"></div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('newsContainer');
+    const items = container.children;
+    const indicatorsContainer = document.getElementById('indicators');
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    console.log('[v0] Carousel initialized with', items.length, 'items');
+
+    function createIndicators() {
+        indicatorsContainer.innerHTML = '';
+        for (let i = 0; i < items.length; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+
+    function updateIndicators() {
+        const indicators = indicatorsContainer.children;
+        for (let i = 0; i < indicators.length; i++) {
+            indicators[i].classList.toggle('active', i === currentIndex);
+        }
+    }
+
+    function updateCarousel() {
+        const translateValue = -currentIndex * 100;
+        container.style.transform = `translateX(${translateValue}%)`;
+        updateIndicators();
+        console.log('[v0] Moved to slide', currentIndex, 'with transform:', translateValue + '%');
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+
+    function startAutoSlide() {
+        if (items.length > 1) {
+            autoSlideInterval = setInterval(nextSlide, 4000);
+        }
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    if (items.length > 0) {
+        if (items.length > 1) {
+            createIndicators();
+            startAutoSlide();
+
+            // Pause on hover
+            container.addEventListener('mouseenter', stopAutoSlide);
+            container.addEventListener('mouseleave', startAutoSlide);
+        }
+    }
+});
+</script>
+
+<style>
+.news-section {
+    background: #000000;
+    border: 2px solid #4a9eff;
+    padding: 20px;
+    font-family: 'Caveat', cursive;
+    position: relative;
+    margin-bottom: 20px;
+    /* Added min-height to prevent layout shifts */
+    min-height: 130px;
+            opacity: 0;
+        transform: translateX(30px);
+        animation: slideInRight 0.8s ease forwards;
+        animation-delay: 0.7s;
+}
+    @keyframes slideInRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+
+.news-section h3 {
+    color: #4a9eff;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.4);
+}
+
+.news-carousel {
+    position: relative;
+    /* Added proper overflow and height constraints */
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+
+.news-items-container {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 1s ease-in-out;
+    width: 100%;
+    /* Removed conflicting overflow property */
+}
+
+.news-item {
+    flex: 0 0 100%;
+    padding: 15px;
+    color: #fefffd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.5s ease;
+    /* Added min-height for consistent sizing */
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.news-item:hover {
+    background: rgba(74, 158, 255, 0.1);
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.3);
+    transform: scale(1.02);
+}
+
+.news-item h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: #4a9eff;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.4);
+}
+
+.news-item p {
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+    color: #fefffd;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    background: #4a9eff;
+    border-radius: 50%;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    opacity: 0.7;
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(74, 158, 255, 0.6);
+}
+
+/* Added responsive design for mobile devices */
+@media (max-width: 768px) {
+    .news-item h4 {
+        font-size: 1.2rem;
+    }
+
+    .news-item p {
+        font-size: 1rem;
+    }
+}
+</style>

@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="question-edit-container">
+    <div class="question-edit-header">
+        <h1 class="edit-title">{% trans "Edit Question" %}</h1>
+        <p class="edit-subtitle">{% trans "Modify your diary question" %}</p>
+    </div>
+
+    <div class="question-edit-form">
+        <form method="post" class="edit-form">
+            {% csrf_token %}
+
+            <div class="form-fields">
+                {{ form.as_p }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn">{% trans "Save Changes" %}</button>
+                <a href="{% url 'diary:question_set_detail' slug=question.question_set.slug %}" class="cancel-btn">{% trans "Cancel" %}</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<style>
+/* Question Edit Page Styles */
+.question-edit-container {
+    min-height: 100vh;
+    background: #000000;
+    padding: 2rem;
+    font-family: 'Caveat', cursive;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Starfield Background */
+.question-edit-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, rgba(74, 158, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(74, 158, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(74, 158, 255, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Animated Stars */
+.question-edit-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #4a9eff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #4a9eff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #4a9eff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.question-edit-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.edit-title {
+    font-size: 3.5rem;
+    color: #4a9eff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(74, 158, 255, 0.5);
+    font-weight: 600;
+    transform: rotate(-1deg);
+}
+
+.edit-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-weight: 400;
+}
+
+.question-edit-form {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.edit-form {
+    background: rgba(17, 17, 17, 0.9);
+    border: 1px solid rgba(74, 158, 255, 0.3);
+    border-radius: 12px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-fields {
+    margin-bottom: 2rem;
+}
+
+.form-fields p {
+    margin-bottom: 1.5rem;
+}
+
+.form-fields label {
+    display: block;
+    font-size: 1.3rem;
+    color: #4a9eff;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-fields input,
+.form-fields textarea,
+.form-fields select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    font-family: 'Caveat', cursive;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(74, 158, 255, 0.3);
+    border-radius: 8px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.form-fields input:focus,
+.form-fields textarea:focus,
+.form-fields select:focus {
+    outline: none;
+    border-color: #4a9eff;
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.3);
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.form-fields textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.save-btn,
+.cancel-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    font-family: 'Caveat', cursive;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    min-width: 140px;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+}
+
+.save-btn:hover {
+    background: linear-gradient(135deg, #357abd 0%, #2a5f94 100%);
+    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Error Messages */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.errorlist li {
+    color: #ff6b6b;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Help Text */
+.helptext {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.3rem;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .question-edit-container {
+        padding: 1rem;
+    }
+
+    .edit-title {
+        font-size: 2.5rem;
+    }
+
+    .edit-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .edit-form {
+        padding: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .save-btn,
+    .cancel-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-title {
+        font-size: 2rem;
+    }
+
+    .edit-form {
+        padding: 1rem;
+    }
+
+    .form-fields input,
+    .form-fields textarea,
+    .form-fields select {
+        font-size: 1rem;
+    }
+}
+</style>
+{% endblock %}

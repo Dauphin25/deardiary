@@ -1,0 +1,787 @@
+/* Complete redesign with main site theme, comprehensive styling, star backgrounds */
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Caveat", cursive;
+  line-height: 1.6;
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 18px; /* Increased base font size for better readability */
+}
+
+/* Added grid background like login page for all viewers */
+.space-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
+  overflow: hidden;
+  z-index: 1; /* Increased z-index to ensure visibility */
+}
+
+.space-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(74, 158, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 158, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  opacity: 0.8; /* Added opacity to make grid more visible */
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Main container */
+.diary-container {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Starfield background effect */
+/* Removed global starfield background - now applied per card */
+
+/* Layout structure */
+.diary-layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Full width layout for answer/view modes - simplified approach */
+body[data-mode="respond"] .diary-layout,
+body[data-mode="answer"] .diary-layout,
+body[data-mode="view_answers"] .diary-layout {
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+body[data-mode="respond"] .functionality-sidebar,
+body[data-mode="answer"] .functionality-sidebar,
+body[data-mode="view_answers"] .functionality-sidebar {
+  display: none;
+}
+
+body[data-mode="respond"] .diary-main,
+body[data-mode="answer"] .diary-main,
+body[data-mode="view_answers"] .diary-main {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 40px 50px;
+  flex: none;
+}
+
+/* Left sidebar functionality */
+.functionality-sidebar {
+  width: 340px;
+  min-height: 100vh;
+  padding: 30px 25px;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  display: block; /* Ensure visibility on mobile */
+}
+
+.sidebar-section {
+  margin-bottom: 40px;
+}
+
+.sidebar-title {
+  font-size: 2.4rem; /* Increased font size */
+  font-weight: 600;
+  color: #4a9eff;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+}
+
+.sidebar-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4a9eff, transparent);
+}
+
+.control-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.control-label {
+  display: block;
+  font-size: 1.4rem; /* Increased font size */
+  font-weight: 500;
+  color: #4a9eff;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.form-input {
+  flex: 1;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #444;
+  color: #ffffff;
+  font-family: "Caveat", cursive;
+  font-size: 1rem; /* Increased font size */
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4a9eff;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.form-input:read-only {
+  cursor: pointer;
+  user-select: all;
+}
+
+/* Form styling */
+.add-question-form p {
+  margin-bottom: 15px;
+}
+
+.add-question-form label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.add-question-form input,
+.add-question-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #444;
+  color: #ffffff;
+  font-family: "Caveat", cursive;
+  font-size: 1.2rem; /* Increased font size */
+  transition: all 0.3s ease;
+  max-height: 100px;
+}
+
+.add-question-form input:focus,
+.add-question-form textarea:focus {
+  outline: none;
+  border-color: #4a9eff;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+/* Button styles */
+.btn {
+  padding: 12px 20px;
+  border: none;
+  font-family: "Caveat", cursive;
+  font-size: 1.3rem; /* Increased font size */
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4a9eff, #357abd);
+  color: white;
+  box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #357abd, #2c5f94);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #ff8c00, #ff6600); /* Changed add question button color to orange */
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #ff6600, #e55a00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed); /* Changed delete diary button color to purple */
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed); /* Changed delete diary button color to purple */
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.btn-large {
+  padding: 15px 40px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4a9eff, #0066cc);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+}
+
+.btn-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 158, 255, 0.4);
+}
+
+.btn.copied {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  transform: scale(0.95);
+}
+
+/* Main content area */
+.diary-main {
+  flex: 1;
+  padding: 40px 50px;
+
+}
+
+/* Enhanced header layout to include all information in one cohesive section */
+.diary-header {
+  text-align: center;
+  position: relative;
+}
+
+.diary-header.simple-header {
+  background: none;
+  border: none;
+  padding: 20px 0;
+}
+
+.diary-header.simple-header .diary-title {
+  font-size: 3rem;
+  color: #4a9eff;
+  margin-bottom: 15px;
+  text-shadow: none;
+}
+
+.diary-header.simple-header .diary-description {
+  font-size: 1.5rem;
+  color: #cccccc;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 20px;
+  font-style: normal;
+}
+
+.simple-info-line {
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.back-to-responses {
+  display: inline-block;
+  font-size: 2.2rem;
+  color: #4a9eff;
+  text-decoration: none;
+  transform: rotate(-1deg);
+  transition: all 0.3s ease;
+}
+
+.back-to-responses:hover {
+  color: #ffffff;
+  transform: rotate(-1deg) scale(1.05);
+}
+
+.diary-title {
+  font-size: 3.5rem;
+  color: #4a9eff;
+  margin-bottom: 20px;
+  font-weight: 800;
+  text-shadow: 0 3px 6px rgba(74, 158, 255, 0.4);
+  letter-spacing: 1px;
+}
+
+.diary-description {
+  font-size: 1.8rem;
+  color: #cccccc;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Added styling for new header-info-section moved from mode-header */
+.header-info-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid #333;
+}
+
+.owner-info {
+  text-align: left;
+  padding: 25px;
+  background: rgba(74, 158, 255, 0.1);
+  border: 2px solid #4a9eff;
+  border-radius: 8px;
+}
+
+.owner-label {
+  font-size: 1.4rem;
+  color: #4a9eff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.owner-name {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  margin-bottom: 8px;
+}
+
+.diary-description-info {
+  font-size: 1.3rem;
+  color: #cccccc;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.respondent-info {
+  text-align: right;
+  padding: 25px;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.15), rgba(74, 158, 255, 0.08));
+  border: 2px solid #4a9eff;
+  border-radius: 8px;
+}
+
+.respondent-label {
+  font-size: 1.4rem;
+  color: #4a9eff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.respondent-name {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  margin-bottom: 8px;
+}
+
+.response-time {
+  font-size: 1.2rem;
+  color: #cccccc;
+  font-style: italic;
+}
+
+.time-stamp {
+  font-size: 1.2rem;
+  color: #cccccc;
+  font-style: italic;
+}
+/* Modified questions section for better answer/view modes layout */
+.questions-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+/* Make diary form span the whole questions-section grid */
+.questions-section > .diary-form {
+  grid-column: 1 / -1; /* span from first to last column */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+/* Improved grid layout for viewing answers with consistent 3-2-3 pattern */
+.questions-section.view-answers-mode {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+/* Question cards with individual star backgrounds */
+.question-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px; /* Decreased from 30px */
+  transition: all 0.4s ease;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+}
+
+/* Individual card starfield background */
+.card-starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-star {
+  position: absolute;
+  background: #ffffff;
+  opacity: 0.6;
+  animation: cardStarTwinkle linear infinite;
+}
+
+.card-star::before,
+.card-star::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+}
+
+.card-star::before {
+  width: 100%;
+  height: 20%;
+}
+
+.card-star::after {
+  width: 20%;
+  height: 100%;
+}
+
+@keyframes cardStarTwinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
+}
+
+.question-content {
+  position: relative;
+  z-index: 2;
+}
+
+.question-text {
+  font-size: 1.6rem; /* Increased font size significantly */
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Added subtle text shadow for better contrast */
+  /* Removed line under question */
+    border-bottom: 2px solid #ffffff; /* Custom underline */
+  padding-bottom: 5px; /* Space between text and line */
+  display: inline-block; /* Ensures line width matches text */
+}
+
+/* Mode-specific styling */
+.question-card.answer-mode {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Answer textarea */
+.answer-textarea {
+  width: 100%;
+  min-height: 120px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #333;
+  color: #ffffff;
+  font-family: "Caveat", cursive;
+  font-size: 1.6rem;
+  padding: 15px;
+  border-radius: 6px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  max-height: 100px;
+}
+
+.answer-textarea:focus {
+  outline: none;
+  border-color: #4a9eff;
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Answer display */
+.answer-display {
+  background: rgba(0, 0, 0, 0.8); /* Removed gray background */
+  padding: 20px;
+  margin-top: 15px;
+  font-size: 2rem; /* Increased font size significantly */
+  line-height: 1.7;
+  color: #ffffff;
+  position: relative;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Added subtle text shadow for better contrast */
+}
+
+.answer-display::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+/* Question actions */
+.question-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border: 1px solid #444;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 1.2rem; /* Increased font size */
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8); /* Removed gray background */
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn.edit {
+  border-color: #4a9eff;
+  color: #4a9eff;
+}
+
+.action-btn.edit:hover {
+  background: rgba(74, 158, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+}
+
+.action-btn.delete {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.action-btn.delete:hover {
+  background: rgba(220, 53, 69, 0.1);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Form actions */
+.form-actions {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Ensure diary form spans the entire grid width */
+.questions-section > .diary-form {
+  grid-column: 1 / -1; /* Take full width inside section */
+}
+
+/* RESPONSIVE DESIGN            */
+/* ---------------------------- */
+
+/* Tablets (<= 1024px) */
+@media (max-width: 1024px) {
+  .questions-section,
+  .questions-section.view-answers-mode {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .questions-section > .diary-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  body {
+    font-size: 16px;
+  }
+
+  .functionality-sidebar {
+    width: 280px;
+    padding: 20px 15px;
+  }
+
+  .diary-main {
+    padding: 30px;
+  }
+}
+
+/* Large phones / portrait tablets (<= 768px) */
+@media (max-width: 768px) {
+  .diary-layout {
+    flex-direction: column;
+  }
+
+  .questions-section,
+  .questions-section.view-answers-mode,
+  .diary-form {
+    grid-template-columns: 1fr;
+  }
+
+    .questions-section > .diary-form {
+    grid-template-columns: 1fr;
+  }
+
+  .functionality-sidebar {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar-section {
+    margin-bottom: 25px;
+  }
+
+
+  .diary-main {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+/* Small phones (<= 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .functionality-sidebar {
+    padding: 10px 15px;
+  }
+
+  .diary-main {
+    padding: 15px;
+  }
+
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+
+  .question-card {
+    padding: 15px;
+  }
+}
+
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+

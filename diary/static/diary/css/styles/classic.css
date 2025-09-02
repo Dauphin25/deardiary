@@ -1,0 +1,27 @@
+.classic-style {
+  font-family: Georgia, serif;
+  padding: 2rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.question-set-header h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.question-set-description {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.questions-list .question {
+  margin-bottom: 1rem;
+  border-left: 4px solid #333;
+  padding-left: 1rem;
+}
+
+.add-question-form {
+  margin-top: 2rem;
+}

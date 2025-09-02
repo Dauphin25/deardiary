@@ -1,0 +1,860 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-01 16:17+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: .\diary\models.py:14
+msgid "Style Name"
+msgstr "Название стиля"
+
+#: .\diary\models.py:15 .\diary\models.py:63 .\diary\models.py:204
+#: .\diary\templates\diary\question_set_create.html:447
+msgid "Description"
+msgstr "Описание"
+
+#: .\diary\models.py:16
+msgid "Template Filename"
+msgstr "Имя файла шаблона"
+
+#: .\diary\models.py:16
+msgid "e.g. 'style_grunge.html'"
+msgstr "например, 'style_grunge.html'"
+
+#: .\diary\models.py:21
+msgid "Question Set Style"
+msgstr "Стиль набора вопросов"
+
+#: .\diary\models.py:22
+msgid "Question Set Styles"
+msgstr "Стили наборов вопросов"
+
+#: .\diary\models.py:36 .\diary\templates\diary\question_set_create.html:452
+msgid "Style"
+msgstr "Стиль"
+
+#: .\diary\models.py:45
+msgid "Owner"
+msgstr "Владелец"
+
+#: .\diary\models.py:46
+msgid "User who created this question set."
+msgstr "Пользователь, который создал этот набор вопросов."
+
+#: .\diary\models.py:55 .\diary\models.py:200
+#: .\diary\templates\diary\question_set_create.html:442 .\pages\models.py:9
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\diary\models.py:56
+msgid "Title of the question set."
+msgstr "Заголовок набора вопросов."
+
+#: .\diary\models.py:64
+msgid "Optional description for this question set."
+msgstr "Необязательное описание для этого набора вопросов."
+
+#: .\diary\models.py:68 .\diary\models.py:214 .\users\models.py:187
+msgid "Created At"
+msgstr "Дата создания"
+
+#: .\diary\models.py:72 .\diary\models.py:100 .\diary\models.py:138
+#: .\users\models.py:183
+msgid "Question Set"
+msgstr "Набор вопросов"
+
+#: .\diary\models.py:73 .\templates\home.html:345
+msgid "Question Sets"
+msgstr "Наборы вопросов"
+
+#: .\diary\models.py:103
+msgid "Question Text"
+msgstr "Текст вопроса"
+
+#: .\diary\models.py:104
+msgid "The text of the question."
+msgstr "Текст вопроса."
+
+#: .\diary\models.py:108
+msgid "Order"
+msgstr "Порядок"
+
+#: .\diary\models.py:109
+msgid "Order of the question in the set."
+msgstr "Порядок вопроса в наборе."
+
+#: .\diary\models.py:113 .\diary\models.py:167
+msgid "Question"
+msgstr "Вопрос"
+
+#: .\diary\models.py:114
+msgid "Questions"
+msgstr "Вопросы"
+
+#: .\diary\models.py:129
+msgid "Respondent"
+msgstr "Респондент"
+
+#: .\diary\models.py:130
+msgid "The user who answered these questions."
+msgstr "Пользователь, который ответил на эти вопросы."
+
+#: .\diary\models.py:142
+msgid "Answered At"
+msgstr "Дата ответа"
+
+#: .\diary\models.py:146 .\diary\models.py:159 .\users\models.py:175
+msgid "Answer Session"
+msgstr "Сессия ответов"
+
+#: .\diary\models.py:147
+msgid "Answer Sessions"
+msgstr "Сессии ответов"
+
+#: .\diary\models.py:171
+msgid "Original Question Text"
+msgstr "Исходный текст вопроса"
+
+#: .\diary\models.py:172
+msgid "Stores the question text at the time of answering."
+msgstr "Сохраняет текст вопроса на момент ответа."
+
+#: .\diary\models.py:176
+msgid "Answer Text"
+msgstr "Текст ответа"
+
+#: .\diary\models.py:177
+msgid "Text provided as an answer to the question."
+msgstr "Текст, предоставленный в качестве ответа на вопрос."
+
+#: .\diary\models.py:181
+msgid "Answer"
+msgstr "Ответ"
+
+#: .\diary\models.py:182
+msgid "Answers"
+msgstr "Ответы"
+
+#: .\diary\models.py:201
+msgid "Short headline for the news item."
+msgstr "Короткий заголовок для новости."
+
+#: .\diary\models.py:205
+msgid "A brief description or details about the news."
+msgstr "Краткое описание или детали новости."
+
+#: .\diary\models.py:209
+msgid "Display Order"
+msgstr "Порядок отображения"
+
+#: .\diary\models.py:210
+msgid "Lower numbers appear first. For example, 1 = first position."
+msgstr "Меньшие числа отображаются первыми. Например, 1 = первая позиция."
+
+#: .\diary\models.py:218
+msgid "Active"
+msgstr "Активно"
+
+#: .\diary\models.py:219
+msgid "Uncheck to hide this news item from the homepage."
+msgstr "Снимите галочку, чтобы скрыть эту новость с главной страницы."
+
+#: .\diary\models.py:223
+msgid "News Item"
+msgstr "Новость"
+
+#: .\diary\models.py:224
+msgid "News Items"
+msgstr "Новости"
+
+#: .\diary\templates\diary\edit_question.html:7
+msgid "Edit Question"
+msgstr "Редактировать вопрос"
+
+#: .\diary\templates\diary\edit_question.html:8
+msgid "Modify your diary question"
+msgstr "Измените свой дневниковый вопрос"
+
+#: .\diary\templates\diary\edit_question.html:20
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: .\diary\templates\diary\edit_question.html:21
+msgid "Cancel"
+msgstr "Отмена"
+
+#: .\diary\templates\diary\question_set_create.html:436
+msgid "Create Question Set"
+msgstr "Создать набор вопросов"
+
+#: .\diary\templates\diary\question_set_create.html:463
+msgid "Dark leather-bound diary with handwritten aesthetics"
+msgstr "Темный дневник в кожаном переплете с рукописной эстетикой"
+
+#: .\diary\templates\diary\question_set_create.html:464
+msgid "Simple, clean design focused on content"
+msgstr "Простой и чистый дизайн, сосредоточенный на содержании"
+
+#: .\diary\templates\diary\question_set_create.html:465
+msgid "Dark and mysterious themes for deep introspection"
+msgstr "Темные и загадочные темы для глубокой интроспекции"
+
+#: .\diary\templates\diary\question_set_create.html:466
+msgid "Star-guided questions for cosmic self-discovery"
+msgstr "Вопросы, направляемые звездами, для космического самопознания"
+
+#: .\diary\templates\diary\question_set_create.html:467
+msgid "Clean and gentle prompts for peaceful reflection"
+msgstr "Чистые и мягкие подсказки для спокойного размышления"
+
+#: .\diary\templates\diary\question_set_create.html:468
+msgid "Nature-inspired questions for mindful living"
+msgstr "Вопросы, вдохновленные природой, для осознанной жизни"
+
+#: .\diary\templates\diary\question_set_create.html:469
+msgid "Futuristic prompts for digital age reflection"
+msgstr "Футуристические подсказки для размышлений в цифровую эпоху"
+
+#: .\diary\templates\diary\question_set_create.html:470
+msgid "Nostalgic questions with retro vibes"
+msgstr "Ностальгические вопросы с ретро-настроением"
+
+#: .\diary\templates\diary\question_set_create.html:471
+msgid "Regal themes for noble self-reflection"
+msgstr "Королевские темы для благородного самопознания"
+
+#: .\diary\templates\diary\question_set_create.html:472
+msgid "Oceanic vibes for flowing thoughts"
+msgstr "Океанические мотивы для свободных мыслей"
+
+#: .\diary\templates\diary\question_set_create.html:473
+msgid "Classic paper diary experience"
+msgstr "Классический опыт ведения бумажного дневника"
+#: .\diary\templates\diary\question_set_create.html:474
+msgid "Dramatic black and white aesthetics"
+msgstr "Драматичная черно-белая эстетика"
+
+#: .\diary\templates\diary\question_set_create.html:475
+#, python-format
+msgid "%(label)s style theme"
+msgstr "Тема в стиле %(label)s"
+
+#: .\diary\templates\diary\question_set_create.html:479 .\users\models.py:90
+msgid "Premium"
+msgstr "Премиум"
+
+#: .\diary\templates\diary\question_set_create.html:490
+msgid "More Styles Coming Soon!"
+msgstr "Скоро появятся новые стили!"
+
+#: .\diary\templates\diary\question_set_create.html:491
+msgid ""
+"We're crafting exciting new diary themes including Enchanted Forest, Space "
+"Explorer, Art Deco, and many more magical experiences..."
+msgstr "Мы создаём новые захватывающие темы дневника, включая «Зачарованный лес», «Космический исследователь», «Арт-деко» и многие другие волшебные варианты..."
+
+#: .\diary\templates\diary\question_set_create.html:497
+msgid "Unlock Premium Styles"
+msgstr "Откройте доступ к премиум-стилям"
+
+#: .\diary\templates\diary\question_set_create.html:498
+msgid ""
+"Upgrade to Premium to access all diary styles and create unlimited question "
+"sets."
+msgstr "Перейдите на Премиум, чтобы получить доступ ко всем стилям дневника и создавать неограниченное количество наборов вопросов."
+
+#: .\diary\templates\diary\question_set_create.html:499
+#: .\templates\home.html:364
+msgid "Upgrade Now"
+msgstr "Перейти на Премиум"
+
+#: .\diary\templates\diary\question_set_create.html:503
+msgid "Create"
+msgstr "Создать"
+
+#: .\diary\templates\diary\style_basic.html:852
+msgid "Diary Controls"
+msgstr "Управление дневником"
+
+#: .\diary\templates\diary\style_basic.html:856
+msgid "← Back to Homepage"
+msgstr "← Вернуться на главную"
+
+#: .\diary\templates\diary\style_basic.html:857 .\templates\header.html:441
+msgid "View Responses"
+msgstr "Просмотреть ответы"
+
+#: .\diary\templates\diary\style_basic.html:862
+msgid "Share Card"
+msgstr "Поделиться карточкой"
+
+#: .\diary\templates\diary\style_basic.html:863
+msgid "Share Link"
+msgstr "Поделиться ссылкой"
+
+#: .\diary\templates\diary\style_basic.html:868
+msgid "Copy"
+msgstr "Копировать"
+
+#: .\diary\templates\diary\style_basic.html:873
+#: .\diary\templates\diary\style_basic.html:877
+msgid "Add Question"
+msgstr "Добавить вопрос"
+
+#: .\diary\templates\diary\style_basic.html:885
+msgid "Delete this diary permanently?"
+msgstr "Удалить этот дневник навсегда?"
+
+#: .\diary\templates\diary\style_basic.html:885
+msgid "Delete Diary"
+msgstr "Удалить дневник"
+
+#: .\diary\templates\diary\style_basic.html:898
+msgid "← Back to Home"
+msgstr "← Вернуться домой"
+
+#: .\diary\templates\diary\style_basic.html:910
+msgid "Download as PDF"
+msgstr "Скачать в PDF"
+
+#: .\diary\templates\diary\style_basic.html:914
+#, python-format
+msgid ""
+"\n"
+"              Answered by %(fullname|default:username)s on %(date)s\n"
+"              "
+msgstr ""
+"\n"
+"              Отвечено пользователем %(fullname|default:username)s %(date)s\n"
+"              "
+
+#: .\diary\templates\diary\style_basic.html:937
+msgid "Edit"
+msgstr "Редактировать"
+
+#: .\diary\templates\diary\style_basic.html:939
+msgid "Delete this question?"
+msgstr "Удалить этот вопрос?"
+
+#: .\diary\templates\diary\style_basic.html:939
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\diary\templates\diary\style_basic.html:952
+msgid "Share your thoughts..."
+msgstr "Поделитесь своими мыслями..."
+
+#: .\diary\templates\diary\style_basic.html:957
+msgid "Save My Responses"
+msgstr "Сохранить мои ответы"
+
+#: .\diary\templates\diary\style_basic.html:985
+msgid "← Home"
+msgstr "← Домой"
+
+#: .\diary\templates\diary\style_basic.html:986 .\templates\header.html:412
+msgid "Responses"
+msgstr "Ответы"
+
+#: .\diary\templates\diary\view_all_responses.html:331
+msgid "Response Dashboard"
+msgstr "Панель ответов"
+
+#: .\diary\templates\diary\view_all_responses.html:332
+msgid "View all responses to your question sets"
+msgstr "Просмотрите все ответы на ваши наборы вопросов"
+
+#: .\diary\templates\diary\view_all_responses.html:351
+msgid "Anonymous User"
+msgstr "Анонимный пользователь"
+
+#: .\diary\templates\diary\view_all_responses.html:355
+#, python-format
+msgid ""
+"\n"
+"                                                Submitted on %(date)s\n"
+"                                                "
+msgstr ""
+"\n"
+"                                                Отправлено %(date)s\n"
+"                                                "
+
+#: .\diary\templates\diary\view_all_responses.html:366
+msgid ""
+"No responses received yet. Share your question set to start collecting "
+"responses!"
+msgstr "Пока нет ответов. Поделитесь своим набором вопросов, чтобы начать их собирать!"
+
+#: .\diary\templates\diary\view_all_responses.html:375
+msgid "No Question Sets Found"
+msgstr "Наборы вопросов не найдены"
+
+#: .\diary\templates\diary\view_all_responses.html:376
+msgid ""
+"You haven't created any question sets yet. Start by creating your first "
+"question set!"
+msgstr "Вы еще не создали ни одного набора вопросов. Начните с создания первого набора!"
+
+#: .\diary\templates\diary\view_all_responses.html:377
+msgid "Create Your First Question Set"
+msgstr "Создайте свой первый набор вопросов"
+
+#: .\pages\models.py:10
+msgid "Slug"
+msgstr "Слаг"
+
+#: .\pages\models.py:11
+msgid "Content"
+msgstr "Содержание"
+
+#: .\pages\models.py:12
+msgid "Meta Description"
+msgstr "Мета-описание"
+
+#: .\pages\models.py:13
+msgid "Published"
+msgstr "Опубликовано"
+
+#: .\pages\models.py:17 .\users\templates\users\profile.html:499
+msgid "Page"
+msgstr "Страница"
+
+#: .\pages\models.py:18
+msgid "Pages"
+msgstr "Страницы"
+
+#: .\templates\footer.html:257
+msgid "Follow Us"
+msgstr "Подписывайтесь на нас"
+
+#: .\templates\footer.html:259
+msgid "Facebook"
+msgstr "Facebook"
+
+#: .\templates\footer.html:260
+msgid "Instagram"
+msgstr "Instagram"
+
+#: .\templates\footer.html:261
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: .\templates\footer.html:266 .\templates\footer.html:286
+msgid "Contact"
+msgstr "Контакты"
+
+#: .\templates\footer.html:269
+msgid "Tbilisi, Georgia"
+msgstr "Тбилиси, Грузия"
+
+#: .\templates\footer.html:274
+msgid "Select Language"
+msgstr "Выбрать язык"
+
+#: .\templates\footer.html:282
+msgid "Quick Links"
+msgstr "Быстрые ссылки"
+
+#: .\templates\footer.html:284
+msgid "How It Works"
+msgstr "Как это работает"
+
+#: .\templates\footer.html:285
+msgid "FAQ"
+msgstr "Частые вопросы"
+
+#: .\templates\footer.html:287
+msgid "About Us"
+msgstr "О нас"
+
+#: .\templates\footer.html:294
+msgid "Terms & Conditions"
+msgstr "Условия использования"
+
+#: .\templates\footer.html:295
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
+
+#: .\templates\footer.html:296
+msgid "Community Guidelines"
+msgstr "Правила сообщества"
+
+#: .\templates\footer.html:298
+msgid "Dear Diary. All rights reserved."
+msgstr "Dear Diary. Все права защищены."
+
+#: .\templates\header.html:409 .\users\models.py:192
+#: .\users\templates\users\profile.html:477
+msgid "Notifications"
+msgstr "Уведомления"
+#: .\templates\header.html:416 .\templates\header.html:445
+msgid "View Diaries"
+msgstr "Просмотреть дневники"
+
+#: .\templates\header.html:426 .\templates\header.html:453
+msgid "No diaries yet"
+msgstr "Дневников пока нет"
+
+#: .\templates\header.html:430 .\templates\header.html:466
+msgid "Log In"
+msgstr "Войти"
+
+#: .\templates\header.html:431 .\templates\header.html:467
+#: .\templates\home.html:369
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+#: .\templates\header.html:463 .\templates\header.html:483
+#: .\templates\home.html:324 .\users\templates\users\profile.html:471
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\templates\header.html:464 .\templates\header.html:484
+msgid "Logout"
+msgstr "Выйти"
+
+#: .\templates\header.html:493
+msgid "responded to"
+msgstr "ответил на"
+
+#: .\templates\header.html:494
+msgid "[view]"
+msgstr "[посмотреть]"
+
+#: .\templates\home.html:289
+msgid "Welcome to Your Personal Diary Space"
+msgstr "Добро пожаловать в ваше личное пространство дневника"
+
+#: .\templates\home.html:290
+msgid ""
+"Here, you can create your own diary questions and share them with friends. "
+"When your friends answer, you’ll receive their responses — a fun and "
+"meaningful way to see the world through their eyes and reflect together."
+msgstr ""
+"Здесь вы можете создавать собственные вопросы для дневника и делиться ими с друзьями. "
+"Когда ваши друзья ответят, вы получите их ответы — это увлекательный и значимый способ "
+"увидеть мир их глазами и вместе поразмышлять."
+
+#: .\templates\home.html:297
+msgid "Share & Connect"
+msgstr "Делитесь и общайтесь"
+
+#: .\templates\home.html:298
+msgid ""
+"Every diary set can be shared through a unique link. That means your "
+"friends, family, or community can answer your questions too. You'll be able "
+"to see who responded and read their answers in one place. It's a fun and "
+"meaningful way to connect through stories and reflections."
+msgstr ""
+"Каждый набор вопросов можно поделиться с помощью уникальной ссылки. Это значит, что ваши "
+"друзья, семья или сообщество тоже смогут ответить на ваши вопросы. Вы сможете увидеть, кто ответил, "
+"и прочитать их ответы в одном месте. Это интересный и значимый способ наладить связь через истории и размышления."
+
+#: .\templates\home.html:305
+msgid "Free vs Premium Experience"
+msgstr "Бесплатный и Премиум-опыт"
+
+#: .\templates\home.html:306
+msgid ""
+"Free users can answer a limited number of question sets each week and create "
+"one of their own. Premium users unlock extra perks: more answers, more "
+"creations, and access to all the different visual styles to make their diary "
+"truly personal."
+msgstr ""
+"Бесплатные пользователи могут отвечать на ограниченное количество наборов вопросов каждую неделю и создать один свой собственный. "
+"Премиум-пользователи получают дополнительные преимущества: больше ответов, больше возможностей для создания и доступ ко всем различным визуальным стилям, "
+"чтобы сделать свой дневник по-настоящему личным."
+
+#: .\templates\home.html:313
+msgid "Customize Your Diary"
+msgstr "Настройте свой дневник"
+
+#: .\templates\home.html:314
+msgid ""
+"Choose from different layouts and styles for your diary sets. Whether you "
+"prefer a classic notebook look or something more creative and colorful, "
+"there's a style for every mood. Premium users get full access to all "
+"available designs."
+msgstr ""
+"Выбирайте разные макеты и стили для своих наборов дневника. Хотите ли вы классический вид тетради или что-то более креативное и красочное — "
+"есть стиль для любого настроения. Премиум-пользователи получают полный доступ ко всем доступным дизайнам."
+#: .\templates\home.html:327
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: .\templates\home.html:331
+msgid "Email"
+msgstr "Эл. почта"
+
+#: .\templates\home.html:335
+msgid "Plan"
+msgstr "Тариф"
+
+#: .\templates\home.html:341
+msgid "Weekly Answers"
+msgstr "Еженедельные ответы"
+
+#: .\templates\home.html:349
+msgid "Please log in to see your profile info."
+msgstr "Пожалуйста, войдите, чтобы увидеть информацию профиля."
+
+#: .\templates\home.html:359
+msgid "Premium Features"
+msgstr "Премиум-функции"
+
+#: .\templates\home.html:360
+msgid "You are enjoying premium benefits"
+msgstr "Вы пользуетесь премиум-преимуществами"
+
+#: .\templates\home.html:362
+msgid "Get Premium"
+msgstr "Получить Премиум"
+
+#: .\templates\home.html:363
+msgid "Unlock unlimited question sets, custom themes, and advanced features."
+msgstr "Откройте доступ к неограниченным наборам вопросов, пользовательским темам и дополнительным функциям."
+
+#: .\templates\home.html:367
+msgid "Join Premium"
+msgstr "Присоединиться к Премиум"
+
+#: .\templates\home.html:368
+msgid "Create an account and upgrade to unlock all features!"
+msgstr "Создайте аккаунт и обновите его, чтобы открыть все функции!"
+
+#: .\templates\includes\leaderboard.html:3
+msgid "Leaderboard"
+msgstr "Таблица лидеров"
+
+#: .\templates\includes\leaderboard.html:9
+msgid "response"
+msgstr "ответ"
+
+#: .\templates\includes\leaderboard.html:14
+msgid "No users yet - be the first to join!"
+msgstr "Пользователей пока нет — станьте первым!"
+
+#: .\templates\includes\responses_popup.html:8
+#: .\users\templates\users\profile.html:496
+msgid "Previous"
+msgstr "Предыдущая"
+
+#: .\templates\includes\responses_popup.html:9
+msgid "1 of 1 pages"
+msgstr "1 из 1 страниц"
+
+#: .\templates\includes\responses_popup.html:10
+#: .\users\templates\users\profile.html:502
+msgid "Next"
+msgstr "Следующая"
+
+#: .\templates\includes\responses_popup.html:11
+msgid "Close"
+msgstr "Закрыть"
+
+#: .\templates\share_card.html:211
+msgid "invites you to fill in their"
+msgstr "приглашает вас заполнить свой"
+
+#: .\templates\share_card.html:211
+msgid "Friendship Diary"
+msgstr "Дневник дружбы"
+
+#: .\templates\share_card.html:216
+msgid "QR code"
+msgstr "QR-код"
+
+#: .\templates\share_card.html:217
+msgid "Scan to answer this diary"
+msgstr "Сканируйте, чтобы ответить на этот дневник"
+
+#: .\users\models.py:22
+msgid "Male"
+msgstr "Мужской"
+
+#: .\users\models.py:23
+msgid "Female"
+msgstr "Женский"
+
+#: .\users\models.py:24
+msgid "Other"
+msgstr "Другое"
+
+#: .\users\models.py:25
+msgid "Prefer not to say"
+msgstr "Предпочитаю не указывать"
+
+#: .\users\models.py:33
+msgid "First Name"
+msgstr "Имя"
+
+#: .\users\models.py:34
+msgid "Enter your first name."
+msgstr "Введите ваше имя."
+
+#: .\users\models.py:38
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: .\users\models.py:39
+msgid "Enter your last name."
+msgstr "Введите вашу фамилию."
+
+#: .\users\models.py:45
+msgid "City"
+msgstr "Город"
+
+#: .\users\models.py:46
+msgid "Where do you live?"
+msgstr "Где вы живете?"
+
+#: .\users\models.py:52
+msgid "Phone Number"
+msgstr "Номер телефона"
+
+#: .\users\models.py:53
+msgid "Optional phone number for contact."
+msgstr "Необязательный номер телефона для связи."
+
+#: .\users\models.py:63
+msgid "Gender"
+msgstr "Пол"
+
+#: .\users\models.py:64
+msgid "Select your gender."
+msgstr "Выберите ваш пол."
+
+#: .\users\models.py:84 .\users\models.py:148
+msgid "User"
+msgstr "Пользователь"
+
+#: .\users\models.py:85
+msgid "Users"
+msgstr "Пользователи"
+
+#: .\users\models.py:89
+msgid "Free"
+msgstr "Бесплатный"
+
+#: .\users\models.py:138
+msgid "Answered Diary"
+msgstr "Отвеченный дневник"
+
+#: .\users\models.py:139
+msgid "Received Response"
+msgstr "Полученный ответ"
+
+#: .\users\models.py:140
+msgid "System"
+msgstr "Система"
+
+#: .\users\models.py:156
+msgid "Actor"
+msgstr "Инициатор"
+
+#: .\users\models.py:157
+msgid "The user who triggered this notification."
+msgstr "Пользователь, вызвавший это уведомление."
+
+#: .\users\models.py:163
+msgid "Type"
+msgstr "Тип"
+
+#: .\users\models.py:165
+msgid "Related Object ID"
+msgstr "ID связанного объекта"
+
+#: .\users\models.py:166
+msgid "Message"
+msgstr "Сообщение"
+
+#: .\users\models.py:186
+msgid "Is Read"
+msgstr "Прочитано"
+
+#: .\users\models.py:191
+msgid "Notification"
+msgstr "Уведомление"
+
+#: .\users\templates\users\profile.html:485
+msgid "View"
+msgstr "Посмотреть"
+
+#: .\users\templates\users\profile.html:487
+msgid "ago"
+msgstr "назад"
+
+#: .\users\templates\users\profile.html:490
+msgid "No notifications yet."
+msgstr "Уведомлений пока нет."
+
+#: .\users\templates\users\profile.html:499
+msgid "of"
+msgstr "из"
+
+#: .\users\templates\users\profile.html:510
+msgid "Account Information"
+msgstr "Информация об аккаунте"
+
+#: .\users\templates\users\profile.html:513
+msgid "Username:"
+msgstr "Имя пользователя:"
+
+#: .\users\templates\users\profile.html:517
+msgid "Email:"
+msgstr "Эл. почта:"
+
+#: .\users\templates\users\profile.html:521
+msgid "Name:"
+msgstr "Имя:"
+
+#: .\users\templates\users\profile.html:525
+msgid "City:"
+msgstr "Город:"
+
+#: .\users\templates\users\profile.html:529
+msgid "Phone Number:"
+msgstr "Номер телефона:"
+
+#: .\users\templates\users\profile.html:538
+msgid "Current Plan"
+msgstr "Текущий тариф"
+
+#: .\users\templates\users\profile.html:544
+msgid "Answers This Week"
+msgstr "Ответов на этой неделе"
+
+#: .\users\templates\users\profile.html:549
+msgid "Next reset in:"
+msgstr "Следующий сброс через:"
+
+#: .\users\templates\users\profile.html:549
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: .\users\templates\users\profile.html:580
+msgid "Question Sets Created"
+msgstr "Созданные наборы вопросов"
+
+#: .\users\templates\users\profile.html:586
+msgid "Upgrade to Premium"
+msgstr "Обновить до Премиум"
+
+#: .\users\templates\users\profile.html:591
+msgid "Create New Question Set"
+msgstr "Создать новый набор вопросов"

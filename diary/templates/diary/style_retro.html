@@ -1,0 +1,129 @@
+{% load diary_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ question_set.title }} - My Diary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using external CSS file instead of inline styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'diary/css/styles/retro.css' %}">
+</head>
+<body>
+    <div class="diary-container">
+        <!-- Removed inline styles, now using external CSS -->
+        <header class="header-section">
+            <h1 class="diary-title">{{ question_set.title }}</h1>
+            {% if question_set.description %}
+                <div class="diary-description">
+                    <p>{{ question_set.description }}</p>
+                </div>
+            {% endif %}
+
+            <div class="header-actions">
+                {% if mode == "owner" %}
+                    <a href="{% url 'diary:view_all_responses' %}" class="action-btn">View Responses</a>
+                    <!-- Added delete diary button -->
+                    <a href="{% url 'diary:question_set_delete' question_set.pk %}"
+                       onclick="return confirm('Delete this entire diary? This cannot be undone.');"
+                       class="action-btn delete-diary-btn">Delete Diary</a>
+                {% endif %}
+
+                {% if mode != "answer" and mode != "view_answers" %}
+                    <div class="share-section">
+                        <input type="text" class="share-input" id="share-link"
+                               value="{{ request.build_absolute_uri|cut:request.path }}{% url 'diary:answer_question_set_shared' question_set.share_uuid %}"
+                               readonly>
+                        <!-- Updated copy button styling -->
+                        <button onclick="copyLink()" class="copy-btn-new">Copy Link</button>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+
+        {% if mode == "owner" %}
+            <section class="add-question">
+                <h3>Add New Question</h3>
+                <form method="post" class="question-form">
+                    {% csrf_token %}
+                    <input type="text" name="text" class="question-input" placeholder="Enter your question..." required>
+                    <button type="submit" class="add-btn">Add Question</button>
+                </form>
+            </section>
+        {% endif %}
+
+        <main class="questions-grid">
+            {% if mode == "respond" or mode == "answer" %}
+                <form method="post" style="display: contents;">
+                    {% csrf_token %}
+            {% endif %}
+
+            {% for question in questions %}
+                <article class="question-card">
+                    <div class="question-header">
+                        <!-- Removed question number display -->
+                        {% if mode == "owner" %}
+                            <div class="question-controls">
+                                <a href="{% url 'diary:edit_question' question.pk %}" class="control-btn edit-btn">Edit</a>
+                                <a href="{% url 'diary:delete_question' question.pk %}"
+                                   onclick="return confirm('Delete this question?');"
+                                   class="control-btn delete-btn">Delete</a>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="question-text">{{ question.text }}</div>
+
+                    {% if mode == "respond" or mode == "answer" %}
+                        <textarea name="question_{{ question.id }}"
+                                  class="answer-textarea"
+                                  placeholder="Your answer..."
+                                  required></textarea>
+                    {% elif mode == "view_answers" %}
+                        <div class="answer-display">
+                            <strong>Answer:</strong> {{ answers_dict|get_item:question.id }}
+                        </div>
+                    {% endif %}
+                </article>
+            {% empty %}
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px; color: #40e0d0;">
+                    <p>No questions yet. Add some questions to get started.</p>
+                </div>
+            {% endfor %}
+
+            {% if mode == "respond" or mode == "answer" %}
+                </form>
+            {% endif %}
+        </main>
+
+        {% if mode == "respond" or mode == "answer" %}
+            <section class="submit-section">
+                <button type="submit" form="response-form" class="submit-btn">Submit Answers</button>
+            </section>
+        {% endif %}
+
+        <footer class="footer-section">
+            <p>{{ questions|length }} question{{ questions|length|pluralize }} • Created by {{ question_set.owner.username }}</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyLink() {
+            const input = document.getElementById("share-link");
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = "Copied!";
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

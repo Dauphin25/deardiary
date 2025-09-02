@@ -1,0 +1,495 @@
+{% load i18n %}
+<!-- diary/responses_popup.html -->
+
+<!-- responses_popup.html -->
+<div id="responsesPaper" class="responses-paper hidden">
+    <div class="paper-body" id="responsesContent"></div>
+    <div class="paper-footer">
+        <button id="prevPage">{% trans "Previous" %}</button>
+        <span id="pageInfo">{% trans "1 of 1 pages" %}</span>
+        <button id="nextPage">{% trans "Next" %}</button>
+        <button id="closePaper">{% trans "Close" %}</button>
+    </div>
+</div>
+
+<script>
+/*
+ * Global variables for pagination and responses
+ */
+let responsesData = []; // Stores all fetched responses
+let currentPage = 0;    // Tracks current page in pagination
+const itemsPerPage = 5; // Number of responses per page
+
+/*
+ * Function to fetch and display responses in the popup
+ * Called from header links (desktop or mobile)
+ */
+window.showResponsesPopup = function() {
+    const paper = document.getElementById('responsesPaper');
+    const content = document.getElementById('responsesContent');
+
+    if (!paper || !content) {
+        console.error('Responses popup elements not found.');
+        return;
+    }
+
+    // Fetch responses via Django URL
+    fetch("{% url 'diary:fetch_responses' %}")
+        .then(res => res.json())
+        .then(data => {
+            // Flatten all responses from question sets into one array
+            responsesData = data.question_sets.flatMap(qs =>
+                qs.responses.map(r => ({ ...r, qs_title: qs.question_set_title }))
+            );
+            currentPage = 0;
+            renderPage();
+            paper.classList.remove('hidden');
+        })
+        .catch(error => console.error('Error fetching responses:', error));
+};
+
+/*
+ * Renders the current page of responses
+ */
+function renderPage() {
+    const content = document.getElementById('responsesContent');
+    const pageInfoEl = document.getElementById('pageInfo');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+
+    if (!responsesData || responsesData.length === 0) {
+        content.innerHTML = '<div style="text-align:center; padding:40px; color:#666;">No responses available</div>';
+        pageInfoEl.textContent = '0 of 0 pages';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+    }
+
+    const totalPages = Math.ceil(responsesData.length / itemsPerPage);
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageItems = responsesData.slice(start, end);
+
+    // Render each response
+    content.innerHTML = pageItems.map(r => {
+        const fontClass = getRandomFontClass();
+        const dateTime = new Date(r.submitted_at);
+        const timeStr = dateTime.toLocaleTimeString('en-US', {
+            hour: '2-digit', minute: '2-digit', hour12: false
+        });
+
+        return `
+            <div class="response-item">
+                <span class="response-line">
+                    <span class="${fontClass}">${r.respondent}</span>
+                    <span style="color:#333; font-family:'Georgia', serif;">responded to</span>
+                    <span class="diary-name">${r.qs_title}</span>
+                    <a href="/diary/response/${r.id}/" class="view-link">[view]</a>
+                </span>
+                <div class="response-date">
+                    ${r.submitted_at} <span class="response-time">${timeStr}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    pageInfoEl.textContent = `${currentPage + 1} of ${totalPages} pages`;
+
+    // Enable/disable pagination buttons
+    prevBtn.disabled = currentPage <= 0;
+    nextBtn.disabled = currentPage >= totalPages - 1;
+}
+
+/*
+ * Change page by delta (-1 or +1)
+ */
+function changePage(delta) {
+    const totalPages = Math.ceil(responsesData.length / itemsPerPage);
+    const newPage = currentPage + delta;
+    if (newPage < 0 || newPage >= totalPages) return;
+    currentPage = newPage;
+    renderPage();
+}
+
+/*
+ * Returns a random font class for styling
+ */
+function getRandomFontClass() {
+    const fonts = Array.from({length:20}, (_,i)=>`font-${i+1}`);
+    return fonts[Math.floor(Math.random() * fonts.length)];
+}
+
+/*
+ * Drag functionality for desktop/tablet only
+ */
+function enableDrag() {
+    const paper = document.getElementById('responsesPaper');
+    let isDragging = false, startX, startY, initialX, initialY;
+
+    paper.addEventListener('mousedown', function(e) {
+        if (window.innerWidth <= 768) return; // Skip mobile
+        if (e.target !== paper && !e.target.classList.contains('paper-body')) return;
+
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        const rect = paper.getBoundingClientRect();
+        initialX = rect.left;
+        initialY = rect.top;
+        paper.style.transition = 'none';
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        paper.style.left = (initialX + deltaX) + 'px';
+        paper.style.top = (initialY + deltaY) + 'px';
+        paper.style.transform = 'rotate(3deg)';
+    });
+
+    document.addEventListener('mouseup', function() {
+        if (isDragging) {
+            isDragging = false;
+            paper.style.transition = '';
+        }
+    });
+}
+
+/*
+ * Attach all button event listeners
+ */
+function attachButtons() {
+    document.getElementById('prevPage').addEventListener('click', () => changePage(-1));
+    document.getElementById('nextPage').addEventListener('click', () => changePage(1));
+    document.getElementById('closePaper').addEventListener('click', () => {
+        document.getElementById('responsesPaper').classList.add('hidden');
+    });
+}
+
+/*
+ * Initialize popup when DOM is loaded
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    enableDrag();
+    attachButtons();
+
+    // Optional: attach mobile nav link if exists
+    const mobileLink = document.querySelector(".mobile-nav-link[data-action='responses']");
+    if (mobileLink) {
+        mobileLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showResponsesPopup();
+        });
+    }
+});
+</script>
+
+
+<style>
+/* Added fade-in animation and updated styling to match reference image */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30%) translateY(-20px) rotate(3deg) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-30%) translateY(0) rotate(3deg) scale(1);
+    }
+}
+
+.responses-paper {
+    position: fixed;
+    top: 10%;
+    left: 30%; /* moved more to the left from 50% */
+    transform: translateX(-30%) rotate(3deg); /* adjusted transform to match new left position */
+    width: 60%; /* decreased width from 85% */
+    max-width: 600px; /* decreased max-width from 700px */
+    height: 85%; /* increased height from max-height 80% */
+    max-height: none; /* removed max-height constraint */
+    background: #ffffff;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    animation: fadeIn 0.4s ease-out;
+    cursor: move; /* added cursor to indicate draggable */
+}
+
+.responses-paper.hidden {
+    display: none;
+}
+
+.paper-body {
+    padding: 40px;
+    overflow-y: auto;
+    flex: 1;
+    background: #ffffff;
+    border-radius: 8px 8px 0 0;
+}
+
+.paper-footer {
+    padding: 20px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* removed highlight class and effects */
+.response-item {
+    margin: 25px 0;
+    padding: 10px;
+    background: transparent;
+    position: relative;
+    font-size: 20px;
+    line-height: 1.7;
+    transform: rotate(-0.5deg);
+    cursor: default; /* changed from move to default since individual items no longer draggable */
+    user-select: none;
+    border-radius: 4px;
+}
+
+
+/* Updated response items to use fonts and colors from reference image */
+.response-line {
+    display: block;
+    margin: 10px 0;
+    position: relative;
+}
+
+/* Updated fonts and colors to match reference image exactly */
+.font-1 { font-family: 'Playfair Display', serif; color: #8B5CF6; font-weight: 400; font-size: 22px; } /* American Artist purple */
+.font-2 { font-family: 'Crimson Text', serif; color: #059669; font-weight: 400; font-style: italic; font-size: 20px; } /* angus fletcher teal */
+.font-3 { font-family: 'Dancing Script', cursive; color: #F59E0B; font-weight: 400; font-size: 24px; } /* brontë velez orange */
+.font-4 { font-family: 'Oswald', sans-serif; color: #84CC16; font-weight: 700; font-size: 21px; text-transform: uppercase; } /* Cameron Granger green */
+.font-5 { font-family: 'Merriweather', serif; color: #10B981; font-weight: 400; font-size: 19px; } /* connor trotter green */
+.font-6 { font-family: 'Roboto Slab', serif; color: #1F2937; font-weight: 400; font-size: 20px; } /* David Lisbon black */
+.font-7 { font-family: 'Pacifico', cursive; color: #8B5CF6; font-weight: 400; font-size: 23px; } /* Diana Marin purple */
+.font-8 { font-family: 'Libre Baskerville', serif; color: #EC4899; font-weight: 400; font-style: italic; font-size: 20px; } /* Heather pink */
+.font-9 { font-family: 'Montserrat', sans-serif; color: #10B981; font-weight: 500; font-size: 19px; } /* Jessica Rajko green */
+.font-10 { font-family: 'Cormorant Garamond', serif; color: #EF4444; font-weight: 400; font-size: 22px; } /* Kevin He red */
+.font-11 { font-family: 'Raleway', sans-serif; color: #06B6D4; font-weight: 300; font-size: 20px; letter-spacing: 1px; } /* Krystal cyan */
+.font-12 { font-family: 'Abril Fatface', cursive; color: #1F2937; font-weight: 400; font-size: 25px; } /* Lauren Gardner black */
+.font-13 { font-family: 'Lora', serif; color: #EC4899; font-weight: 400; font-size: 20px; } /* Lauren Monzon pink */
+.font-14 { font-family: 'Open Sans', sans-serif; color: #3B82F6; font-weight: 600; font-size: 19px; } /* LeAnne Wagner blue */
+.font-15 { font-family: 'Vollkorn', serif; color: #1F2937; font-weight: 400; font-size: 21px; } /* Lissa Aguilar black */
+.font-16 { font-family: 'Kalam', cursive; color: #EC4899; font-weight: 400; font-size: 22px; } /* Lluvia pink italic */
+.font-17 { font-family: 'Nunito', sans-serif; color: #F59E0B; font-weight: 700; font-size: 20px; } /* Makayla Bailey yellow */
+.font-18 { font-family: 'Spectral', serif; color: #9CA3AF; font-weight: 400; font-size: 20px; } /* Makshya Tolbert gray */
+.font-19 { font-family: 'Caveat', cursive; color: #10B981; font-weight: 400; font-size: 24px; } /* Matt Ross green italic */
+.font-20 { font-family: 'Source Sans Pro', serif; color: #F97316; font-weight: 400; font-size: 19px; } /* Miranda Shou orange */
+
+/* Updated button styling to match home page font and styling */
+.paper-footer button {
+    background: transparent;
+    color: #4A90E2;
+    border: 1px solid #4A90E2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Caveat', cursive;
+    transition: all 0.3s ease;
+}
+
+.paper-footer button:hover {
+    background: #4A90E2;
+    color: white;
+    transform: translateY(-1px);
+}
+
+#closePaper {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+#closePaper:hover {
+    background: #ef4444;
+    color: white;
+}
+
+#pageNumber {
+    font-size: 24px;
+    color: #333;
+    min-width: 30px;
+    font-weight: 500;
+    font-family: 'Caveat', cursive;
+}
+
+/* Added date styling */
+.response-date {
+    font-size: 0.8em;
+    color: #666;
+    font-style: italic;
+    margin-top: 8px;
+    font-family: 'Georgia', serif;
+}
+
+/* Added view link styling */
+.view-link {
+    color: #4A90E2 !important;
+    text-decoration: none !important;
+    margin-left: 10px;
+    font-size: 26px !important;
+    font-family: 'Caveat', cursive !important;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+}
+
+.view-link:hover {
+    background: #4A90E2;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* Changed diary name highlighting from background to underline and border */
+.diary-name {
+    color: #000000;
+    padding: 2px 4px;
+    font-weight: 600;
+    background: transparent;
+}
+
+/* Added time display styling */
+.response-time {
+    font-size: 0.75em;
+    color: #888;
+    font-style: normal;
+    margin-left: 8px;
+    font-family: 'Georgia', serif;
+    font-weight: 500;
+}
+
+/* Updated page info styling instead of just page number */
+#pageInfo {
+    font-size: 16px;
+    color: #333;
+    min-width: 100px;
+    font-weight: 500;
+    font-family: 'Caveat', cursive;
+    text-align: center;
+}
+
+/* Enhanced mobile and tablet responsiveness */
+@media (max-width: 1024px) {
+    .responses-paper {
+        width: 85%;
+        left: 50%;
+        transform: translateX(-50%) rotate(1deg);
+        top: 5%;
+        height: 85%;
+        display: flex !important; /* Force display on tablets */
+    }
+
+    .responses-paper.hidden {
+        display: none !important;
+    }
+
+    .paper-body {
+        padding: 30px;
+    }
+
+    .response-item {
+        font-size: 19px;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .responses-paper {
+        width: 95%;
+        left: 2.5%; /* Fixed positioning to prevent off-screen display */
+        transform: rotate(0deg); /* Removed translateX transform that was causing positioning issues */
+        top: 2%;
+        height: 90%;
+        border-radius: 12px;
+        display: flex !important;
+        position: fixed !important;
+        z-index: 10000 !important;
+        visibility: visible !important; /* Added visibility override for mobile */
+    }
+
+    .responses-paper.hidden {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .paper-body {
+        padding: 20px;
+        overflow-y: auto; /* Fixed scrollbar by ensuring proper overflow on non-rotated container */
+        overflow-x: hidden; /* Prevent horizontal scrollbar issues */
+    }
+
+    .response-item {
+        font-size: 18px;
+        margin: 15px 0;
+        transform: rotate(0deg); /* Removed rotation to fix scrollbar alignment */
+    }
+
+    .paper-footer {
+        padding: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .paper-footer button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    #pageInfo {
+        font-size: 14px;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .responses-paper {
+        width: 98%;
+        height: 95%;
+        top: 1%;
+        left: 1%; /* Fixed positioning for small screens */
+        transform: none; /* Removed all transforms to prevent positioning issues */
+        display: flex !important;
+        position: fixed !important;
+        z-index: 10001 !important;
+        visibility: visible !important; /* Added visibility override for small mobile */
+    }
+
+    .responses-paper.hidden {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .paper-body {
+        padding: 15px;
+        overflow-y: auto; /* Ensure scrollbar works properly without rotation */
+        overflow-x: hidden;
+    }
+
+    .response-item {
+        font-size: 16px;
+        margin: 12px 0;
+    }
+
+    .response-line {
+        display: block;
+        word-wrap: break-word;
+    }
+
+    .view-link {
+        display: block;
+        margin-top: 5px;
+        margin-left: 0;
+    }
+}
+</style>
+

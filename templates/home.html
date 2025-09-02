@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Home | Friendship Diary{% endblock %}
+
+{% block content %}
+<style>
+    /* Updated to clean academic dark styling matching reference image */
+    .home-container {
+        display: flex;
+        gap: 20px; /* Reduced gap */
+        max-width: none; /* Remove max-width constraint */
+        margin: 0;
+        padding: 20px; /* Reduced padding */
+        background: #000000;
+        color: #fefffd;
+        /* Removed fixed height and overflow hidden to allow proper scrolling */
+        min-height: calc(100vh - 120px);
+        overflow: visible;
+    }
+
+    /* Combined welcome and stay connected text in one bordered div positioned in center */
+    .center-welcome-section {
+        flex: 1; /* Adjusted flex ratio */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        padding: 10px 0; /* Reduced padding */
+                opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Staggered animation delays for each section */
+    .center-welcome-section:nth-child(2) { animation-delay: 0.2s; }
+    .center-welcome-section:nth-child(3) { animation-delay: 0.4s; }
+    .center-welcome-section:nth-child(4) { animation-delay: 0.6s; }
+    .center-welcome-section:nth-child(5) { animation-delay: 0.8s; }
+    .center-welcome-section:nth-child(6) { animation-delay: 1.0s; }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .welcome-combined-div {
+        background: #000000;
+        border: 2px solid #4a9eff;
+        padding: 40px; /* Reduced from 60px */
+        max-width: 100%; /* Increased from 600px to make welcome section wider */
+        width: 100%;
+        font-family: 'Caveat', cursive;
+        position: relative;
+        box-shadow: 0 0 20px rgba(74, 158, 255, 0.2); /* Added subtle glow */
+        transition: all 0.3s ease;
+        transform: scale(1);
+    }
+
+    .welcome-combined-div::before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border: 1px solid #333;
+        z-index: -1;
+    }
+
+    .welcome-combined-div h3 {
+        font-size: 2.5rem; /* Reduced from 3.2rem */
+        font-weight: 700;
+        margin-bottom: 20px; /* Reduced margin */
+        color: #4a9eff;
+        text-shadow: 0 0 20px rgba(74, 158, 255, 0.5); /* Enhanced text shadow */
+        letter-spacing: 1.5px; /* Increased letter spacing */
+        text-align: center;
+                animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+    }
+
+    .welcome-combined-div p {
+        line-height: 1.6; /* Reduced line height */
+        margin-bottom: 15px; /* Reduced margin */
+        font-weight: 400;
+        color: #fefffd;
+        font-size: 1.2rem; /* Reduced from 1.5rem */
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #4a9eff;
+        background: #000000;
+        color: #fefffd;
+        font-family: 'Caveat', cursive;
+        font-size: 1rem;
+    }
+
+    .newsletter-input::placeholder {
+        color: #4a9eff;
+        opacity: 0.7;
+    }
+
+    .newsletter-btn {
+        background: #4a9eff;
+        color: #000000;
+        border: 1px solid #4a9eff;
+        padding: 12px 24px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Caveat', cursive;
+        font-size: 1rem;
+    }
+
+    .newsletter-btn:hover {
+        background: #fefffd;
+        color: #000000;
+    }
+
+    /* Clean academic section styling */
+    .news-section, .leaderboard-section, .create-set-section, .premium-section {
+        background: #000000;
+        border: 2px solid #4a9eff;
+        border-radius: 4px;
+        padding: 20px;
+        font-family: 'Caveat', cursive;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+
+
+    .premium-section {
+        background: #4a9eff;
+        color: #000000;
+        text-align: center;
+        opacity: 0;
+        transform: translateX(30px);
+        animation: slideInRight 0.8s ease forwards;
+        animation-delay: 2.8s;
+    }
+
+    @keyframes slideInRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+
+    .premium-section h3 {
+        color: #000000;
+    }
+
+    .premium-section p {
+        color: #000000;
+        margin-bottom: 15px;
+    }
+
+    .premium-btn {
+        background: #000000;
+        color: #4a9eff;
+        border: 1px solid #000000;
+        padding: 12px 24px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        font-family: 'Caveat', cursive;
+        font-size: 1rem;
+    }
+
+    .premium-btn:hover {
+        background: #fefffd;
+        color: #000000;
+    }
+
+    /* =========================
+   Profile Section Styling
+========================= */
+    .profile-section {
+        background: #000000; /* match news & leaderboard */
+        border: 1px solid #4a9eff; /* subtle border like leaderboard */
+        border-radius: 6px; /* smooth rounded corners */
+        padding: 15px; /* consistent padding */
+        margin-bottom: 15px; /* spacing between cards */
+        font-family: 'Caveat', cursive;
+        color: #fefffd; /* main text color */
+        box-sizing: border-box;
+        opacity: 0;
+        transform: translateX(30px);
+        animation: slideInRight 0.8s ease forwards;
+        animation-delay: 1.4s;
+    }
+
+    @keyframes slideInRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+
+    .profile-section:hover {
+        border-color: #4a9eff; /* glow border on hover */
+        box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); /* subtle glow */
+        background: rgba(74, 158, 255, 0.05); /* hover background */
+    }
+
+    .profile-section h4 {
+        font-size: 1.2rem; /* like news-item h4 */
+        font-weight: 600;
+        color: #4a9eff;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px rgba(74, 158, 255, 0.4);
+    }
+
+    .profile-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem; /* readable font size */
+        margin-bottom: 8px; /* spacing between fields */
+        color: #fefffd;
+    }
+
+    .profile-item .profile-label {
+        font-weight: 500;
+    }
+
+    .profile-item .profile-value {
+        color: #4a9eff;
+        font-weight: 600;
+    }
+
+
+    /* Mobile responsiveness with proper layout stacking */
+    @media (max-width: 768px) {
+        .home-container {
+            flex-direction: column;
+            padding: 10px;
+            height: auto;
+            overflow: visible;
+        }
+
+        /* Added mobile styling for right column */
+        .right-column {
+            gap: 20px;
+            min-width: auto;
+            max-height: none;
+            overflow-y: visible;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .welcome-combined-div {
+            max-width: 100%;
+            padding: 30px;
+        }
+
+        .welcome-combined-div h3 {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+<div class="home-container" style="display: flex; gap: 2rem;">
+
+    <!-- Left/Main Column: News + Welcome -->
+    <div class="main-column" style="flex: 1; display: flex; flex-direction: column; gap: 2rem;">
+
+        <!-- Welcome Section -->
+        <div class="center-welcome-section">
+            <div class="welcome-combined-div">
+                <h3>{% trans "Welcome to Your Personal Diary Space" %}</h3>
+                <p>{% trans "Here, you can create your own diary questions and share them with friends. When your friends answer, you’ll receive their responses — a fun and meaningful way to see the world through their eyes and reflect together." %}</p>
+            </div>
+        </div>
+
+        <!-- Share & Connect Section -->
+        <div class="center-welcome-section">
+            <div class="welcome-combined-div">
+                <h3>{% trans "Share & Connect" %}</h3>
+                <p>{% trans "Every diary set can be shared through a unique link. That means your friends, family, or community can answer your questions too. You'll be able to see who responded and read their answers in one place. It's a fun and meaningful way to connect through stories and reflections." %}</p>
+            </div>
+        </div>
+
+        <!-- Free vs Premium Experience Section -->
+        <div class="center-welcome-section">
+            <div class="welcome-combined-div">
+                <h3>{% trans "Free vs Premium Experience" %}</h3>
+                <p>{% trans "Free users can answer a limited number of question sets each week and create one of their own. Premium users unlock extra perks: more answers, more creations, and access to all the different visual styles to make their diary truly personal." %}</p>
+            </div>
+        </div>
+
+        <!-- Customize Your Diary Section -->
+        <div class="center-welcome-section">
+            <div class="welcome-combined-div">
+                <h3>{% trans "Customize Your Diary" %}</h3>
+                <p>{% trans "Choose from different layouts and styles for your diary sets. Whether you prefer a classic notebook look or something more creative and colorful, there's a style for every mood. Premium users get full access to all available designs." %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Profile + Leaderboard + Premium -->
+    <div class="right-column" style="flex: 0 0 320px; display: flex; flex-direction: column; gap: 15px;">
+        <!-- Profile Section -->
+        {% include "includes/carousel.html" %}
+        <div class="profile-section">
+            <h3>{% trans "Profile" %}</h3>
+            {% if user.is_authenticated %}
+                <div class="profile-item">
+                    <h4>{% trans "Username" %}</h4>
+                    <p>{{ user.username }}</p>
+                </div>
+                <div class="profile-item">
+                    <h4>{% trans "Email" %}</h4>
+                    <p>{{ user.email }}</p>
+                </div>
+                <div class="profile-item">
+                    <h4>{% trans "Plan" %}</h4>
+                    <p class="plan-badge {% if profile.plan == 'free' %}free{% else %}premium{% endif %}">
+                        {{ profile.get_plan_display }}
+                    </p>
+                </div>
+                <div class="profile-item">
+                    <h4>{% trans "Weekly Answers" %}</h4>
+                    <p>{{ profile.weekly_answer_count }} / {% if profile.plan == 'free' %}5{% elif profile.plan == 'premium' %}20{% endif %}</p>
+                </div>
+                <div class="profile-item">
+                    <h4>{% trans "Question Sets" %}</h4>
+                    <p>{{ current_qset_count }} / {% if profile.plan == 'free' %}1{% elif profile.plan == 'premium' %}3{% endif %}</p>
+                </div>
+            {% else %}
+                <p>{% trans "Please log in to see your profile info." %}</p>
+            {% endif %}
+        </div>
+
+        {% include "includes/leaderboard.html" %}
+
+        <!-- Premium Section -->
+        <div class="premium-section">
+            {% if request.user.is_authenticated %}
+                {% if request.user.userprofile.plan == "premium" %}
+                    <h3 class="section-title">{% trans "Premium Features" %}</h3>
+                    <p class="section-text">{% trans "You are enjoying premium benefits" %}</p>
+                {% else %}
+                    <h3 class="section-title">{% trans "Get Premium" %}</h3>
+                    <p class="section-text">{% trans "Unlock unlimited question sets, custom themes, and advanced features." %}</p>
+                    <a href="{% url 'users:upgrade_to_premium' %}" class="btn premium-btn">{% trans "Upgrade Now" %}</a>
+                {% endif %}
+            {% else %}
+                <h3 class="section-title">{% trans "Join Premium" %}</h3>
+                <p class="section-text">{% trans "Create an account and upgrade to unlock all features!" %}</p>
+                <a href="{% url 'users:register' %}" class="btn premium-btn">{% trans "Sign Up" %}</a>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,383 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<style>
+    /* Updated to dark theme with starfield background and column layout */
+    body {
+        background: none !important;
+    }
+
+    .responses-container {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        padding: 40px 20px;
+    }
+
+    /* Starfield background effect */
+    .star {
+        position: absolute;
+        background: white;
+        animation: twinkle 3s infinite;
+    }
+
+    .star::before,
+    .star::after {
+        content: '';
+        position: absolute;
+        background: white;
+        box-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 18px #fff;
+    }
+
+    .star::before {
+        width: 1px;
+        height: 8px;
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .star::after {
+        width: 8px;
+        height: 1px;
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.3; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+
+
+    .page-header {
+        margin-right: 280px;
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 30px;
+        border-bottom: 2px solid #4a9eff;
+    }
+
+    .page-title {
+        font-family: 'Caveat', cursive;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #4a9eff;
+        margin-bottom: 15px;
+        text-shadow: 0 0 20px rgba(74, 158, 255, 0.5);
+    }
+
+    .page-subtitle {
+        font-family: 'Caveat', cursive;
+        color: #b0b0b0;
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+
+    /* Column layout for question sets */
+.question-sets-grid {
+    margin-right: 280px;
+    display: grid;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+
+    .question-set-card {
+
+        background: rgba(17, 17, 17, 0.9);
+        border: 1px solid #4a9eff;
+        border-radius: 15px;
+        padding: 25px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .question-set-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #4a9eff, #6bb6ff, #4a9eff);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .question-set-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(74, 158, 255, 0.3);
+        border-color: #6bb6ff;
+    }
+
+    .question-set-card:hover::before {
+        opacity: 1;
+    }
+
+    .question-set-title {
+        font-family: 'Caveat', cursive;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #4a9eff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+    }
+
+    .responses-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .responses-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .responses-list::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    .responses-list::-webkit-scrollbar-thumb {
+        background: #4a9eff;
+        border-radius: 3px;
+    }
+
+    .response-item {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(74, 158, 255, 0.3);
+        border-radius: 8px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .response-item:hover {
+        background: rgba(74, 158, 255, 0.1);
+        border-color: #4a9eff;
+        transform: translateX(5px);
+    }
+
+    .response-link {
+        display: block;
+        padding: 15px 18px;
+        text-decoration: none;
+        color: #e0e0e0;
+        font-family: 'Caveat', cursive;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .response-link:hover {
+        color: #4a9eff;
+    }
+
+    .response-meta {
+        font-size: 0.95rem;
+        color: #888;
+        margin-top: 5px;
+        font-family: 'Caveat', cursive;
+    }
+
+    .no-responses {
+        text-align: center;
+        color: #888;
+        font-family: 'Caveat', cursive;
+        font-size: 1.2rem;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        border: 1px dashed rgba(74, 158, 255, 0.3);
+    }
+
+    .no-question-sets {
+        text-align: center;
+        padding: 80px 40px;
+        background: rgba(17, 17, 17, 0.9);
+        border-radius: 20px;
+        border: 1px solid #4a9eff;
+        backdrop-filter: blur(10px);
+        grid-column: 1 / -1;
+    }
+
+    .no-question-sets h3 {
+        font-family: 'Caveat', cursive;
+        color: #4a9eff;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-shadow: 0 0 15px rgba(74, 158, 255, 0.4);
+    }
+
+    .no-question-sets p {
+        font-family: 'Caveat', cursive;
+        color: #b0b0b0;
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        font-weight: 400;
+    }
+
+    .create-button {
+        background: linear-gradient(135deg, #4a9eff, #6bb6ff);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+    }
+
+    .create-button:hover {
+        background: linear-gradient(135deg, #6bb6ff, #4a9eff);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(74, 158, 255, 0.4);
+    }
+/* Tablets */
+/* Large screens */
+@media (max-width: 1440px) {
+    .question-sets-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .question-sets-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-right: 0; /* ignore sidebar */
+    }
+
+    .page-header {
+        margin-right: 0; /* center header */
+    }
+
+    .page-title {
+        font-size: 3rem;
+    }
+
+    .page-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .question-set-title {
+        font-size: 2rem;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+    .question-sets-grid {
+        grid-template-columns: 1fr;
+        margin-right: 0;
+        gap: 20px;
+    }
+
+    .page-header {
+        margin-right: 0;      /* remove sidebar margin */
+        text-align: center;   /* center header */
+        padding-bottom: 20px; /* optional smaller padding */
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .question-set-title {
+        font-size: 1.6rem;
+    }
+
+    .question-set-card {
+        padding: 18px;
+    }
+}
+
+</style>
+
+<div class="responses-container">
+    <!-- Added starfield background stars -->
+    <script>
+        // Create random stars
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            document.querySelector('.responses-container').appendChild(star);
+        }
+    </script>
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h1 class="page-title">{% trans "Response Dashboard" %}</h1>
+        <p class="page-subtitle">{% trans "View all responses to your question sets" %}</p>
+    </div>
+
+    {% if question_sets %}
+        <!-- Changed to grid layout for columns -->
+        <div class="question-sets-grid">
+            {% for qs in question_sets %}
+                <div class="question-set-card">
+                    <h2 class="question-set-title">{{ qs.title }}</h2>
+                    {% if qs.answer_sessions.exists %}
+                        <ul class="responses-list">
+                            {% for session in qs.answer_sessions.all %}
+                                <li class="response-item">
+                                    <a href="{% url 'diary:view_single_response' session.id %}" class="response-link">
+                                        <div>
+                                            <strong>
+                                                {% if session.respondent %}
+                                                    {{ session.respondent.username }}
+                                                {% else %}
+                                                    {% trans "Anonymous User" %}
+                                                {% endif %}
+                                            </strong>
+                                            <div class="response-meta">
+                                                {% blocktrans with date=session.created_at|date:"M d, Y" %}
+                                                Submitted on {{ date }}
+                                                {% endblocktrans %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="no-responses">
+                            <p>{% trans "No responses received yet. Share your question set to start collecting responses!" %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="question-sets-grid">
+            <div class="no-question-sets">
+                <h3>{% trans "No Question Sets Found" %}</h3>
+                <p>{% trans "You haven't created any question sets yet. Start by creating your first question set!" %}</p>
+                <a href="{% url 'diary:create_question_set' %}" class="create-button">{% trans "Create Your First Question Set" %}</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

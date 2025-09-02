@@ -1,0 +1,10 @@
+{% for style in styles %}
+  <div class="style-card">
+    <h4>{{ style.name }}</h4>
+    {% if style.is_premium and user_plan == 'free' %}
+      <p class="locked">Locked - Premium only</p>
+    {% else %}
+      <a href="{% url 'use_style' style.id %}">Use</a>
+    {% endif %}
+  </div>
+{% endfor %}

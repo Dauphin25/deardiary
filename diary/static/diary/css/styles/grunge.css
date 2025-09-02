@@ -1,0 +1,578 @@
+/* Enhanced Diary-Style Grunge Theme with Beautiful, Cool & Stylish Elements */
+
+.grunge-style.diary-page {
+  background: linear-gradient(135deg, #2a1810 0%, #1a0f08 50%, #0f0704 100%);
+  color: #f4f1e8;
+  font-family: "Georgia", "Times New Roman", serif;
+  padding: 20px 0;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: 0 0 30px rgba(139, 69, 19, 0.4), inset 0 0 100px rgba(0, 0, 0, 0.6), 0 20px 40px rgba(0, 0, 0, 0.3);
+  position: static;
+  overflow: hidden;
+  display: block;
+  min-height: auto;
+  /* Set lower z-index to ensure it stays below header */
+  z-index: 1;
+}
+
+/* Added diary binding effect */
+.diary-binding {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(90deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+  border-right: 3px solid #654321;
+  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5);
+  /* Ensure binding stays below header */
+  z-index: 2;
+}
+
+.diary-binding::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: repeating-linear-gradient(to bottom, #654321 0px, #654321 20px, transparent 20px, transparent 40px);
+  transform: translateX(-50%);
+}
+
+/* Enhanced diary content area */
+.diary-content {
+  margin-left: 40px;
+  padding: 40px;
+  background: radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(160, 82, 45, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(244, 241, 232, 0.02) 0%, transparent 100%);
+  min-height: 600px;
+  position: relative;
+  /* Ensure content area stays below header */
+  z-index: 1;
+}
+
+/* Added paper texture overlay */
+.diary-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px;
+  pointer-events: none;
+  opacity: 0.3;
+  /* Keep texture overlay below header */
+  z-index: 1;
+}
+
+/* Enhanced diary header with date */
+.diary-header {
+  border-bottom: 3px double #8b4513;
+  padding-bottom: 25px;
+  margin-bottom: 35px;
+  position: relative;
+  /* Ensure diary header stays below page header */
+  z-index: 2;
+}
+
+.diary-date {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  color: #8b4513;
+  background: rgba(244, 241, 232, 0.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(139, 69, 19, 0.3);
+  /* Keep date element below page header */
+  z-index: 3;
+}
+
+/* Beautiful diary title styling */
+.diary-title {
+  font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+  font-size: 2.8rem;
+  color: #d2691e;
+  text-shadow: 2px 2px 0px #8b4513, 4px 4px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(210, 105, 30, 0.3);
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  transform: rotate(-1deg);
+  /* Keep title below page header */
+  z-index: 2;
+}
+
+.diary-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d2691e, transparent);
+  border-radius: 2px;
+}
+
+/* Enhanced section titles */
+.diary-section-title {
+  font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+  font-size: 1.8rem;
+  color: #cd853f;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 30px 0 20px 0;
+  position: relative;
+  display: inline-block;
+  /* Keep section titles below page header */
+  z-index: 2;
+}
+
+.diary-section-title::before {
+  content: "✦";
+  position: absolute;
+  left: -25px;
+  color: #8b4513;
+  font-size: 1.2rem;
+}
+
+/* Beautiful question cards with diary styling */
+.diary-question {
+  background: linear-gradient(135deg, rgba(244, 241, 232, 0.08) 0%, rgba(139, 69, 19, 0.05) 100%);
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  border-radius: 8px;
+  padding: 25px;
+  margin: 20px 0;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(244, 241, 232, 0.1);
+  transition: all 0.3s ease;
+  transform: rotate(0.5deg);
+  /* Keep question cards below page header */
+  z-index: 2;
+}
+
+.diary-question:nth-child(even) {
+  transform: rotate(-0.3deg);
+}
+
+.diary-question:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(244, 241, 232, 0.2);
+  border-color: rgba(210, 105, 30, 0.5);
+}
+
+/* Question numbering */
+.question-number {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: #8b4513;
+  color: #f4f1e8;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* Keep question numbers below page header */
+  z-index: 3;
+}
+
+/* Enhanced diary content area */
+.diary-content {
+  margin-left: 40px;
+  padding: 40px;
+  background: radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(160, 82, 45, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(244, 241, 232, 0.02) 0%, transparent 100%);
+  min-height: 600px;
+  position: relative; /* Keep relative for child positioning */
+}
+
+/* Added paper texture overlay */
+.diary-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Enhanced diary header with date */
+.diary-header {
+  border-bottom: 3px double #8b4513;
+  padding-bottom: 25px;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.diary-date {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  color: #8b4513;
+  background: rgba(244, 241, 232, 0.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(139, 69, 19, 0.3);
+}
+
+/* Beautiful diary title styling */
+.diary-title {
+  font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+  font-size: 2.8rem;
+  color: #d2691e;
+  text-shadow: 2px 2px 0px #8b4513, 4px 4px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(210, 105, 30, 0.3);
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+.diary-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d2691e, transparent);
+  border-radius: 2px;
+}
+
+/* Enhanced section titles */
+.diary-section-title {
+  font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+  font-size: 1.8rem;
+  color: #cd853f;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 30px 0 20px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.diary-section-title::before {
+  content: "✦";
+  position: absolute;
+  left: -25px;
+  color: #8b4513;
+  font-size: 1.2rem;
+}
+
+/* Beautiful question cards with diary styling */
+.diary-question {
+  background: linear-gradient(135deg, rgba(244, 241, 232, 0.08) 0%, rgba(139, 69, 19, 0.05) 100%);
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  border-radius: 8px;
+  padding: 25px;
+  margin: 20px 0;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(244, 241, 232, 0.1);
+  transition: all 0.3s ease;
+  transform: rotate(0.5deg);
+}
+
+.diary-question:nth-child(even) {
+  transform: rotate(-0.3deg);
+}
+
+.diary-question:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(244, 241, 232, 0.2);
+  border-color: rgba(210, 105, 30, 0.5);
+}
+
+/* Question numbering */
+.question-number {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: #8b4513;
+  color: #f4f1e8;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced question text */
+.question-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #f4f1e8;
+  margin: 10px 0 15px 0;
+  font-family: "Georgia", serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Beautiful diary textarea styling */
+.diary-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid rgba(139, 69, 19, 0.4);
+  background: linear-gradient(135deg, rgba(244, 241, 232, 0.05) 0%, rgba(139, 69, 19, 0.02) 100%);
+  color: #f4f1e8;
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 100px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.diary-textarea:focus {
+  outline: none;
+  border-color: #d2691e;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 15px rgba(210, 105, 30, 0.3);
+  background: linear-gradient(135deg, rgba(244, 241, 232, 0.08) 0%, rgba(139, 69, 19, 0.04) 100%);
+}
+
+.diary-textarea::placeholder {
+  color: rgba(244, 241, 232, 0.5);
+  font-style: italic;
+}
+
+/* Enhanced button styling */
+.diary-btn {
+  background: linear-gradient(135deg, #d2691e 0%, #cd853f 50%, #8b4513 100%);
+  border: none;
+  color: #f4f1e8;
+  padding: 12px 25px;
+  font-weight: bold;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+  border-radius: 25px;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  margin: 8px 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.diary-btn:hover {
+  background: linear-gradient(135deg, #cd853f 0%, #d2691e 50%, #a0522d 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.diary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Special styling for different button types */
+.btn-danger.diary-delete {
+  background: linear-gradient(135deg, #8b0000 0%, #a52a2a 50%, #654321 100%);
+}
+
+.btn-danger.diary-delete:hover {
+  background: linear-gradient(135deg, #a52a2a 0%, #8b0000 50%, #5d2f1a 100%);
+}
+
+/* Enhanced form styling */
+.diary-form {
+  background: rgba(139, 69, 19, 0.05);
+  border: 2px dashed rgba(139, 69, 19, 0.3);
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.diary-form::before {
+  content: "✍️";
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, #2a1810 0%, #1a0f08 100%);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+}
+
+/* Enhanced description styling */
+.diary-entry-description {
+  background: rgba(244, 241, 232, 0.05);
+  border-left: 4px solid #cd853f;
+  border-radius: 0 8px 8px 0;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.diary-entry-description::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  font-size: 3rem;
+  color: #cd853f;
+  opacity: 0.3;
+}
+
+/* Enhanced info boxes */
+.diary-info {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.05) 100%);
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+/* Enhanced danger zone */
+.diary-danger {
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.1) 0%, rgba(165, 42, 42, 0.05) 100%);
+  border: 2px solid rgba(139, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 25px;
+  margin: 30px 0;
+  text-align: center;
+}
+
+.diary-danger h4 {
+  color: #cd5c5c;
+  font-family: "Georgia", serif;
+  margin-bottom: 10px;
+}
+
+.diary-danger p {
+  color: rgba(244, 241, 232, 0.7);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* Enhanced answer display */
+.diary-answer-view {
+  background: linear-gradient(135deg, rgba(244, 241, 232, 0.1) 0%, rgba(139, 69, 19, 0.08) 100%);
+}
+
+.diary-answer {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(139, 69, 19, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #cd853f;
+}
+
+.answer-label {
+  font-weight: bold;
+  color: #cd853f;
+  margin-bottom: 8px;
+  font-family: "Georgia", serif;
+}
+
+.answer-text {
+  line-height: 1.6;
+  color: #f4f1e8;
+  font-style: italic;
+}
+
+/* Enhanced share section */
+.diary-share {
+  background: rgba(244, 241, 232, 0.05);
+  border: 2px dashed rgba(139, 69, 19, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+  /* Keep share section below page header */
+  z-index: 2;
+}
+
+.diary-note {
+  position: relative;
+  /* Keep notes below page header */
+  z-index: 2;
+}
+
+.share-input.diary-input {
+  background: linear-gradient(135deg, rgba(244, 241, 232, 0.08) 0%, rgba(139, 69, 19, 0.05) 100%);
+  border: 2px solid rgba(139, 69, 19, 0.4);
+  color: #f4f1e8;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+}
+
+/* Enhanced mobile responsiveness to prevent overlay issues */
+@media (max-width: 768px) {
+  .grunge-style.diary-page {
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    padding: 10px 0;
+    z-index: 1;
+  }
+
+  .diary-binding {
+    width: 25px;
+  }
+
+  .diary-content {
+    margin-left: 25px;
+    padding: 20px;
+  }
+
+  .diary-title {
+    font-size: 2.2rem;
+  }
+
+  .diary-question {
+    padding: 20px;
+    margin: 15px 0;
+  }
+
+  .diary-btn {
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  .question-number {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Enhanced wrapper to ensure proper containment and z-index */
+.grunge-style {
+  position: relative;
+  /* Set lower z-index to ensure entire grunge style stays below header */
+  z-index: 1;
+  width: 100%;
+  margin: 0;
+}
+
+/* Added copy button feedback */
+.diary-btn.copied {
+  background: linear-gradient(135deg, #228b22 0%, #32cd32 50%, #006400 100%);
+  transform: scale(1.05);
+}

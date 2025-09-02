@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'diary/css/styles/classic.css' %}">
+
+<div class="classic-style">
+  <header class="question-set-header">
+    <h2>{{ question_set.title }}</h2>
+
+    <p><strong>Share this link:</strong></p>
+    <input type="text" id="share-link"
+           value="{{ request.build_absolute_uri|cut:request.path }}{% url 'diary:answer_question_set_shared' question_set.share_uuid %}"
+           readonly style="width: 100%;">
+    <button onclick="copyLink()">📋 Copy Link</button>
+
+    {% if question_set.description %}
+      <p class="question-set-description">{{ question_set.description }}</p>
+    {% endif %}
+  </header>
+
+  <section class="questions-list">
+    {% for question in questions %}
+      <div class="question">
+        <p>{{ question.text }}</p>
+        <a href="{% url 'diary:edit_question' question.id %}">✏️ Edit</a>
+        |
+        <a href="{% url 'diary:delete_question' question.id %}" onclick="return confirm('Are you sure you want to delete this question?');">🗑️ Delete</a>
+      </div>
+    {% empty %}
+      <p>No questions found in this set.</p>
+    {% endfor %}
+  </section>
+
+  <section class="add-question-form">
+    <h3>Add a new question</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Add Question</button>
+    </form>
+  </section>
+
+{% if request.user == question_set.owner %}
+  <form action="{% url 'diary:question_set_delete' question_set.pk %}" method="post" onsubmit="return confirm('Are you sure you want to delete this question set?');">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete Question Set</button>
+  </form>
+{% endif %}
+
+</div>
+
+<script>
+  function copyLink() {
+    const linkInput = document.getElementById("share-link");
+    linkInput.select();
+    linkInput.setSelectionRange(0, 99999); // for mobile devices
+    document.execCommand("copy");
+    alert("Link copied to clipboard!");
+  }
+</script>
+{% endblock %}

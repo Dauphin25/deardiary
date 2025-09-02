@@ -1,0 +1,333 @@
+{% load i18n %}
+<style>
+footer {
+    background: #000000;
+    color: #4a9eff;
+    padding: 3rem 0;
+    font-size: 14px;
+    font-family: 'Caveat', cursive;
+    position: relative;
+    margin-top: 2rem;
+    width: 100%;
+}
+.language-selector{
+    display: none;
+}
+/* Added language selector styling */
+.language-selector {
+    gap: 1rem;
+    justify-content: center; /* or space-between / flex-start */
+    flex-wrap: nowrap;       /* 🚨 force single row */
+    margin-top: 1rem;
+    overflow-x: auto;        /* 🚨 scroll horizontally if they don’t fit */
+}
+
+.language-option {
+    color: #4a9eff;
+    text-decoration: none;
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    transform: rotate(-0.5deg);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    flex-shrink: 1; /* allow shrinking */
+    white-space: nowrap; /* 🔑 prevents text from breaking inside the option */
+    width: 100%;
+}
+
+.language-option:hover,
+.language-option.active {
+    color: #fefffd;
+    transform: rotate(0deg);
+    text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4a9eff, transparent);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 40px;
+    background-image: radial-gradient(circle at 1px 1px, rgba(74, 158, 255, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+
+/* Added grid layout for rich footer sections */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Added footer brand section */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-brand h3 {
+    color: #4a9eff;
+    font-size: 1.8rem;
+    font-family: 'Caveat', cursive;
+    margin: 0;
+    transform: rotate(-1deg);
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Added social media section */
+.footer-social h4,
+.footer-contact h4,
+.language-selector h4,
+.footer-links h4 {
+    color: #4a9eff;
+    font-size: 1.4rem;
+    font-family: 'Caveat', cursive;
+    margin: 0 0 1rem 0;
+    transform: rotate(0.5deg);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: 'Caveat', cursive;
+    transition: all 0.3s ease;
+    transform: rotate(var(--rotation, 0deg));
+}
+
+.social-links a:nth-child(1) { --rotation: -0.5deg; }
+.social-links a:nth-child(2) { --rotation: 0.3deg; }
+.social-links a:nth-child(3) { --rotation: -0.3deg; }
+.social-links a:nth-child(4) { --rotation: 0.5deg; }
+
+.social-links a:hover {
+    color: #4a9eff;
+    transform: rotate(0deg);
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+/* Added contact info section */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.contact-info span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-family: 'Caveat', cursive;
+    transform: rotate(var(--rotation, 0deg));
+}
+
+.contact-info span:nth-child(2) { --rotation: -0.3deg; }
+.contact-info span:nth-child(3) { --rotation: 0.4deg; }
+.contact-info span:nth-child(4) { --rotation: -0.2deg; }
+
+.contact-info a {
+    color: #4a9eff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #fefffd;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+/* Updated existing footer links */
+.footer-links-section {
+    display: flex;
+    flex-direction: row;     /* put items side by side */
+    justify-content: center; /* center them */
+    gap: 1.5rem;             /* space between links */
+    flex-wrap: wrap;         /* allow wrapping on smaller screens */
+}
+.footer-quick-links-section{
+        display: grid;
+    flex-direction: row;     /* put items side by side */
+    justify-content: center; /* center them */
+    gap: 0.8rem;             /* space between links */
+    flex-wrap: wrap;         /* allow wrapping on smaller screens */
+}
+
+.footer-quick-links-section a,
+.footer-links-section a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-family: 'Caveat', cursive;
+    transform: rotate(var(--rotation, 0deg));
+}
+
+.footer-links-section a:nth-child(1) { --rotation: -0.4deg; }
+.footer-links-section a:nth-child(2) { --rotation: 0.2deg; }
+.footer-links-section a:nth-child(3) { --rotation: -0.3deg; }
+.footer-links-section a:nth-child(4) { --rotation: 0.5deg; }
+
+.footer-quick-links-section a:hover,
+.footer-links-section a:hover {
+    color: #4a9eff;
+    transform: rotate(0deg);
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+/* Updated footer bottom section */
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 2rem;
+
+}
+
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-family: 'Caveat', cursive;
+    font-weight: 400;
+    text-shadow: 0 0 5px rgba(74, 158, 255, 0.2);
+    margin: 0;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .language-selector{
+        display: block;
+    }
+    .footer-content {
+        padding: 1.5rem 20px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        padding: 1rem 15px;
+    }
+
+    .footer-grid {
+        gap: 1.5rem;
+    }
+}
+</style>
+<footer>
+    <div class="footer-content">
+        <div class="footer-grid">
+
+            <div class="footer-social">
+                <h4>{% trans "Follow Us" %}</h4>
+                <div class="social-links">
+                    <a href="#">{% trans "Facebook" %}</a>
+                    <a href="#">{% trans "Instagram" %}</a>
+                    <a href="#">{% trans "LinkedIn" %}</a>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <h4>{% trans "Contact" %}</h4>
+                <div class="contact-info">
+                    <span><a href="mailto:DearDiary-contact@gmail.com">DearDiary-contact@gmail.com</a></span>
+                    <span>{% trans "Tbilisi, Georgia" %}</span>
+                </div>
+            </div>
+
+            <div class="language-selector">
+                <h4>{% trans "Select Language" %}</h4>
+                <a href="" class="language-option active" onclick="setLanguage('en')">EN</a>
+                <a href="" class="language-option" onclick="setLanguage('ka')">KA</a>
+                <a href="" class="language-option" onclick="setLanguage('de')">DE</a>
+                <a href="" class="language-option" onclick="setLanguage('ru')">RU</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>{% trans "Quick Links" %}</h4>
+                <div class="footer-quick-links-section">
+                    <a href="{% url 'pages:page_detail' slug='how-it-works' %}">{% trans "How It Works" %}</a>
+                    <a href="{% url 'pages:page_detail' slug='FAQ' %}">{% trans "FAQ" %}</a>
+                    <a href="{% url 'pages:page_detail' slug='contact' %}">{% trans "Contact" %}</a>
+                    <a href="{% url 'pages:page_detail' slug='about' %}">{% trans "About Us" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links-section" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <a href="{% url 'pages:page_detail' slug='Terms-Conditions' %}">{% trans "Terms & Conditions" %}</a>
+                <a href="{% url 'pages:page_detail' slug='Privacy-Policy' %}">{% trans "Privacy Policy" %}</a>
+                <a href="{% url 'pages:page_detail' slug='community-guidelines' %}">{% trans "Community Guidelines" %}</a>
+            </div>
+            <p class="footer-copyright">© 2025 {% trans "Dear Diary. All rights reserved." %}</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Called when user clicks a language
+function setLanguage(langCode) {
+    // Save selected language so it persists
+    localStorage.setItem('selectedLanguage', langCode);
+
+    // Optional: notify backend (Django)
+    fetch(`/set-language/${langCode}/`, {
+        method: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(() => window.location.reload()) // reload to apply
+    .catch(err => console.error('Language switch failed', err));
+}
+
+// Apply "active" style to the current language
+function highlightActiveLanguage() {
+    const savedLang = localStorage.getItem('selectedLanguage') || "en";
+    document.querySelectorAll('.language-option').forEach(link => {
+        if (link.textContent.toLowerCase() === savedLang.toLowerCase()) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', highlightActiveLanguage);
+
+</script>
+

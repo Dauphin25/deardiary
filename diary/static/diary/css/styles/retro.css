@@ -1,0 +1,299 @@
+/* Moved all styles from inline to external CSS file */
+/* Edge-to-edge styling with unified grid background */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  background: #0a0a0a;
+  color: #e0f7fa;
+  line-height: 1.6;
+}
+
+/* Single grid background covering entire viewport */
+.diary-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%);
+  background-size: 30px 30px, 30px 30px, 100% 100%;
+  position: relative;
+}
+
+/* Centered header with edgy typography */
+.header-section {
+  text-align: center;
+  padding: 60px 20px;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+.diary-title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: #00ffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.diary-description {
+  font-size: 1.1rem;
+  color: #40e0d0;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.action-btn {
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.action-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.share-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.share-input {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #e0f7fa;
+  padding: 12px;
+  width: 300px;
+  font-size: 0.9rem;
+}
+
+.copy-btn {
+  background: #ffd700;
+  color: #000;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: #ffed4e;
+}
+
+/* Made add question section smaller and less prominent */
+.add-question {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.add-question h3 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1rem;
+  color: #40e0d0;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.question-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.question-input {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #e0f7fa;
+  padding: 8px 12px;
+  min-width: 250px;
+  font-size: 0.9rem;
+}
+
+.add-btn {
+  background: rgba(32, 178, 170, 0.8);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+}
+
+/* Unified questions grid without separated sections */
+.questions-grid {
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.question-card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  padding: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.question-card:hover {
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.question-number {
+  background: #ffd700;
+  color: #000;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.question-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.edit-btn {
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.delete-btn {
+  background: rgba(220, 20, 60, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(220, 20, 60, 0.3);
+}
+
+.question-text {
+  font-size: 1.1rem;
+  color: #e0f7fa;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.answer-textarea {
+  width: 100%;
+  min-height: 80px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #e0f7fa;
+  padding: 15px;
+  resize: vertical;
+  font-size: 1rem;
+}
+
+.answer-display {
+  background: rgba(64, 224, 208, 0.1);
+  border: 1px solid rgba(64, 224, 208, 0.3);
+  padding: 15px;
+  color: #e0f7fa;
+}
+
+.submit-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, rgba(32, 178, 170, 0.8) 0%, rgba(0, 255, 255, 0.9) 100%);
+  color: #000;
+  border: none;
+  padding: 18px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(32, 178, 170, 0.4);
+}
+
+.footer-section {
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  padding: 30px 20px;
+  text-align: center;
+  color: #40e0d0;
+}
+
+@media (max-width: 768px) {
+  .questions-grid {
+    grid-template-columns: 1fr;
+    padding: 30px 15px;
+  }
+
+  .question-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .question-input {
+    min-width: auto;
+    width: 100%;
+    max-width: 400px;
+  }
+}

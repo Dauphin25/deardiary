@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<style>
+    /* Added space-themed background with animated stars */
+    .space-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #111111 100%);
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .space-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+    }
+
+    /* Created thin, elongated ✦-style stars with bright glow effect */
+    .star {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        animation: starTwinkle 3s infinite ease-in-out;
+    }
+
+    .star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 12px;
+        background: #ffffff;
+        transform: translate(-50%, -50%);
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6);
+    }
+
+    .star::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 2px;
+        background: #ffffff;
+        transform: translate(-50%, -50%);
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6);
+    }
+
+    .star:nth-child(odd) {
+        animation-duration: 4s;
+    }
+
+    .star:nth-child(odd)::before,
+    .star:nth-child(odd)::after {
+        width: 1.5px;
+        height: 10px;
+    }
+
+    .star:nth-child(odd)::after {
+        width: 10px;
+        height: 1.5px;
+    }
+
+    .star:nth-child(even) {
+        animation-duration: 2.5s;
+    }
+
+    .star:nth-child(even)::before,
+    .star:nth-child(even)::after {
+        width: 2.5px;
+        height: 15px;
+    }
+
+    .star:nth-child(even)::after {
+        width: 15px;
+        height: 2.5px;
+    }
+
+    .star:nth-child(3n) {
+        animation-duration: 5s;
+    }
+
+    .star:nth-child(3n)::before,
+    .star:nth-child(3n)::after {
+        width: 1px;
+        height: 8px;
+    }
+
+    .star:nth-child(3n)::after {
+        width: 8px;
+        height: 1px;
+    }
+
+    @keyframes starTwinkle {
+        0%, 100% {
+            opacity: 0.4;
+            transform: scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+    }
+
+    /* Updated register container to match current dark theme */
+    .register-container {
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #3b82f6;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(10px);
+        position: relative;
+        z-index: 1;
+    }
+
+    .register-title {
+        font-family: 'Caveat', cursive;
+        font-size: 2.5rem;
+        color: #3b82f6;
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        color: #e5e7eb;
+        margin-bottom: 8px;
+        font-family: 'Caveat', cursive;
+        font-size: 18px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #374151;
+        border-radius: 8px;
+        font-size: 16px;
+        background: rgba(17, 24, 39, 0.8);
+        color: #e5e7eb;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .register-btn {
+        width: 100%;
+        padding: 15px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: 'Caveat', cursive;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .register-btn:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    .form-group .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+    }
+
+    .form-group .errorlist li {
+        color: #ef4444;
+        font-size: 14px;
+        font-weight: 500;
+        background: rgba(239, 68, 68, 0.1);
+        padding: 5px 8px;
+        border-radius: 6px;
+        margin-top: 5px;
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    /* Override base template background */
+    body {
+        background: none !important;
+    }
+
+    @media (max-width: 600px) {
+        .register-container {
+            margin: 40px 20px;
+            padding: 30px 20px;
+        }
+
+        .register-title {
+            font-size: 2rem;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+    }
+</style>
+
+<!-- Added space background with animated stars -->
+<div class="space-background">
+    <div class="space-grid"></div>
+</div>
+
+<div class="register-container">
+    <h2 class="register-title">Join Our Community</h2>
+    <form method="POST" class="register-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {{ form.name.errors }}
+            </div>
+
+            <div class="form-group">
+                {{ form.surname.label_tag }}
+                {{ form.surname }}
+                {{ form.surname.errors }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.city.label_tag }}
+                {{ form.city }}
+                {{ form.city.errors }}
+            </div>
+
+            <div class="form-group">
+                {{ form.phone_number.label_tag }}
+                {{ form.phone_number }}
+                {{ form.phone_number.errors }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+
+        <button type="submit" class="register-btn">Create Account</button>
+    </form>
+</div>
+
+<script>
+function createStars() {
+    const background = document.querySelector('.space-background');
+    const starCount = 150; // Increased star count for more realistic sky
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+
+        // Random position
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+
+        // Random animation delay
+        star.style.animationDelay = Math.random() * 5 + 's';
+
+        background.appendChild(star);
+    }
+}
+
+// Create stars when page loads
+document.addEventListener('DOMContentLoaded', createStars);
+</script>
+{% endblock %}

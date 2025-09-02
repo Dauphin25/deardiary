@@ -1,0 +1,532 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<style>
+    /* Applied exact login page space background styling */
+    .space-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #111111 100%);
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .space-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+    }
+
+    /* Replaced custom stars with login page star styling */
+    .star {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        animation: starTwinkle 3s infinite ease-in-out;
+    }
+
+    .star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 12px;
+        background: #ffffff;
+        transform: translate(-50%, -50%);
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6);
+    }
+
+    .star::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 2px;
+        background: #ffffff;
+        transform: translate(-50%, -50%);
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6);
+    }
+
+    .star:nth-child(odd) {
+        animation-duration: 4s;
+    }
+
+    .star:nth-child(odd)::before,
+    .star:nth-child(odd)::after {
+        width: 1.5px;
+        height: 10px;
+    }
+
+    .star:nth-child(odd)::after {
+        width: 10px;
+        height: 1.5px;
+    }
+
+    .star:nth-child(even) {
+        animation-duration: 2.5s;
+    }
+
+    .star:nth-child(even)::before,
+    .star:nth-child(even)::after {
+        width: 2.5px;
+        height: 15px;
+    }
+
+    .star:nth-child(even)::after {
+        width: 15px;
+        height: 2.5px;
+    }
+
+    .star:nth-child(3n) {
+        animation-duration: 5s;
+    }
+
+    .star:nth-child(3n)::before,
+    .star:nth-child(3n)::after {
+        width: 1px;
+        height: 8px;
+    }
+
+    .star:nth-child(3n)::after {
+        width: 8px;
+        height: 1px;
+    }
+
+    @keyframes starTwinkle {
+        0%, 100% {
+            opacity: 0.4;
+            transform: scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+    }
+
+    /* Override base template background */
+    body {
+        background: none !important;
+    }
+
+    /* Updated container styling to match login page */
+    .create-question-set-container {
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #3b82f6;
+        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(10px);
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Starfield background effect */
+    .create-question-set-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -2;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        font-family: 'Caveat', cursive;
+        font-weight: 500;
+        color: #e5e7eb;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #374151;
+        font-size: 18px;
+        background: rgba(17, 24, 39, 0.8);
+        color: #e5e7eb;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+        font-family: 'Caveat', cursive;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-group .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+    }
+
+    .form-group .errorlist li {
+        color: #ff6b6b;
+        font-size: 1rem;
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        background: #2a1a1a;
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin-top: 5px;
+        border: 1px solid #ff6b6b;
+    }
+
+    /* Updated form title to match login page styling */
+    .form-title {
+        font-family: 'Caveat', cursive;
+        font-size: 2.5rem;
+        color: #3b82f6;
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+
+    .style-option-container {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .style-option {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border: 2px solid #333;
+        border-radius: 12px;
+        background: #1a1a1a;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 10px;
+    }
+
+    .style-option:hover {
+        border-color: #3b82f6;
+        background: #222;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    }
+
+    .style-option.premium-disabled {
+        background: #0f0f0f;
+        border-color: #555;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    .style-option.premium-disabled:hover {
+        border-color: #555;
+        background: #0f0f0f;
+        box-shadow: none;
+    }
+
+    .style-option input[type="radio"] {
+        width: auto;
+        margin-right: 15px;
+        transform: scale(1.3);
+        accent-color: #3b82f6;
+    }
+
+    .style-option input[type="radio"]:disabled {
+        cursor: not-allowed;
+    }
+
+    .style-info {
+        flex: 1;
+    }
+
+    .style-name {
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: 1.3rem;
+        color: #e5e7eb;
+        margin-bottom: 5px;
+    }
+
+    .style-description {
+        font-family: 'Caveat', cursive;
+        font-size: 1.1rem;
+        color: #ccc;
+        line-height: 1.4;
+    }
+
+    .premium-badge {
+        background: #3b82f6;
+        color: #000;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        font-family: 'Caveat', cursive;
+        margin-left: 10px;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    }
+
+    .premium-disabled .premium-badge {
+        background: #666;
+        color: #ccc;
+        box-shadow: none;
+    }
+
+    /* Updated button styling to match login page */
+    .btn-submit {
+        width: 100%;
+        padding: 15px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Added styles for coming soon teaser section */
+    .coming-soon-teaser {
+        background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
+        border: 2px solid #3b82f6;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .coming-soon-teaser::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+        animation: sweep 4s linear infinite;
+        z-index: 1;
+    }
+
+    .teaser-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .coming-soon-teaser h4 {
+        color: #3b82f6;
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .coming-soon-teaser p {
+        color: #e0e0e0;
+        font-family: 'Caveat', cursive;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .sparkle-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .sparkle {
+        font-size: 1.5rem;
+        animation: sparkle 1.5s ease-in-out infinite;
+    }
+
+    .sparkle:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    .sparkle:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+    @keyframes shimmer {
+        0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
+    }
+
+    @keyframes sweep {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        to { text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4); }
+    }
+
+    @keyframes sparkle {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+        50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+        .create-question-set-container {
+            margin: 40px 20px;
+            padding: 30px 20px;
+        }
+
+        .form-title {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<div class="space-background">
+    <div class="space-grid"></div>
+</div>
+
+<div class="create-question-set-container">
+    <h2 class="form-title">{% trans "Create Question Set" %}</h2>
+
+    <form method="post" class="create-question-set-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_title">{% trans "Title" %}</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_description">{% trans "Description" %}</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_style">{% trans "Style" %}</label>
+            <div class="style-options">
+                {% for value, label in form.style.field.choices %}
+                    {% if value %}
+                        <div class="style-option {% if user.profile.plan == 'free' and value in 'retro_gothic,celestial_zodiac,pastel_minimalist,cottagecore,cyber_neon,vintage_80s_90s,royal_medieval,ocean_mermaid,paper_journal,film_noir' %}premium-disabled{% endif %}">
+                            <input type="radio" name="style" value="{{ value }}" id="style_{{ value }}"
+                                   {% if user.profile.plan == 'free' and value in 'retro_gothic,celestial_zodiac,pastel_minimalist,cottagecore,cyber_neon,vintage_80s_90s,royal_medieval,ocean_mermaid,paper_journal,film_noir' %}disabled{% endif %}
+                                   {% if form.style.value == value %}checked{% endif %}>
+                            <div class="style-info">
+                                <div class="style-name">{{ label }}</div>
+                                <div class="style-description">
+                                    {% if value == 'grunge' %}{% trans "Dark leather-bound diary with handwritten aesthetics" %}
+                                    {% elif value == 'minimal' %}{% trans "Simple, clean design focused on content" %}
+                                    {% elif value == 'retro_gothic' %}{% trans "Dark and mysterious themes for deep introspection" %}
+                                    {% elif value == 'celestial_zodiac' %}{% trans "Star-guided questions for cosmic self-discovery" %}
+                                    {% elif value == 'pastel_minimalist' %}{% trans "Clean and gentle prompts for peaceful reflection" %}
+                                    {% elif value == 'cottagecore' %}{% trans "Nature-inspired questions for mindful living" %}
+                                    {% elif value == 'cyber_neon' %}{% trans "Futuristic prompts for digital age reflection" %}
+                                    {% elif value == 'vintage_80s_90s' %}{% trans "Nostalgic questions with retro vibes" %}
+                                    {% elif value == 'royal_medieval' %}{% trans "Regal themes for noble self-reflection" %}
+                                    {% elif value == 'ocean_mermaid' %}{% trans "Oceanic vibes for flowing thoughts" %}
+                                    {% elif value == 'paper_journal' %}{% trans "Classic paper diary experience" %}
+                                    {% elif value == 'film_noir' %}{% trans "Dramatic black and white aesthetics" %}
+                                    {% else %}{% blocktrans %}{{ label }} style theme{% endblocktrans %}{% endif %}
+                                </div>
+                            </div>
+                            {% if value in 'retro_gothic,celestial_zodiac,pastel_minimalist,cottagecore,cyber_neon,vintage_80s_90s,royal_medieval,ocean_mermaid,paper_journal,film_noir' %}
+                                <span class="premium-badge">{% trans "Premium" %}</span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Added "More Styles Coming Soon" teaser section -->
+        <div class="coming-soon-teaser">
+            <div class="teaser-content">
+                <h4>{% trans "More Styles Coming Soon!" %}</h4>
+                <p>{% trans "We're crafting exciting new diary themes including Enchanted Forest, Space Explorer, Art Deco, and many more magical experiences..." %}</p>
+            </div>
+        </div>
+
+        {% if user.profile.plan == 'free' %}
+        <div class="upgrade-notice">
+            <h4>{% trans "Unlock Premium Styles" %}</h4>
+            <p>{% trans "Upgrade to Premium to access all diary styles and create unlimited question sets." %}</p>
+            <a href="{% url 'users:upgrade_to_premium' %}" class="upgrade-link">{% trans "Upgrade Now" %}</a>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="btn-submit">{% trans "Create" %}</button>
+    </form>
+</div>
+
+
+<!-- Updated JavaScript to match login page star creation -->
+<script>
+function createStars() {
+    const background = document.querySelector('.space-background');
+    const starCount = 350; // Increased star count for more realistic sky
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+
+        // Random position
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+
+        // Random animation delay
+        star.style.animationDelay = Math.random() * 5 + 's';
+
+        background.appendChild(star);
+    }
+}
+
+// Create stars when page loads
+document.addEventListener('DOMContentLoaded', createStars);
+</script>
+{% endblock %}

@@ -1,0 +1,675 @@
+{% load i18n %}
+<style>
+/* Added circular rotating title with "tell me what" text */
+.circular-title {
+    position: absolute;
+    top: 1rem; /* Reduced from 2rem */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    z-index: 1001;
+    cursor: pointer;
+}
+
+.circular-text {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: rotate 15s linear infinite;
+}
+
+.circular-text span {
+    position: absolute;
+    left: 50%;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: #4a9eff;
+    transform-origin: 0 60px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Simplified left sidebar design matching reference image */
+.sidebar-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+    background: #000000;
+    display: grid;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Updated navigation links with handwritten font and asymmetric positioning */
+.nav-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.nav-link {
+    display: block;
+    color: #4a9eff;
+    text-decoration: none; /* Removed underline */
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem; /* Slightly increased font size */
+    font-weight: 500;
+    transition: all 0.4s ease;
+    position: relative;
+    /* Asymmetric positioning for organic handwritten feel */
+    transform: rotate(var(--rotation, 0deg)) translateX(var(--offset, 0px));
+}
+
+.nav-link:nth-child(1) {
+    --rotation: -2deg;
+    --offset: 3px;
+}
+.nav-link:nth-child(2) {
+    --rotation: 1deg;
+    --offset: -5px;
+}
+
+/* Hover effect that straightens and whitens text */
+.nav-link:hover {
+    color: #fefffd;
+    transform: rotate(0deg) translateX(0px);
+}
+
+/* Enhanced active link styling with animated line-through */
+.nav-link.active {
+    color: #fefffd; /* Make text white when active */
+    transform: rotate(0deg) translateX(0px); /* Straighten text when active */
+    text-decoration: line-through; /* Add line through text instead of overline */
+    text-decoration-color: #fefffd;
+    text-decoration-thickness: 2px;
+    animation: drawLineThrough 0.5s ease-out;
+}
+
+/* Removed overline animation, replaced with line-through effect */
+@keyframes drawLineThrough {
+    from {
+        text-decoration-color: transparent;
+    }
+    to {
+        text-decoration-color: #fefffd;
+    }
+}
+
+/* Diary list styling */
+.diary-list {
+    display: none;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+    opacity: 0;
+}
+
+.diary-list.active {
+    display: block;
+    max-height: 300px;
+    opacity: 1;
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        max-height: 300px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Container for languages */
+.desktop-language-selector {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+/* Default language option style */
+.desktop-language-option {
+    color: #4a9eff; /* blue by default */
+    text-decoration: none;
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    transform: rotate(-0.5deg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+/* Hover effect (but not permanent) */
+.desktop-language-option:hover {
+    text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+    transform: rotate(0deg);
+}
+
+/* ✅ Active language stays white */
+.desktop-language-option.active {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(74, 158, 255, 0.6);
+    transform: rotate(0deg);
+}
+
+
+
+.diary-item {
+    display: block;
+    padding: 0.5rem 0;
+    color: #4a9eff;
+    text-decoration: none;
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem; /* Increased size from 1.1rem */
+    font-weight: 500;
+    transition: all 0.3s ease;
+    transform: rotate(-1deg) translateX(-10px);
+    opacity: 0;
+    animation: fadeInItem 0.3s ease-out forwards;
+}
+
+/* Added hover effect for diary items */
+.diary-item:hover {
+    color: #fefffd;
+    transform: rotate(0deg) translateX(5px);
+    text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+}
+
+.diary-list.active .diary-item {
+    animation-delay: calc(var(--item-index, 0) * 0.1s);
+}
+
+@keyframes fadeInItem {
+    to {
+        opacity: 1;
+        transform: rotate(-1deg) translateX(0);
+    }
+}
+
+/* Bottom section styling */
+.bottom-section {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem; /* Reduced gap from 0.8rem to fit content better */
+    max-height: none; /* Removed height limit to prevent scrolling */
+    overflow: visible; /* Changed from overflow-y: auto to prevent scrollbar */
+}
+
+.account-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 2.5rem; /* Increased from 0.8rem */
+}
+
+.account-links a {
+    color: #4a9eff;
+    text-decoration: none;
+    font-family: 'Caveat', cursive;
+    font-weight: 500;
+    transition: all 0.3s;
+    transform: rotate(-0.5deg);
+}
+
+.account-links a:hover {
+    color: #fefffd;
+    transform: rotate(0deg);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar-header {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1rem;
+        z-index: 1000;
+        min-height: auto;
+        flex-direction: row;
+        align-items: center;
+        overflow: visible;
+        display: grid;
+    }
+
+    /* Mobile top header layout */
+    .mobile-header-top {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .mobile-nav-left {
+        display: flex;
+        gap: 1.3rem;
+        align-items: center;
+    }
+
+    .mobile-nav-right {
+        display: flex;
+        gap: 1.3rem;
+        align-items: flex-end;
+    }
+
+    .circular-title {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 0;
+        width: 80px;
+        height: 80px;
+        display: flex;
+    }
+
+    /* Navigation positioned on sides for mobile */
+    .nav-section {
+        display: none; /* Hide default nav section on mobile */
+    }
+
+
+    .account-section {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .circular-text span {
+        font-size: 12px;
+        transform-origin: 0 40px;
+    }
+
+        .language-selector {
+        gap: 0.5rem;
+    }
+
+    .language-option {
+        font-size: 1.2rem;
+        padding: 0.1rem 0.3rem;
+    }
+
+
+    /* Mobile navigation links styling */
+    .mobile-nav-link {
+        color: #4a9eff;
+        text-decoration: none;
+        font-family: 'Caveat', cursive;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-bottom: 0.2rem;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+        color: #fefffd;
+        text-decoration: line-through;
+    }
+
+    .mobile-language-selector {
+        display: flex;
+        gap: 1rem;
+        justify-content: center; /* or flex-start if you want left align */
+        flex-wrap: nowrap;       /* keep in one row */
+        overflow-x: auto;        /* allow scroll on small screens */
+    }
+
+    .mobile-language-option {
+        flex-shrink: 0;      /* 🚨 prevent shrinking */
+        white-space: nowrap; /* text stays in one line */
+    }
+
+    /* Diary list for mobile */
+    .mobile-diary-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #000000;
+        border: 1px solid #4a9eff;
+        border-radius: 5px;
+        padding: 0.5rem;
+        z-index: 1001;
+        min-width: 150px;
+    }
+
+    .mobile-diary-list.active {
+        display: block;
+    }
+
+    .mobile-diary-item {
+        display: block;
+        color: #4a9eff;
+        text-decoration: none;
+        font-family: 'Caveat', cursive;
+        font-size: 0.9rem;
+        padding: 0.2rem 0;
+        transition: color 0.3s ease;
+    }
+
+    .mobile-diary-item:hover {
+        color: #fefffd;
+    }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .sidebar-header {
+        width: 240px;
+    }
+}
+</style>
+
+<!-- Added Google Fonts for handwritten style -->
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;700&display=swap" rel="stylesheet">
+
+<header class="sidebar-header">
+    <!-- Added circular rotating title -->
+    <div class="header-section">
+        <a href="{% url 'pages:home' %}" class="circular-title">
+            <div class="circular-text">
+                <!-- Circular title remains as individual spans -->
+                <span style="transform: rotate(10deg)">D</span>
+                <span style="transform: rotate(40deg)">E</span>
+                <span style="transform: rotate(70deg)">A</span>
+                <span style="transform: rotate(100deg)">R</span>
+                <span style="transform: rotate(130deg)"> </span>
+                <span style="transform: rotate(150deg)"> </span>
+                <span style="transform: rotate(180deg)">D</span>
+                <span style="transform: rotate(210deg)">I</span>
+                <span style="transform: rotate(230deg)">A</span>
+                <span style="transform: rotate(260deg)">R</span>
+                <span style="transform: rotate(290deg)">Y</span>
+                <span style="transform: rotate(320deg)"> </span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Navigation section -->
+    <div class="nav-section">
+        {% if user.is_authenticated %}
+            <a href="#" id="viewResponsesBtn" class="nav-link"
+               onclick="addClickEffect(this); window.showResponsesPopup(); return false;">
+                {% trans "Notifications" %}
+            </a>
+            <a href="{% url 'diary:view_all_responses' %}" class="nav-link" onclick="addClickEffect(this);">
+                {% trans "Responses" %}
+            </a>
+
+            <a href="#" class="nav-link" onclick="toggleDiaryList(); addClickEffect(this); return false;">
+                {% trans "View Diaries" %}
+            </a>
+
+            <!-- Diary list that appears on click -->
+            <div class="diary-list" id="diaryList">
+                {% for question_set in user.question_sets.all %}
+                    <a href="{% url 'diary:question_set_detail' question_set.slug %}" class="diary-item">
+                        {{ question_set.title }}
+                    </a>
+                {% empty %}
+                    <span class="diary-item">{% trans "No diaries yet" %}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <a href="{% url 'users:login' %}" class="nav-link" onclick="addClickEffect(this)">{% trans "Log In" %}</a>
+            <a href="{% url 'users:register' %}" class="nav-link" onclick="addClickEffect(this)">{% trans "Sign Up" %}</a>
+        {% endif %}
+    </div>
+
+    <!-- Mobile-specific layout -->
+    <div class="mobile-header-top" style="display: none;">
+        <!-- Left side navigation for mobile -->
+        <div class="mobile-nav-left mobile-nav-section">
+            {% if user.is_authenticated %}
+                <a href="#" class="mobile-nav-link" onclick="addClickEffect(this); window.showResponsesPopup(); return false;">
+                    {% trans "View Responses" %}
+                </a>
+                <div style="position: relative;">
+                    <a href="#" class="mobile-nav-link" onclick="toggleMobileDiaryList(); addClickEffect(this); return false;">
+                        {% trans "View Diaries" %}
+                    </a>
+                    <div class="mobile-diary-list" id="mobileDiaryList">
+                        {% for question_set in user.question_sets.all %}
+                            <a href="{% url 'diary:question_set_detail' question_set.slug %}" class="diary-item">
+                                {{ question_set.title }}
+                            </a>
+                        {% empty %}
+                            <span class="mobile-diary-item">{% trans "No diaries yet" %}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Right side profile for mobile -->
+        <div class="mobile-nav-right mobile-nav-section">
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:profile' %}" class="mobile-nav-link">{% trans "Profile" %}</a>
+                <a href="{% url 'users:logout' %}" class="mobile-nav-link">{% trans "Logout" %}</a>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="mobile-nav-link">{% trans "Log In" %}</a>
+                <a href="{% url 'users:register' %}" class="mobile-nav-link">{% trans "Sign Up" %}</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="bottom-section">
+    <div class="bottom-section">
+        <div class="dsktop-language-selector">
+            <a href="" class="desktop-language-option" onclick="setLanguage('en')">EN</a>
+            <a href="" class="desktop-language-option" onclick="setLanguage('ka')">KA</a>
+            <a href="" class="desktop-language-option" onclick="setLanguage('de')">DE</a>
+            <a href="" class="desktop-language-option" onclick="setLanguage('ru')">RU</a>
+        </div>
+    </div>
+
+        {% if user.is_authenticated %}
+            <div class="account-section">
+                <div class="account-links">
+                    <a href="{% url 'users:profile' %}">{% trans "Profile" %}</a>
+                    <a href="{% url 'users:logout' %}">{% trans "Logout" %}</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</header>
+
+
+<script>
+        const transRespondedTo = "{% trans 'responded to' %}";
+    const transView = "{% trans '[view]' %}";
+window.showResponsesPopup = function() {
+    console.log('[v0] showResponsesPopup called');
+
+    const fetchUrl = "{% url 'diary:fetch_responses' %}";
+    const paper = document.getElementById('responsesPaper');
+    const content = document.getElementById('responsesContent');
+
+    if (!paper || !content) {
+        console.error('[v0] Responses popup elements not found - make sure responses_popup.html is included');
+        alert('Responses popup is not available. Please make sure you are on a page that includes the responses popup.');
+        return;
+    }
+
+    console.log('[v0] Fetching responses from:', fetchUrl);
+
+    fetch(fetchUrl)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log('[v0] Responses data received:', data);
+            const responsesData = data.question_sets.flatMap(qs =>
+                qs.responses.map(r => ({...r, qs_title: qs.question_set_title}))
+            );
+
+            // Render first page
+            renderResponsesPage(responsesData, 0, content);
+            paper.classList.remove('hidden');
+            console.log('[v0] Popup displayed successfully');
+        })
+        .catch(error => {
+            console.error('[v0] Error fetching responses:', error);
+            alert('Error loading responses. Please try again.');
+        });
+};
+
+function toggleDiaryList() {
+    const diaryList = document.getElementById('diaryList');
+    const diaryItems = diaryList.querySelectorAll('.diary-item');
+
+    if (diaryList.classList.contains('active')) {
+        diaryList.classList.remove('active');
+    } else {
+        diaryList.classList.add('active');
+
+        // Add staggered animation delay to each diary item
+        diaryItems.forEach((item, index) => {
+            item.style.setProperty('--item-index', index);
+        });
+    }
+}
+function setLanguage(langCode) {
+    // Save in localStorage so active persists after reload
+    localStorage.setItem('selectedLanguage', langCode);
+
+    fetch(`/set-language/${langCode}/`, {
+        method: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(() => window.location.reload())
+    .catch(err => console.error('Language switch failed', err));
+}
+
+// Highlight active language
+function highlightActiveLanguage() {
+    const savedLang = localStorage.getItem('selectedLanguage') || "{{ request.LANGUAGE_CODE }}";
+    document.querySelectorAll('.desktop-language-option').forEach(link => {
+        if (link.textContent.toLowerCase() === savedLang.toLowerCase()) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', highlightActiveLanguage);
+
+function addClickEffect(element) {
+    // Remove active class from all nav links
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Add active class to clicked element
+    element.classList.add('active');
+}
+
+function renderResponsesPage(responsesData, currentPage, content) {
+    const itemsPerPage = 5;
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageItems = responsesData.slice(start, end);
+
+    function getRandomFontClass() {
+        const fonts = ['font-1', 'font-2', 'font-3', 'font-4', 'font-5', 'font-6',
+                      'font-7', 'font-8', 'font-9', 'font-10', 'font-11', 'font-12',
+                      'font-13', 'font-14', 'font-15', 'font-16', 'font-17', 'font-18',
+                      'font-19', 'font-20'];
+        return fonts[Math.floor(Math.random() * fonts.length)];
+    }
+
+    content.innerHTML = pageItems.map(r => {
+        const fontClass = getRandomFontClass();
+        const dateTime = new Date(r.submitted_at);
+        const timeStr = dateTime.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        });
+
+        return `
+<div class="response-item">
+    <span class="response-line">
+        <span class="${fontClass}">${r.respondent}</span>
+        <span style="color: #333; font-family: 'Georgia', serif;">${transRespondedTo}</span>
+        <span class="diary-name">${r.qs_title}</span>
+        <a href="/diary/response/${r.id}/" class="view-link">${transView}</a>
+    </span>
+    <div class="response-date">
+        ${r.submitted_at}
+        <span class="response-time">${timeStr}</span>
+    </div>
+</div>
+
+        `;
+    }).join('');
+
+    const totalPages = Math.ceil(responsesData.length / itemsPerPage);
+    const pageInfoEl = document.getElementById('pageInfo');
+    if (pageInfoEl) {
+        pageInfoEl.textContent = `${currentPage + 1} from ${totalPages} pages`;
+    }
+}
+
+function toggleMobileDiaryList() {
+    const mobileDiaryList = document.getElementById('mobileDiaryList');
+    mobileDiaryList.classList.toggle('active');
+}
+
+function updateHeaderLayout() {
+    const mobileHeader = document.querySelector('.mobile-header-top');
+    const desktopNav = document.querySelector('.nav-section');
+    const bottomSection = document.querySelector('.bottom-section');
+    const circularTitle = document.querySelector('.circular-title');
+
+    if (window.innerWidth <= 768) {
+        mobileHeader.style.display = 'flex';
+        desktopNav.style.display = 'none';
+        bottomSection.style.display = 'none';
+        circularTitle.style.position = 'relative';
+        circularTitle.style.top = '0';
+        circularTitle.style.left = '0';
+        circularTitle.style.transform = 'none';
+        circularTitle.style.margin = '0 auto';
+    } else {
+        mobileHeader.style.display = 'none';
+        desktopNav.style.display = 'flex';
+        bottomSection.style.display = 'flex';
+        circularTitle.style.position = 'absolute';
+        circularTitle.style.top = '1rem';
+        circularTitle.style.left = '50%';
+        circularTitle.style.transform = 'translateX(-50%)';
+        circularTitle.style.margin = '0';
+    }
+}
+
+// Initialize and listen for resize events
+window.addEventListener('load', updateHeaderLayout);
+window.addEventListener('resize', updateHeaderLayout);
+</script>
