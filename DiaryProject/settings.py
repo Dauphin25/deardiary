@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -165,3 +166,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # CKEditor upload path
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]

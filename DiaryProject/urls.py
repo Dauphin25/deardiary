@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static  # To serve media files in development
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 
 import users.views
 
@@ -32,7 +33,8 @@ urlpatterns = [
 
     path('diary/', include('diary.urls',namespace='diary')),
     path('', include('pages.urls', namespace='pages')),
-    path('set-language/<str:lang_code>/', users.views.set_language, name='set_language'),
+
+    path('i18n/', include('django.conf.urls.i18n')),  # ✅ must include this
 
 ]
 

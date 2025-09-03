@@ -272,10 +272,10 @@ footer::before {
 
             <div class="language-selector">
                 <h4>{% trans "Select Language" %}</h4>
-                <a href="" class="language-option active" onclick="setLanguage('en')">EN</a>
-                <a href="" class="language-option" onclick="setLanguage('ka')">KA</a>
-                <a href="" class="language-option" onclick="setLanguage('de')">DE</a>
-                <a href="" class="language-option" onclick="setLanguage('ru')">RU</a>
+ <a href="#" class="desktop-language-option" onclick="setLanguage('en'); return false;">EN</a>
+        <a href="#" class="desktop-language-option" onclick="setLanguage('ka'); return false;">KA</a>
+        <a href="#" class="desktop-language-option" onclick="setLanguage('de'); return false;">DE</a>
+        <a href="#" class="desktop-language-option" onclick="setLanguage('ru'); return false;">RU</a>
             </div>
 
             <div class="footer-links">
@@ -301,25 +301,24 @@ footer::before {
 </footer>
 
 <script>
-// Called when user clicks a language
 function setLanguage(langCode) {
-    // Save selected language so it persists
-    localStorage.setItem('selectedLanguage', langCode);
+    const formData = new FormData();
+    formData.append('language', langCode);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');  // pass CSRF token
 
-    // Optional: notify backend (Django)
-    fetch(`/set-language/${langCode}/`, {
-        method: 'GET',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    fetch("{% url 'set_language' %}", {
+        method: 'POST',
+        body: formData,
     })
-    .then(() => window.location.reload()) // reload to apply
+    .then(() => window.location.reload())
     .catch(err => console.error('Language switch failed', err));
 }
 
-// Apply "active" style to the current language
+// Highlight active language
 function highlightActiveLanguage() {
-    const savedLang = localStorage.getItem('selectedLanguage') || "en";
-    document.querySelectorAll('.language-option').forEach(link => {
-        if (link.textContent.toLowerCase() === savedLang.toLowerCase()) {
+    const currentLang = "{{ request.LANGUAGE_CODE }}";
+    document.querySelectorAll('.desktop-language-option').forEach(link => {
+        if (link.textContent.toLowerCase() === currentLang.toLowerCase()) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');

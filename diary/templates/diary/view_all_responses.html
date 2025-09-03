@@ -374,10 +374,10 @@
             <div class="no-question-sets">
                 <h3>{% trans "No Question Sets Found" %}</h3>
                 <p>{% trans "You haven't created any question sets yet. Start by creating your first question set!" %}</p>
-                <a href="{% url 'diary:create_question_set' %}" class="create-button">{% trans "Create Your First Question Set" %}</a>
+                <a href="{% url 'diary:question_set_create' %}" class="create-button">{% trans "Create Your First Question Set" %}</a>
             </div>
         </div>
     {% endif %}
 </div>
-
+</div>
 {% endblock %}

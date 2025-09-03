@@ -476,14 +476,14 @@
     </div>
 
     <div class="bottom-section">
-    <div class="bottom-section">
-        <div class="dsktop-language-selector">
-            <a href="" class="desktop-language-option" onclick="setLanguage('en')">EN</a>
-            <a href="" class="desktop-language-option" onclick="setLanguage('ka')">KA</a>
-            <a href="" class="desktop-language-option" onclick="setLanguage('de')">DE</a>
-            <a href="" class="desktop-language-option" onclick="setLanguage('ru')">RU</a>
-        </div>
+<div class="bottom-section">
+    <div class="dsktop-language-selector">
+        <a href="#" class="desktop-language-option" onclick="setLanguage('en'); return false;">EN</a>
+        <a href="#" class="desktop-language-option" onclick="setLanguage('ka'); return false;">KA</a>
+        <a href="#" class="desktop-language-option" onclick="setLanguage('de'); return false;">DE</a>
+        <a href="#" class="desktop-language-option" onclick="setLanguage('ru'); return false;">RU</a>
     </div>
+</div>
 
         {% if user.is_authenticated %}
             <div class="account-section">
@@ -553,14 +553,14 @@ function toggleDiaryList() {
             item.style.setProperty('--item-index', index);
         });
     }
-}
-function setLanguage(langCode) {
-    // Save in localStorage so active persists after reload
-    localStorage.setItem('selectedLanguage', langCode);
+}function setLanguage(langCode) {
+    const formData = new FormData();
+    formData.append('language', langCode);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');  // pass CSRF token
 
-    fetch(`/set-language/${langCode}/`, {
-        method: 'GET',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    fetch("{% url 'set_language' %}", {
+        method: 'POST',
+        body: formData,
     })
     .then(() => window.location.reload())
     .catch(err => console.error('Language switch failed', err));
@@ -568,9 +568,9 @@ function setLanguage(langCode) {
 
 // Highlight active language
 function highlightActiveLanguage() {
-    const savedLang = localStorage.getItem('selectedLanguage') || "{{ request.LANGUAGE_CODE }}";
+    const currentLang = "{{ request.LANGUAGE_CODE }}";
     document.querySelectorAll('.desktop-language-option').forEach(link => {
-        if (link.textContent.toLowerCase() === savedLang.toLowerCase()) {
+        if (link.textContent.toLowerCase() === currentLang.toLowerCase()) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
