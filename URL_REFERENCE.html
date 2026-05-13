@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <title>DearDiary — URL სახელმძღვანელო</title>
+  <style>
+    body {
+      font-family: Calibri, Arial, sans-serif;
+      font-size: 11pt;
+      color: #1C2833;
+      background: #FFFFFF;
+      margin: 40px 60px;
+      line-height: 1.5;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      text-align: center;
+      padding: 36px 0 28px 0;
+      border-bottom: 3px solid #1A5276;
+      margin-bottom: 36px;
+    }
+    .cover h1 {
+      font-size: 26pt;
+      font-weight: bold;
+      color: #1A5276;
+      margin: 0 0 6px 0;
+      letter-spacing: 1px;
+    }
+    .cover .subtitle {
+      font-size: 13pt;
+      color: #5D6D7E;
+      margin: 0 0 8px 0;
+    }
+    .cover .meta {
+      font-size: 10pt;
+      color: #95A5A6;
+    }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      background: #F4F6F8;
+      border: 1px solid #D5D8DC;
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin-bottom: 36px;
+      font-size: 10pt;
+    }
+    .legend-item { display: flex; align-items: center; gap: 7px; }
+    .legend-dot {
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 36px; }
+
+    .section-header {
+      color: #FFFFFF;
+      font-size: 13pt;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px 5px 0 0;
+      margin: 0;
+    }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5pt;
+      border: 1px solid #D5D8DC;
+      border-top: none;
+    }
+    thead tr { background: #EBF5FB; }
+    thead th {
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: bold;
+      color: #1C2833;
+      border-bottom: 2px solid #D5D8DC;
+      border-right: 1px solid #D5D8DC;
+      white-space: nowrap;
+    }
+    tbody tr:nth-child(even)  { background: #FDFEFE; }
+    tbody tr:nth-child(odd)   { background: #F4F6F8; }
+    tbody tr:hover            { background: #EBF5FB; }
+    tbody td {
+      padding: 7px 12px;
+      border-bottom: 1px solid #D5D8DC;
+      border-right: 1px solid #D5D8DC;
+      vertical-align: top;
+    }
+
+    /* URL cell */
+    .url {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10pt;
+      color: #1A5276;
+      font-weight: 600;
+    }
+    .url-param { color: #884EA0; }
+
+    /* Method badges */
+    .badge {
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 7px;
+      font-size: 9pt;
+      font-weight: bold;
+      color: #FFFFFF;
+      margin-right: 3px;
+      white-space: nowrap;
+    }
+    .get  { background: #1E8449; }
+    .post { background: #B7770D; }
+
+    /* Access badge */
+    .access {
+      font-size: 9pt;
+      border-radius: 10px;
+      padding: 2px 9px;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+    .acc-all   { background:#D5F5E3; color:#1E8449; border:1px solid #A9DFBF; }
+    .acc-auth  { background:#EBF5FB; color:#1A5276; border:1px solid #AED6F1; }
+    .acc-own   { background:#FEF9E7; color:#B7770D; border:1px solid #FAD7A0; }
+    .acc-staff { background:#F9EBEA; color:#922B21; border:1px solid #F1948A; }
+
+    /* Section colour themes */
+    .hdr-admin  { background: #7D3C98; }
+    .hdr-pages  { background: #1A5276; }
+    .hdr-users  { background: #1E8449; }
+    .hdr-diary  { background: #B7770D; }
+    .hdr-system { background: #5D6D7E; }
+
+    /* ── Notes ── */
+    .note {
+      background: #FEF9E7;
+      border-left: 4px solid #F39C12;
+      padding: 8px 14px;
+      font-size: 10pt;
+      margin-bottom: 36px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 9.5pt;
+      color: #AAB7B8;
+      border-top: 1px solid #D5D8DC;
+      padding-top: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <h1>DearDiary</h1>
+  <p class="subtitle">URL სახელმძღვანელო &nbsp;·&nbsp; URL Reference Guide</p>
+  <p class="meta">Django 5.2 &nbsp;|&nbsp; Python 3.11 &nbsp;|&nbsp; 2025</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ LEGEND -->
+<div class="legend">
+  <strong>პირობითი ნიშნები:</strong>
+  <span class="legend-item">
+    <span class="legend-dot" style="background:#1E8449"></span> ყველა — ავტორიზაცია არ სჭირდება
+  </span>
+  <span class="legend-item">
+    <span class="legend-dot" style="background:#1A5276"></span> ავტ. — შესული მომხმარებელი
+  </span>
+  <span class="legend-item">
+    <span class="legend-dot" style="background:#B7770D"></span> მფლობელი — მხოლოდ ჩანაწერის შემქმნელი
+  </span>
+  <span class="legend-item">
+    <span class="legend-dot" style="background:#922B21"></span> Staff — Django ადმინი
+  </span>
+  <span class="legend-item">
+    <span style="background:#884EA0;color:#fff;border-radius:3px;padding:1px 7px;font-size:9pt;font-weight:bold">&lt;param&gt;</span> URL-ის პარამეტრი
+  </span>
+</div>
+
+<!-- NOTE -->
+<div class="note">
+  <strong>BASE URL:</strong>&nbsp; <span style="font-family:Consolas,monospace">http://localhost:8000</span>
+  &nbsp;&nbsp;—&nbsp;&nbsp;
+  ყველა მისამართი ემატება ამ Base URL-ს. მაგ: <span style="font-family:Consolas,monospace">/users/login/</span>
+  &rarr; <span style="font-family:Consolas,monospace">http://localhost:8000/users/login/</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ ADMIN -->
+<div class="section">
+  <p class="section-header hdr-admin">&#9679;&nbsp; ადმინ პანელი &nbsp;/&nbsp; Admin Panel</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">URL</th>
+        <th style="width:13%">მეთოდი</th>
+        <th>აღწერა</th>
+        <th style="width:14%">წვდომა</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="url">/admin/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>Django-ს ადმინ პანელი — ყველა ჩანაწერის მართვა</td>
+        <td><span class="access acc-staff">Staff</span></td>
+      </tr>
+      <tr>
+        <td class="url">/ckeditor/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>CKEditor-ის ფაილების ატვირთვა</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ PAGES -->
+<div class="section">
+  <p class="section-header hdr-pages">&#9679;&nbsp; მთავარი გვერდები &nbsp;/&nbsp; Pages</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">URL</th>
+        <th style="width:13%">მეთოდი</th>
+        <th>აღწერა</th>
+        <th style="width:14%">წვდომა</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="url">/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>მთავარი გვერდი — სიახლეები, ლიდერბორდი, პროფილის ბარათი</td>
+        <td><span class="access acc-all">ყველა</span></td>
+      </tr>
+      <tr>
+        <td class="url">/<span class="url-param">&lt;slug&gt;</span>/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>სტატიკური CMS გვერდის ნახვა slug-ით</td>
+        <td><span class="access acc-all">ყველა</span></td>
+      </tr>
+      <tr>
+        <td class="url">/share-card/<span class="url-param">&lt;question_set_id&gt;</span>/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>QR კოდის + Share Card-ის PNG გადმოტვირთვა</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ USERS -->
+<div class="section">
+  <p class="section-header hdr-users">&#9679;&nbsp; მომხმარებლები &nbsp;/&nbsp; Users &nbsp;( /users/ )</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">URL</th>
+        <th style="width:13%">მეთოდი</th>
+        <th>აღწერა</th>
+        <th style="width:14%">წვდომა</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="url">/users/register/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>
+          <strong>GET</strong> — რეგისტრაციის ფორმა<br>
+          <strong>POST</strong> — ახალი ანგარიშის შექმნა (სახელი, ელ-ფოსტა, პაროლი)
+        </td>
+        <td><span class="access acc-all">ყველა</span></td>
+      </tr>
+      <tr>
+        <td class="url">/users/login/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>
+          <strong>GET</strong> — შესვლის ფორმა<br>
+          <strong>POST</strong> — ავტორიზაცია (username + password)
+        </td>
+        <td><span class="access acc-all">ყველა</span></td>
+      </tr>
+      <tr>
+        <td class="url">/users/logout/</td>
+        <td><span class="badge post">POST</span></td>
+        <td>სისტემიდან გასვლა — სესიის წაშლა</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+      <tr>
+        <td class="url">/users/profile/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>პირადი გვერდი — სტატისტიკა, შეტყობინებები, გეგმა</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+      <tr>
+        <td class="url">/users/upgrade/</td>
+        <td><span class="badge post">POST</span></td>
+        <td>უფასო გეგმიდან Premium-ზე გადასვლა</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+      <tr>
+        <td class="url">/i18n/set_language/</td>
+        <td><span class="badge post">POST</span></td>
+        <td>ინტერფეისის ენის შეცვლა (ქართული / English / Deutsch / Русский)</td>
+        <td><span class="access acc-all">ყველა</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ DIARY -->
+<div class="section">
+  <p class="section-header hdr-diary">&#9679;&nbsp; დღიური &nbsp;/&nbsp; Diary &nbsp;( /diary/ )</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">URL</th>
+        <th style="width:13%">მეთოდი</th>
+        <th>აღწერა</th>
+        <th style="width:14%">წვდომა</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ─ Diary CRUD ─ -->
+      <tr>
+        <td colspan="4" style="background:#FEF9E7;font-weight:bold;font-size:9.5pt;color:#B7770D;padding:5px 12px;">
+          დღიურის მართვა
+        </td>
+      </tr>
+      <tr>
+        <td class="url">/diary/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>ჩემი ყველა დღიურის სია</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/create/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>
+          <strong>GET</strong> — ახალი დღიურის ფორმა<br>
+          <strong>POST</strong> — დღიურის შენახვა (სათაური, სტილი, UUID)
+        </td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/my-question-set/<span class="url-param">&lt;slug&gt;</span>/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>
+          <strong>GET</strong> — დღიურის ნახვა (კითხვები, სტატისტიკა)<br>
+          <strong>POST</strong> — ახალი კითხვის დამატება
+        </td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/my-question-set/<span class="url-param">&lt;slug&gt;</span>/delete/</td>
+        <td><span class="badge post">POST</span></td>
+        <td>დღიურის სრულად წაშლა ყველა კითხვასთან ერთად</td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+
+      <!-- ─ Sharing ─ -->
+      <tr>
+        <td colspan="4" style="background:#FEF9E7;font-weight:bold;font-size:9.5pt;color:#B7770D;padding:5px 12px;">
+          გაზიარება და შევსება
+        </td>
+      </tr>
+      <tr>
+        <td class="url">/diary/answer/share/<span class="url-param">&lt;uuid&gt;</span>/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>
+          <strong>GET</strong> — დღიურის შევსების ფორმა (გაზიარებული ლინკი)<br>
+          <strong>POST</strong> — პასუხების გაგზავნა + შეტყობინების შექმნა
+        </td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+
+      <!-- ─ Responses ─ -->
+      <tr>
+        <td colspan="4" style="background:#FEF9E7;font-weight:bold;font-size:9.5pt;color:#B7770D;padding:5px 12px;">
+          პასუხების ნახვა
+        </td>
+      </tr>
+      <tr>
+        <td class="url">/diary/my-responses/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>ჩემი ყველა დღიური — რამდენი პასუხია თითოეულზე</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/responses/<span class="url-param">&lt;pk&gt;</span>/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>კონკრეტული დღიურის ყველა პასუხი (მომხმარებლების სია)</td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/response/<span class="url-param">&lt;session_id&gt;</span>/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>ერთი მომხმარებლის პასუხების სრული ნახვა</td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/response/<span class="url-param">&lt;session_id&gt;</span>/download/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>პასუხის PDF-ად გადმოტვირთვა (Playwright-ით გენერირებული)</td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/fetch_responses/</td>
+        <td><span class="badge get">GET</span></td>
+        <td>პასუხების სია JSON ფორმატში (AJAX მოთხოვნებისთვის)</td>
+        <td><span class="access acc-auth">ავტ.</span></td>
+      </tr>
+
+      <!-- ─ Questions ─ -->
+      <tr>
+        <td colspan="4" style="background:#FEF9E7;font-weight:bold;font-size:9.5pt;color:#B7770D;padding:5px 12px;">
+          კითხვების მართვა
+        </td>
+      </tr>
+      <tr>
+        <td class="url">/diary/question/<span class="url-param">&lt;pk&gt;</span>/edit/</td>
+        <td><span class="badge get">GET</span> <span class="badge post">POST</span></td>
+        <td>
+          <strong>GET</strong> — კითხვის რედაქტირების ფორმა<br>
+          <strong>POST</strong> — ცვლილებების შენახვა
+        </td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+      <tr>
+        <td class="url">/diary/question/<span class="url-param">&lt;pk&gt;</span>/delete/</td>
+        <td><span class="badge post">POST</span></td>
+        <td>კითხვის წაშლა დღიურიდან</td>
+        <td><span class="access acc-own">მფლობელი</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ SUMMARY -->
+<div class="section">
+  <p class="section-header hdr-system">&#9679;&nbsp; სტატისტიკა &nbsp;/&nbsp; Summary</p>
+  <table>
+    <thead>
+      <tr>
+        <th>განყოფილება</th>
+        <th style="text-align:center">URL-ების რაოდენობა</th>
+        <th>პრეფიქსი</th>
+        <th>Django App</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ადმინ პანელი</td>
+        <td style="text-align:center">2</td>
+        <td class="url">/admin/ &nbsp; /ckeditor/</td>
+        <td>django.contrib.admin</td>
+      </tr>
+      <tr>
+        <td>მთავარი გვერდები</td>
+        <td style="text-align:center">3</td>
+        <td class="url">/</td>
+        <td>pages</td>
+      </tr>
+      <tr>
+        <td>მომხმარებლები</td>
+        <td style="text-align:center">6</td>
+        <td class="url">/users/</td>
+        <td>users</td>
+      </tr>
+      <tr>
+        <td>დღიური</td>
+        <td style="text-align:center">11</td>
+        <td class="url">/diary/</td>
+        <td>diary</td>
+      </tr>
+      <tr style="font-weight:bold;background:#EBF5FB">
+        <td>სულ</td>
+        <td style="text-align:center">22</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ FOOTER -->
+<div class="footer">
+  DearDiary &nbsp;·&nbsp; Django 5.2 &nbsp;·&nbsp; 2025 &nbsp;·&nbsp;
+  GitHub: github.com/Dauphin25/deardiary
+</div>
+
+</body>
+</html>
