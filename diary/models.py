@@ -78,13 +78,13 @@ class QuestionSet(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.title)
+            base_slug = slugify(unidecode(self.title))
             slug = base_slug
             counter = 1
             while QuestionSet.objects.filter(slug=slug).exists():
                 slug = f"{base_slug}-{counter}"
                 counter += 1
-            self.slug = slugify(unidecode(self.title))
+            self.slug = slug
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

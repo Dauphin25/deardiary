@@ -66,9 +66,11 @@ def generate_qr_code(url):
 def download_share_card(request, question_set_id):
     question_set = get_object_or_404(QuestionSet, id=question_set_id)
     # Generate QR code linking to answer page
-    qr_data_uri = generate_qr_code(request.build_absolute_uri(
-        f"/answer/share/{question_set.share_uuid}/"
-    ))
+    from django.urls import reverse
+    share_url = request.build_absolute_uri(
+        reverse('diary:answer_question_set_shared', kwargs={'share_uuid': question_set.share_uuid})
+    )
+    qr_data_uri = generate_qr_code(share_url)
 
     html_content = render_to_string("share_card.html", {
         "question_set": question_set,

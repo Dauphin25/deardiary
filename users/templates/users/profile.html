@@ -576,19 +576,24 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
-<div class="stat-item">
-    <div class="stat-label">{% trans "Question Sets Created" %}</div>
-    <div class="stat-value">{{ current_qset_count }} / {{ max_qsets }}</div>
-</div>
+                    <div class="stat-item">
+                        <div class="stat-label">{% trans "Question Sets Created" %}</div>
+                        <div class="stat-value">{{ current_qset_count }} / {{ max_qsets }}</div>
+                    </div>
+                </div><!-- end stats-grid -->
 
-{% if profile.plan == 'free' %}
-    <div style="text-align: center;">
-        <a href="{% url 'users:upgrade_to_premium' %}" class="upgrade-link">{% trans "Upgrade to Premium" %}</a>
-    </div>
-{% endif %}
+                {% if profile.plan == 'free' %}
+                    <div style="text-align: center;">
+                        <a href="{% url 'users:upgrade_to_premium' %}" class="upgrade-link">{% trans "Upgrade to Premium" %}</a>
+                    </div>
+                {% endif %}
+            </div><!-- end stats-section -->
 
-<div class="action-section">
-    <a href="{% url 'diary:question_set_create' %}" class="action-button">{% trans "Create New Question Set" %}</a>
-</div>
+            <div class="action-section">
+                <a href="{% url 'diary:question_set_create' %}" class="action-button">{% trans "Create New Question Set" %}</a>
+            </div>
+        </div><!-- end right-column -->
+    </div><!-- end profile-content -->
+</div><!-- end profile-container -->
 
 {% endblock %}

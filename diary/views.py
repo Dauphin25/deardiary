@@ -1,18 +1,16 @@
 # diary/views.py
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.db import models
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from users.models import Notification, NotificationType
-from .models import QuestionSet, Question, Answer, AnswerSession, QuestionSetStyle
-from .forms import QuestionSetCreateForm,  QuestionForm
-from django.http import HttpResponseForbidden, Http404
-from users.utils import  can_create_qset
-from django.http import JsonResponse
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from playwright.sync_api import sync_playwright
+from django.http import HttpResponseForbidden, Http404, JsonResponse, HttpResponse
 from django.template.loader import render_to_string
+from playwright.sync_api import sync_playwright
+from users.models import Notification, NotificationType
+from users.utils import can_create_qset
+from .models import QuestionSet, Question, Answer, AnswerSession, QuestionSetStyle
+from .forms import QuestionSetCreateForm, QuestionForm
 
 
 User = get_user_model()
@@ -83,22 +81,23 @@ def answer_shared_question_set(request, share_uuid):
         request.user.userprofile.weekly_answer_count += 1
         request.user.userprofile.save()
 
-        # Notify diary owner
         Notification.objects.create(
             user=question_set.owner,
             actor=request.user,
             type=NotificationType.RECEIVED_RESPONSE,
             message=f"{request.user.username} answered your diary '{question_set.title}'.",
-            question_set=question_set,  # Use the foreign key instead of `link`
-            related_object_id=session.pk,  # Optionally link to the session
+            question_set=question_set,
+            answer_session=session,
+            related_object_id=session.pk,
         )
 
-        # Notify the answering user (optional confirmation)
         Notification.objects.create(
             user=request.user,
+            actor=question_set.owner,
             type=NotificationType.ANSWERED_DIARY,
             message=f"You answered {question_set.owner.username}'s diary '{question_set.title}'.",
             question_set=question_set,
+            answer_session=session,
             related_object_id=session.pk,
         )
 
@@ -162,8 +161,11 @@ def view_responses(request, slug):
 @login_required(login_url='users:login')
 def view_single_response(request, session_id):
     session = (
-        AnswerSession.objects.select_related("question_set__style")
-        .filter(id=session_id, question_set__owner=request.user)
+        AnswerSession.objects.select_related("question_set__style", "respondent")
+        .filter(id=session_id)
+        .filter(
+            models.Q(question_set__owner=request.user) | models.Q(respondent=request.user)
+        )
         .first()
     )
     if not session:
